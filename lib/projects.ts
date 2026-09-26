@@ -3,7 +3,16 @@ import path from "path";
 
 const worksDirectory = path.join(process.cwd(), "content", "works");
 
-export function getProjects() {
+export type Project = {
+  title: string;
+  slug: string;
+  category: string;
+  description: string;
+  featured: boolean;
+  cover: string;
+};
+
+export function getProjects(): Project[] {
   const folders = fs.readdirSync(worksDirectory);
 
   return folders.map((folder) => {
@@ -22,6 +31,12 @@ export function getProjects() {
       cover: `/projects/${project.slug}/cover.jpg`,
     };
   });
+}
+
+export function getFeaturedProjects() {
+  return getProjects().filter(
+    (project) => project.featured === true
+  );
 }
 
 export function getProjectBySlug(slug: string) {
