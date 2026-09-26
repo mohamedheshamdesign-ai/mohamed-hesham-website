@@ -29,7 +29,7 @@ export default function Home() {
             </h1>
 
             <p className="mt-7 max-w-xl text-xl font-medium leading-snug text-gray-800 md:text-2xl">
-              Strategy, identity, and design for brands that want to stand out.
+              Helping businesses build brands people trust, remember, and choose.
             </p>
 
             <p className="mt-5 max-w-lg text-base leading-relaxed text-gray-600 md:text-lg">
