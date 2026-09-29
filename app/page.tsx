@@ -33,7 +33,7 @@ export default function Home() {
             </div>
 
             <p className="hero-name">
-              Mohamed Hisham
+              Mohamed Hesham
             </p>
 
             <h1 className="hero-title">
@@ -85,7 +85,7 @@ export default function Home() {
 
               <Image
                 src="/profile.png"
-                alt="Mohamed Hisham"
+                alt="Mohamed Hesham"
                 width={700}
                 height={1500}
                 priority
@@ -334,7 +334,7 @@ export default function Home() {
             <div className="about-copy">
 
               <p>
-                I'm Mohamed Hisham, a Senior Brand &
+                I'm Mohamed Hesham, a Senior Brand &
                 Graphic Designer based in Egypt. I help
                 businesses build visual identities that
                 strengthen perception, communicate value,

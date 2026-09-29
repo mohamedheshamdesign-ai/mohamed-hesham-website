@@ -30,7 +30,7 @@ export default function ContactPage() {
 
   const openGmail = () => {
     const subject = encodeURIComponent(
-      "Project Inquiry — Mohamed Hisham"
+      "Project Inquiry — Mohamed Hesham"
     );
 
     const body = encodeURIComponent(

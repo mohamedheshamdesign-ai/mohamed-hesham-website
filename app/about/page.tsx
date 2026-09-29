@@ -78,7 +78,7 @@ export default function AboutPage() {
             <div className="overflow-hidden bg-[#f5f5f5]">
               <Image
                 src="/about-profile.png"
-                alt="Mohamed Hisham"
+                alt="Mohamed Hesham"
                 width={800}
                 height={950}
                 priority

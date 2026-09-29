@@ -44,7 +44,7 @@ export default function Navbar() {
       <nav className="site-nav" aria-label="Primary">
         <Link href="/" className="site-logo">
           <span className="site-logo-mark" />
-          <span>Mohamed Hisham</span>
+          <span>Mohamed Hesham</span>
         </Link>
 
         <ul className="desktop-nav-links">

@@ -11,16 +11,16 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
 
   title: {
-    default: "Mohamed Hisham — Senior Brand & Graphic Designer",
-    template: "%s — Mohamed Hisham",
+    default: "Mohamed Hesham — Senior Brand & Graphic Designer",
+    template: "%s — Mohamed Hesham",
   },
 
   description:
-    "Mohamed Hisham is a Senior Brand & Graphic Designer based in Egypt, specializing in brand identity, packaging design, print design, visual systems, and production.",
+    "Mohamed Hesham is a Senior Brand & Graphic Designer based in Egypt, specializing in brand identity, packaging design, print design, visual systems, and production.",
 
   keywords: [
-    "Mohamed Hisham",
-    "Mohamed Hisham Designer",
+    "Mohamed Hesham",
+    "Mohamed Hesham Designer",
     "Senior Brand Designer",
     "Brand Designer Egypt",
     "Graphic Designer Egypt",
@@ -38,16 +38,16 @@ export const metadata: Metadata = {
 
   authors: [
     {
-      name: "Mohamed Hisham",
+      name: "Mohamed Hesham",
       url: siteUrl,
     },
   ],
 
-  creator: "Mohamed Hisham",
+  creator: "Mohamed Hesham",
 
-  publisher: "Mohamed Hisham",
+  publisher: "Mohamed Hesham",
 
-  applicationName: "Mohamed Hisham Portfolio",
+  applicationName: "Mohamed Hesham Portfolio",
 
   category: "Design",
 
@@ -75,19 +75,19 @@ export const metadata: Metadata = {
 
     locale: "en_US",
 
-    title: "Mohamed Hisham — Senior Brand & Graphic Designer",
+    title: "Mohamed Hesham — Senior Brand & Graphic Designer",
 
     description:
       "Senior Brand & Graphic Designer based in Egypt specializing in brand identity, packaging, print design, visual systems, and production.",
 
-    siteName: "Mohamed Hisham",
+    siteName: "Mohamed Hesham",
 
     images: [
       {
         url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "Mohamed Hisham — Senior Brand & Graphic Designer",
+        alt: "Mohamed Hesham — Senior Brand & Graphic Designer",
       },
     ],
   },
@@ -95,7 +95,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
 
-    title: "Mohamed Hisham — Senior Brand & Graphic Designer",
+    title: "Mohamed Hesham — Senior Brand & Graphic Designer",
 
     description:
       "Senior Brand & Graphic Designer specializing in brand identity, packaging, print design, and visual systems.",

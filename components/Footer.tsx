@@ -27,7 +27,7 @@ export default function Footer() {
       <div className="footer-inner">
         <div className="footer-name">
           © {new Date().getFullYear()} —{" "}
-          <strong>Mohamed Hisham</strong>. All rights reserved.
+          <strong>Mohamed Hesham</strong>. All rights reserved.
         </div>
 
         <div className="footer-socials">
