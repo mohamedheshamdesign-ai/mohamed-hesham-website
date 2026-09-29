@@ -1,107 +1,255 @@
 import Image from "next/image";
 import Link from "next/link";
+
 import { getProjectBySlug } from "@/lib/projects";
+
+type PageProps = {
+  params: Promise<{ slug: string }>;
+};
+
+function isVideo(src: string) {
+  const cleanSrc = src.split("?")[0].toLowerCase();
+
+  return (
+    cleanSrc.endsWith(".mp4") ||
+    cleanSrc.endsWith(".webm") ||
+    cleanSrc.endsWith(".mov") ||
+    cleanSrc.endsWith(".m4v")
+  );
+}
+
+function isGif(src: string) {
+  const cleanSrc = src.split("?")[0].toLowerCase();
+
+  return cleanSrc.endsWith(".gif");
+}
 
 export default async function ProjectPage({
   params,
-}: {
-  params: Promise<{ slug: string }>;
-}) {
+}: PageProps) {
   const { slug } = await params;
 
   const project = getProjectBySlug(slug);
 
   return (
-    <main className="bg-white text-black">
-      {/* Hero */}
-      <section className="mx-auto max-w-5xl px-6 py-24">
-        <p className="mb-4 text-sm uppercase tracking-[0.2em] text-gray-500">
-          Case Study
-        </p>
+    <main className="project-page bg-white text-black">
 
-        <h1 className="max-w-4xl text-5xl font-bold leading-tight md:text-7xl">
-          {project.title}
-        </h1>
+      {/* =====================================================
+          PROJECT HERO
+      ===================================================== */}
 
-        <p className="mt-6 text-lg text-gray-500">
-          {project.category}
-        </p>
+      <section className="project-header">
+        <div className="project-container">
 
-        <div className="mt-12 h-px w-full bg-gray-200" />
+          <div className="project-header-top">
 
-        <p className="mt-12 max-w-3xl text-lg leading-relaxed text-gray-700">
-          {project.description}
-        </p>
-      </section>
-
-      {/* Challenge / Solution / Results */}
-      <section className="mx-auto max-w-5xl px-6 pb-24">
-        <div className="grid gap-16">
-          <div>
-            <h2 className="mb-4 text-2xl font-bold">
-              Challenge
-            </h2>
-
-            <p className="max-w-3xl leading-relaxed text-gray-600">
-              {project.challenge}
+            <p className="project-kicker">
+              Case Study
             </p>
+
+            <Link
+              href="/work"
+              className="project-back-link"
+            >
+              ← Back to work
+            </Link>
+
           </div>
 
-          <div>
-            <h2 className="mb-4 text-2xl font-bold">
-              Solution
-            </h2>
+          <h1 className="project-title">
+            {project.title}
+          </h1>
 
-            <p className="max-w-3xl leading-relaxed text-gray-600">
-              {project.solution}
-            </p>
-          </div>
-
-          <div>
-            <h2 className="mb-4 text-2xl font-bold">
-              Results
-            </h2>
-
-            <p className="max-w-3xl leading-relaxed text-gray-600">
-              {project.results}
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Images */}
-      <section>
-        {project.images.map((image: string) => (
-          <Image
-            key={image}
-            src={image}
-            alt={project.title}
-            width={2000}
-            height={2000}
-            className="block w-full"
-          />
-        ))}
-      </section>
-
-      {/* CTA */}
-      <section className="mx-auto max-w-5xl px-6 py-24">
-        <div className="border-t border-gray-200 pt-12">
-          <p className="text-sm uppercase tracking-[0.2em] text-gray-500">
-            Interested in building a stronger brand?
+          <p className="project-category">
+            {project.category}
           </p>
 
-          <h2 className="mt-4 text-3xl font-bold md:text-5xl">
-            Let's create something meaningful.
-          </h2>
+          <div className="project-header-line" />
 
-          <Link
-            href="/contact"
-            className="mt-8 inline-flex rounded-full bg-black px-6 py-3 text-white transition hover:opacity-90"
-          >
-            Get In Touch
-          </Link>
+          <p className="project-description">
+            {project.description}
+          </p>
+
         </div>
       </section>
+
+
+      {/* =====================================================
+          CHALLENGE / SOLUTION / RESULTS
+      ===================================================== */}
+
+      <section className="project-details">
+        <div className="project-container">
+
+          <div className="project-details-grid">
+
+            {/* Challenge */}
+
+            <div className="project-detail">
+
+              <p className="project-detail-label">
+                Challenge
+              </p>
+
+              <p className="project-detail-text">
+                {project.challenge}
+              </p>
+
+            </div>
+
+
+            {/* Solution */}
+
+            <div className="project-detail">
+
+              <p className="project-detail-label">
+                Solution
+              </p>
+
+              <p className="project-detail-text">
+                {project.solution}
+              </p>
+
+            </div>
+
+
+            {/* Results */}
+
+            <div className="project-detail">
+
+              <p className="project-detail-label">
+                Results
+              </p>
+
+              <p className="project-detail-text">
+                {project.results}
+              </p>
+
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
+
+      {/* =====================================================
+          PROJECT MEDIA
+      ===================================================== */}
+
+      <section className="project-gallery">
+
+        <div className="project-media-container">
+
+          <div className="project-gallery-list">
+
+            {project.images.map((media: string) => {
+
+              /* =========================
+                 VIDEO
+              ========================= */
+
+              if (isVideo(media)) {
+                return (
+                  <figure
+                    key={media}
+                    className="project-media-item"
+                  >
+                    <video
+                      className="project-media"
+                      src={media}
+                      controls
+                      playsInline
+                      preload="metadata"
+                    />
+                  </figure>
+                );
+              }
+
+
+              /* =========================
+                 GIF
+              ========================= */
+
+              if (isGif(media)) {
+                return (
+                  <figure
+                    key={media}
+                    className="project-media-item"
+                  >
+                    <img
+                      src={media}
+                      alt={project.title}
+                      className="project-media project-media-gif"
+                    />
+                  </figure>
+                );
+              }
+
+
+              /* =========================
+                 IMAGE
+              ========================= */
+
+              return (
+                <figure
+                  key={media}
+                  className="project-media-item"
+                >
+                  <Image
+                    src={media}
+                    alt={project.title}
+                    width={2000}
+                    height={2000}
+                    sizes="(max-width: 920px) calc(100vw - 48px), 900px"
+                    className="project-media"
+                  />
+                </figure>
+              );
+
+            })}
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      {/* =====================================================
+          CTA
+      ===================================================== */}
+
+      <section className="project-cta">
+
+        <div className="project-container">
+
+          <div className="project-cta-inner">
+
+            <p className="project-cta-kicker">
+              Interested in building a stronger brand?
+            </p>
+
+            <h2 className="project-cta-title">
+              Let&apos;s create something
+              <br />
+              <span>meaningful.</span>
+            </h2>
+
+            <Link
+              href="/contact"
+              className="project-cta-button"
+            >
+              Get In Touch
+              <span>↗</span>
+            </Link>
+
+          </div>
+
+        </div>
+
+      </section>
+
     </main>
   );
 }

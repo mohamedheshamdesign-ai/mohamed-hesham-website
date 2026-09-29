@@ -1,190 +1,417 @@
 import Link from "next/link";
 import Image from "next/image";
+
 import { getFeaturedProjects } from "@/lib/projects";
+import { getTestimonials } from "@/lib/testimonials";
+
+import Testimonials from "@/components/Testimonials";
 
 export default function Home() {
   const featuredProjects = getFeaturedProjects();
+  const testimonials = getTestimonials();
 
   return (
-    <main className="bg-white text-black">
-      {/* Hero */}
+    <main className="home-page bg-white text-neutral-950">
 
-      <section className="mx-auto flex min-h-[calc(100vh-81px)] max-w-6xl items-center px-6 py-12 md:py-16">
-        <div className="grid w-full items-center gap-12 md:grid-cols-2 md:gap-20">
-          <div>
-            <p className="mb-3 text-sm uppercase tracking-[0.2em] text-gray-500">
+      {/* =========================================================
+          HERO
+      ========================================================== */}
+
+      <section className="hero-section">
+        <div className="hero-grid">
+
+          {/* Hero Copy */}
+
+          <div className="hero-content">
+
+            <div className="hero-eyebrow">
+              <span className="hero-eyebrow-dot" />
+
+              <span>
+                Senior Brand & Graphic Designer
+              </span>
+            </div>
+
+            <p className="hero-name">
               Mohamed Hisham
             </p>
 
-            <p className="mb-6 text-sm uppercase tracking-[0.2em] text-gray-500">
-              Senior Brand & Graphic Designer
-            </p>
-
-            <h1 className="text-5xl font-bold leading-[1.02] tracking-tight md:text-7xl">
+            <h1 className="hero-title">
               I build brands
               <br />
-              people remember.
+              people <span>remember.</span>
             </h1>
 
-            <p className="mt-7 max-w-xl text-xl font-medium leading-snug text-gray-800 md:text-2xl">
-              Helping businesses build brands people trust, remember, and
-              choose.
+            <p className="hero-lead">
+              Helping businesses build brands people trust,
+              remember, and choose.
             </p>
 
-            <p className="mt-5 max-w-lg text-base leading-relaxed text-gray-600 md:text-lg">
-              I help businesses create visual identities that strengthen
-              perception, build trust, and deliver a consistent brand
-              experience across print and digital media.
+            <p className="hero-description">
+              I help businesses create visual identities that
+              strengthen perception, build trust, and deliver
+              a consistent brand experience across print and
+              digital media.
             </p>
 
-            <div className="mt-8 flex flex-wrap gap-4">
+            <div className="hero-actions">
+
               <Link
                 href="/work"
-                className="rounded-full bg-black px-6 py-3 text-white transition hover:opacity-90"
+                className="button button-primary"
               >
                 View My Work
+                <span>↗</span>
               </Link>
 
               <Link
                 href="/contact"
-                className="rounded-full border border-black px-6 py-3 transition hover:bg-black hover:text-white"
+                className="button button-secondary"
               >
                 Let's Talk
+                <span>↗</span>
               </Link>
+
             </div>
+
           </div>
 
-          <div className="relative flex items-end justify-center md:justify-end">
-            <Image
-              src="/profile.png"
-              alt="Mohamed Hisham"
-              width={700}
-              height={1500}
-              priority
-              className="w-full max-w-[620px] object-contain"
-            />
+
+          {/* Hero Image */}
+
+          <div className="hero-visual">
+
+            <div className="hero-image-frame hero-image-no-frame">
+
+              <Image
+                src="/profile.png"
+                alt="Mohamed Hisham"
+                width={700}
+                height={1500}
+                priority
+                className="hero-image"
+              />
+
+              <div className="hero-image-accent" />
+
+            </div>
+
+
+            <div className="hero-floating-card hero-floating-card-top">
+
+              <span className="floating-number">
+                8+
+              </span>
+
+              <span className="floating-label">
+                Years
+                <br />
+                Experience
+              </span>
+
+            </div>
+
+
+            <div className="hero-floating-card hero-floating-card-bottom">
+
+              <span className="floating-status" />
+
+              <span>
+                Based in Egypt
+              </span>
+
+            </div>
+
           </div>
+
         </div>
       </section>
 
-      {/* Marquee */}
 
-      <section className="border-y border-gray-200 py-5 overflow-hidden">
-        <div className="flex gap-10 whitespace-nowrap text-sm uppercase tracking-[0.2em] text-gray-500">
-          <span>Brand Identity</span>
-          <span>Packaging Design</span>
-          <span>Print Design</span>
-          <span>Production</span>
-          <span>Visual Systems</span>
-          <span>Brand Guidelines</span>
-          <span>Brand Identity</span>
-          <span>Packaging Design</span>
-          <span>Print Design</span>
-          <span>Production</span>
-          <span>Visual Systems</span>
-          <span>Brand Guidelines</span>
+      {/* =========================================================
+          MARQUEE
+      ========================================================== */}
+
+      <section
+        className="marquee-section"
+        aria-label="Expertise"
+      >
+
+        <div className="marquee-wrapper">
+
+          <div className="marquee-track">
+
+            <span>Brand Identity</span>
+            <i>✦</i>
+
+            <span>Packaging Design</span>
+            <i>✦</i>
+
+            <span>Print Design</span>
+            <i>✦</i>
+
+            <span>Production</span>
+            <i>✦</i>
+
+            <span>Visual Systems</span>
+            <i>✦</i>
+
+            <span>Brand Guidelines</span>
+            <i>✦</i>
+
+            <span>Brand Identity</span>
+            <i>✦</i>
+
+            <span>Packaging Design</span>
+            <i>✦</i>
+
+            <span>Print Design</span>
+            <i>✦</i>
+
+            <span>Production</span>
+            <i>✦</i>
+
+            <span>Visual Systems</span>
+            <i>✦</i>
+
+            <span>Brand Guidelines</span>
+            <i>✦</i>
+
+          </div>
+
         </div>
+
       </section>
 
-      {/* Featured Projects */}
 
-      <section className="mx-auto max-w-6xl px-6 py-28">
-        <div className="mb-16">
-          <p className="mb-3 text-sm uppercase tracking-[0.2em] text-gray-500">
-            Selected Work
-          </p>
+      {/* =========================================================
+          FEATURED WORK
+      ========================================================== */}
 
-          <h2 className="text-4xl font-bold md:text-5xl">
-            Featured Projects
-          </h2>
-        </div>
+      <section className="work-section">
 
-        <div className="space-y-24">
-          {featuredProjects.map((project) => (
-            <Link
-              key={project.slug}
-              href={`/work/${project.slug}`}
-              className="group block"
-            >
-              <div className="overflow-hidden">
-                <Image
-                  src={project.cover}
-                  alt={project.title}
-                  width={1600}
-                  height={900}
-                  className="w-full transition duration-500 group-hover:scale-[1.03]"
-                />
-              </div>
+        <div className="section-container">
 
-              <div className="mt-6">
-                <h3 className="text-3xl font-semibold">{project.title}</h3>
+          <div className="section-heading">
 
-                <p className="mt-2 text-gray-600">{project.category}</p>
-              </div>
-            </Link>
-          ))}
-        </div>
+            <div>
 
-        <div className="mt-16">
-          <Link
-            href="/work"
-            className="inline-flex rounded-full border border-black px-6 py-3 transition hover:bg-black hover:text-white"
-          >
-            View All Projects
-          </Link>
-        </div>
-      </section>
+              <p className="section-kicker">
+                Selected Work
+              </p>
 
-      {/* About */}
+              <h2 className="section-title">
+                Work that builds
+                <br />
+                <span>perception.</span>
+              </h2>
 
-      <section className="border-t border-gray-200">
-        <div className="mx-auto max-w-6xl px-6 py-28">
-          <p className="mb-3 text-sm uppercase tracking-[0.2em] text-gray-500">
-            About
-          </p>
+            </div>
 
-          <h2 className="max-w-3xl text-4xl font-bold leading-tight md:text-5xl">
-            Design with purpose, not decoration.
-          </h2>
-
-          <p className="mt-8 max-w-3xl text-lg leading-relaxed text-gray-600">
-            I'm Mohamed Hisham, a Senior Brand & Graphic Designer based in
-            Egypt. I help businesses build visual identities that strengthen
-            perception, communicate value, and create memorable brand
-            experiences across print and digital touchpoints.
-          </p>
-        </div>
-      </section>
-
-      {/* CTA */}
-
-      <section className="bg-black text-white">
-        <div className="mx-auto max-w-6xl px-6 py-28">
-          <p className="mb-4 text-sm uppercase tracking-[0.2em] text-gray-400">
-            Let's Work Together
-          </p>
-
-          <h2 className="max-w-4xl text-4xl font-bold leading-tight md:text-6xl">
-            Let's build a brand people remember.
-          </h2>
-
-          <div className="mt-10 flex flex-wrap gap-4">
-            <Link
-              href="/contact"
-              className="rounded-full bg-white px-6 py-3 text-black transition hover:opacity-90"
-            >
-              Start a Project
-            </Link>
 
             <Link
               href="/work"
-              className="rounded-full border border-white px-6 py-3 transition hover:bg-white hover:text-black"
+              className="section-link"
             >
-              View Portfolio
+              View all projects
+              <span>↗</span>
             </Link>
+
           </div>
+
+
+          {/* Project Grid */}
+
+          <div className="home-project-grid">
+
+            {featuredProjects.map((project, index) => (
+
+              <Link
+                key={project.slug}
+                href={`/work/${project.slug}`}
+                className="home-project-card"
+              >
+
+                <div className="home-project-image">
+
+                  <Image
+                    src={project.cover}
+                    alt={project.title}
+                    fill
+                    sizes="(max-width: 800px) 100vw, 33vw"
+                    className="home-project-photo"
+                  />
+
+
+                  <div className="home-project-overlay">
+
+                    <span>
+                      View Case Study
+                    </span>
+
+                    <span>
+                      ↗
+                    </span>
+
+                  </div>
+
+
+                  <div className="home-project-number">
+                    {String(index + 1).padStart(2, "0")}
+                  </div>
+
+                </div>
+
+
+                <div className="home-project-info">
+
+                  <p className="home-project-category">
+                    {project.category}
+                  </p>
+
+                  <h3 className="home-project-title">
+                    {project.title}
+                  </h3>
+
+                  <span className="home-project-link">
+                    View project
+                    <span>↗</span>
+                  </span>
+
+                </div>
+
+              </Link>
+
+            ))}
+
+          </div>
+
+
+          {/* Mobile / Bottom Link */}
+
+          <div className="projects-mobile-link">
+
+            <Link
+              href="/work"
+              className="button button-secondary"
+            >
+              View All Projects
+              <span>↗</span>
+            </Link>
+
+          </div>
+
         </div>
+
       </section>
+
+
+      {/* =========================================================
+          ABOUT
+      ========================================================== */}
+
+      <section className="about-section">
+
+        <div className="section-container">
+
+          <div className="about-grid">
+
+            <div>
+
+              <p className="section-kicker">
+                About
+              </p>
+
+              <h2 className="about-title">
+                Design with purpose,
+                <br />
+                <span>not decoration.</span>
+              </h2>
+
+            </div>
+
+
+            <div className="about-copy">
+
+              <p>
+                I'm Mohamed Hisham, a Senior Brand &
+                Graphic Designer based in Egypt. I help
+                businesses build visual identities that
+                strengthen perception, communicate value,
+                and create memorable brand experiences
+                across print and digital touchpoints.
+              </p>
+
+              <Link
+                href="/about"
+                className="text-link"
+              >
+                More about me
+                <span>↗</span>
+              </Link>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      {/* =========================================================
+          TESTIMONIALS
+      ========================================================== */}
+
+      <Testimonials testimonials={testimonials} />
+
+      {/* =========================================================
+          CTA
+      ========================================================== */}
+
+      <section className="cta-section">
+
+        <div className="section-container">
+
+          <div className="cta-inner">
+
+            <p className="cta-kicker">
+              Let's Work Together
+            </p>
+
+            <h2 className="cta-title">
+              Let's build a brand
+              <br />
+              people <span>remember.</span>
+            </h2>
+
+
+            <div className="cta-actions">
+
+              <Link
+                href="/contact"
+                className="button button-light"
+              >
+                Start a Project
+                <span>↗</span>
+              </Link>
+
+              <Link
+                href="/work"
+                className="button button-dark-outline"
+              >
+                View Portfolio
+                <span>↗</span>
+              </Link>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
     </main>
   );
 }

@@ -27,6 +27,7 @@ export default function Navbar() {
     };
 
     document.body.style.overflow = "hidden";
+
     window.addEventListener("keydown", onKeyDown);
 
     return () => {
@@ -39,83 +40,93 @@ export default function Navbar() {
     pathname === href || pathname.startsWith(`${href}/`);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-neutral-200 bg-white">
-      <nav
-        className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6 md:h-[4.5rem]"
-        aria-label="Primary"
-      >
-        <Link
-          href="/"
-          className="text-[15px] font-medium tracking-tight text-neutral-950"
-        >
-          Mohamed Hisham
+    <header className="site-header">
+      <nav className="site-nav" aria-label="Primary">
+        <Link href="/" className="site-logo">
+          <span className="site-logo-mark" />
+          <span>Mohamed Hisham</span>
         </Link>
 
-        <ul className="hidden items-center gap-10 md:flex">
+        <ul className="desktop-nav-links">
           {links.map((link) => (
             <li key={link.href}>
               <Link
                 href={link.href}
-                className={`text-[13px] tracking-[0.14em] uppercase transition-colors duration-150 ${
-                  isActive(link.href)
-                    ? "text-neutral-950"
-                    : "text-neutral-500 hover:text-neutral-950"
+                className={`desktop-nav-link ${
+                  isActive(link.href) ? "desktop-nav-link-active" : ""
                 }`}
               >
                 {link.label}
               </Link>
             </li>
           ))}
+
+          <li>
+            <Link href="/contact" className="nav-cta">
+              Let's Talk
+              <span>↗</span>
+            </Link>
+          </li>
         </ul>
 
         <button
           type="button"
-          className="relative flex h-10 w-10 items-center justify-center md:hidden"
+          className="mobile-menu-button"
           aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
           aria-controls={menuId}
           onClick={() => setOpen((value) => !value)}
         >
-          <span className="sr-only">{open ? "Close menu" : "Open menu"}</span>
+          <span className="sr-only">
+            {open ? "Close menu" : "Open menu"}
+          </span>
+
           <span
-            className={`absolute left-1/2 top-1/2 h-px w-5 bg-neutral-950 transition-transform duration-150 ${
-              open ? "-translate-x-1/2 rotate-45" : "-translate-x-1/2 -translate-y-1.5"
+            className={`menu-line menu-line-top ${
+              open ? "menu-line-top-open" : ""
             }`}
           />
+
           <span
-            className={`absolute left-1/2 top-1/2 h-px w-5 -translate-x-1/2 bg-neutral-950 transition-opacity duration-150 ${
-              open ? "opacity-0" : "opacity-100"
+            className={`menu-line menu-line-middle ${
+              open ? "menu-line-middle-open" : ""
             }`}
           />
+
           <span
-            className={`absolute left-1/2 top-1/2 h-px w-5 bg-neutral-950 transition-transform duration-150 ${
-              open ? "-translate-x-1/2 -rotate-45" : "-translate-x-1/2 translate-y-1.5"
+            className={`menu-line menu-line-bottom ${
+              open ? "menu-line-bottom-open" : ""
             }`}
           />
         </button>
       </nav>
 
-      {open ? (
-        <div
-          id={menuId}
-          className="border-t border-neutral-200 bg-white md:hidden"
-        >
-          <ul className="mx-auto flex max-w-6xl flex-col px-6 py-6">
+      {open && (
+        <div id={menuId} className="mobile-menu">
+          <ul className="mobile-menu-list">
             {links.map((link) => (
               <li key={link.href}>
                 <Link
                   href={link.href}
-                  className={`block py-3 text-sm tracking-[0.14em] uppercase ${
-                    isActive(link.href) ? "text-neutral-950" : "text-neutral-500"
+                  className={`mobile-menu-link ${
+                    isActive(link.href) ? "mobile-menu-link-active" : ""
                   }`}
                 >
-                  {link.label}
+                  <span>{link.label}</span>
+                  <span>↗</span>
                 </Link>
               </li>
             ))}
+
+            <li>
+              <Link href="/contact" className="mobile-menu-cta">
+                Let's Talk
+                <span>↗</span>
+              </Link>
+            </li>
           </ul>
         </div>
-      ) : null}
+      )}
     </header>
   );
 }
