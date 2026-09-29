@@ -1,7 +1,20 @@
 {
-  "title": "Alitalia",
+  "title": "Alitalia Clean Tools",
   "slug": "alitalia",
-  "category": "Brand Identity • Production",
-  "description": "Full branding and printing kit.",
-  "featured": true
+
+  "category": "Printing • Packaging • Brand Applications",
+
+  "description": "Alitalia Clean Tools is an Egyptian brand specializing in cleaning tools and household cleaning products. The project focused on developing and applying a consistent visual language across a diverse range of product categories, from scouring pads and mops to microfiber products and cleaning accessories. The goal was to create packaging and promotional materials that maintained a recognizable brand presence while allowing each product line to communicate its own character.",
+
+  "challenge": "With a growing range of cleaning products and different packaging formats, Alitalia needed a visual system capable of maintaining brand consistency across multiple product lines. The challenge was to balance a unified brand appearance with enough flexibility to differentiate individual products and collections. Packaging also needed to remain clear, visually engaging, and practical across different sizes, formats, and retail applications.",
+
+  "solution": "A flexible packaging and print design system was developed around the Alitalia visual identity. The work included product packaging, scouring pad packs, mop and cleaning tool packaging, microfiber product boxes, retail materials, cards, and supporting promotional designs. Distinctive color combinations, product-focused layouts, and consistent brand elements were used to create visual differentiation while keeping the entire product range connected under one recognizable identity.",
+
+  "results": "The resulting system brought greater visual consistency across Alitalia's diverse product range while giving individual products enough flexibility to stand apart. The packaging and print applications created a more unified presence across different formats, while social media and promotional materials extended the same visual language into digital communication. Together, the applications established a scalable foundation for presenting new products and maintaining consistency across the brand's growing range.",
+
+  "featured": true,
+
+  "cover": "/projects/alitalia/cover.jpg",
+
+  "images": []
 }

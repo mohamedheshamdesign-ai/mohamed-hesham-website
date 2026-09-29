@@ -1,7 +1,20 @@
 {
-  "title": "Everest",
-  "slug": "Everest",
-  "category": "Brand Identity • Print Design",
-  "description": "Complete branding system for a modern cafe.",
-  "featured": false
+  "title": "Everest Professional",
+  "slug": "everest",
+
+  "category": "Branding • Packaging Design • Print",
+
+  "description": "Everest Professional is a personal care brand focused on professional hair and beauty products. The project centered on developing a refined visual identity and translating it into a complete packaging system for products including argan oil, shampoo, and hair serum. The objective was to create a distinctive and premium presentation that could bring consistency across different product formats while maintaining a strong and recognizable brand presence.",
+
+  "challenge": "The brand required a visual direction capable of positioning its products within the professional personal care market while working across multiple packaging formats. The challenge was to create a unified system that could accommodate bottles, boxes, and smaller product packs without losing consistency or visual impact. The packaging also needed to communicate the premium nature of the products while remaining clear and functional for production.",
+
+  "solution": "A complete branding and packaging system was developed around the Everest Professional identity. The work included logo development, packaging design, product labels, box structures, dieline preparation, stickers, and business cards. A strong red-and-black visual direction was combined with clean typography and focused product presentation to create a premium and cohesive appearance across the different product lines. Packaging structures were also prepared with production requirements in mind, allowing the designs to translate from concept and mockup into physical applications.",
+
+  "results": "The final system gave Everest Professional a cohesive and premium visual presence across its product range. Different packaging formats were brought together through a consistent design language while retaining enough flexibility for individual products such as Argan Oil, Shampoo, and Serum. The combination of branding, packaging, and production-ready dielines created a complete foundation for presenting the brand consistently across both products and supporting materials.",
+
+  "featured": true,
+
+  "cover": "/projects/everest/cover.jpg",
+
+  "images": []
 }
