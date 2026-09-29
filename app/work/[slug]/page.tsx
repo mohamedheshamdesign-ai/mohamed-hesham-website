@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { getProjectBySlug } from "@/lib/projects";
 
 export default async function ProjectPage({
@@ -12,6 +13,7 @@ export default async function ProjectPage({
 
   return (
     <main className="bg-white text-black">
+      {/* Hero */}
       <section className="mx-auto max-w-5xl px-6 py-24">
         <p className="mb-4 text-sm uppercase tracking-[0.2em] text-gray-500">
           Case Study
@@ -32,6 +34,42 @@ export default async function ProjectPage({
         </p>
       </section>
 
+      {/* Challenge / Solution / Results */}
+      <section className="mx-auto max-w-5xl px-6 pb-24">
+        <div className="grid gap-16">
+          <div>
+            <h2 className="mb-4 text-2xl font-bold">
+              Challenge
+            </h2>
+
+            <p className="max-w-3xl leading-relaxed text-gray-600">
+              {project.challenge}
+            </p>
+          </div>
+
+          <div>
+            <h2 className="mb-4 text-2xl font-bold">
+              Solution
+            </h2>
+
+            <p className="max-w-3xl leading-relaxed text-gray-600">
+              {project.solution}
+            </p>
+          </div>
+
+          <div>
+            <h2 className="mb-4 text-2xl font-bold">
+              Results
+            </h2>
+
+            <p className="max-w-3xl leading-relaxed text-gray-600">
+              {project.results}
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Images */}
       <section>
         {project.images.map((image: string) => (
           <Image
@@ -40,12 +78,12 @@ export default async function ProjectPage({
             alt={project.title}
             width={2000}
             height={2000}
-            priority
             className="block w-full"
           />
         ))}
       </section>
 
+      {/* CTA */}
       <section className="mx-auto max-w-5xl px-6 py-24">
         <div className="border-t border-gray-200 pt-12">
           <p className="text-sm uppercase tracking-[0.2em] text-gray-500">
@@ -56,12 +94,12 @@ export default async function ProjectPage({
             Let's create something meaningful.
           </h2>
 
-          <a
+          <Link
             href="/contact"
             className="mt-8 inline-flex rounded-full bg-black px-6 py-3 text-white transition hover:opacity-90"
           >
             Get In Touch
-          </a>
+          </Link>
         </div>
       </section>
     </main>

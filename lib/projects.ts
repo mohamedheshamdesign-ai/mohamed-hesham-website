@@ -8,8 +8,14 @@ export type Project = {
   slug: string;
   category: string;
   description: string;
-  featured: boolean;
+
+  challenge: string;
+  solution: string;
+  results: string;
+
+  featured?: boolean;
   cover: string;
+  images: string[];
 };
 
 export function getProjects(): Project[] {
