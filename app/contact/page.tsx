@@ -2,7 +2,7 @@
 
 import { FormEvent, useState } from "react";
 
-const EMAIL = "mohamed.hisham.design@gmail.com";
+const EMAIL = "mohamed.hesham.design@gmail.com";
 
 const SOCIALS = [
   {
