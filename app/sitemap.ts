@@ -1,8 +1,26 @@
 import type { MetadataRoute } from "next";
 
+import { getProjects } from "@/lib/projects";
+
 const siteUrl = "https://mohamed-hesham-design.vercel.app";
 
 export default function sitemap(): MetadataRoute.Sitemap {
+  const projects = getProjects();
+
+  // De-duplicate by slug: content folders must map 1:1 to slugs
+  const uniqueSlugs = [
+    ...new Set(projects.map((project) => project.slug)),
+  ];
+
+  const projectUrls: MetadataRoute.Sitemap = uniqueSlugs.map(
+    (slug) => ({
+      url: `${siteUrl}/work/${slug}`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.8,
+    })
+  );
+
   return [
     {
       url: siteUrl,
@@ -31,5 +49,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "yearly",
       priority: 0.7,
     },
+
+    ...projectUrls,
   ];
 }

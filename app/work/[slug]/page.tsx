@@ -1,11 +1,40 @@
+import { notFound } from "next/navigation";
+import type { Metadata } from "next";
+
 import Image from "next/image";
 import Link from "next/link";
 
-import { getProjectBySlug } from "@/lib/projects";
+import {
+  getProjectBySlug,
+  getProjects,
+} from "@/lib/projects";
 
 type PageProps = {
   params: Promise<{ slug: string }>;
 };
+
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
+  const { slug } = await params;
+
+  try {
+    const project = getProjectBySlug(slug);
+
+    return {
+      title: project.title,
+      description: project.description,
+      alternates: { canonical: `/work/${slug}` },
+      openGraph: {
+        title: project.title,
+        description: project.description,
+        images: project.cover ? [project.cover] : [],
+      },
+    };
+  } catch {
+    return { title: "Project not found" };
+  }
+}
 
 function isVideo(src: string) {
   const cleanSrc = src.split("?")[0].toLowerCase();
@@ -29,10 +58,51 @@ export default async function ProjectPage({
 }: PageProps) {
   const { slug } = await params;
 
-  const project = getProjectBySlug(slug);
+  let project;
+
+  try {
+    project = getProjectBySlug(slug);
+  } catch {
+    notFound();
+  }
+
+  const allProjects = getProjects().filter(
+    (p, i, arr) =>
+      arr.findIndex((q) => q.slug === p.slug) === i
+  );
+
+  const currentIndex = allProjects.findIndex(
+    (p) => p.slug === project.slug
+  );
+
+  const nextProject =
+    allProjects.length > 1
+      ? allProjects[
+          (currentIndex + 1) % allProjects.length
+        ]
+      : null;
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    name: project.title,
+    description: project.description,
+    image: project.cover,
+    creator: {
+      "@type": "Person",
+      name: "Mohamed Hesham",
+    },
+  };
 
   return (
     <main className="project-page bg-white text-black">
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(jsonLd),
+        }}
+      />
 
       {/* =====================================================
           PROJECT HERO
@@ -177,9 +247,12 @@ export default async function ProjectPage({
                     key={media}
                     className="project-media-item"
                   >
-                    <img
+                    <Image
                       src={media}
                       alt={project.title}
+                      width={2000}
+                      height={2000}
+                      unoptimized
                       className="project-media project-media-gif"
                     />
                   </figure>
@@ -245,6 +318,32 @@ export default async function ProjectPage({
             </Link>
 
           </div>
+
+        </div>
+
+      </section>
+
+
+      {/* =====================================================
+          NEXT PROJECT
+      ===================================================== */}
+
+      <section className="project-next">
+
+        <div className="project-container">
+
+          {nextProject && (
+            <Link
+              href={`/work/${nextProject.slug}`}
+              className="project-next-link"
+            >
+              <span>Next project</span>
+
+              <h3>{nextProject.title}</h3>
+
+              <span>View case study ↗</span>
+            </Link>
+          )}
 
         </div>
 

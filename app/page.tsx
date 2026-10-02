@@ -5,6 +5,7 @@ import { getFeaturedProjects } from "@/lib/projects";
 import { getTestimonials } from "@/lib/testimonials";
 
 import Testimonials from "@/components/Testimonials";
+import FadeIn from "@/components/FadeIn";
 
 export default function Home() {
   const featuredProjects = getFeaturedProjects();
@@ -36,11 +37,13 @@ export default function Home() {
               Mohamed Hesham
             </p>
 
-            <h1 className="hero-title">
-              I build brands
-              <br />
-              people <span>remember.</span>
-            </h1>
+            <FadeIn>
+              <h1 className="hero-title">
+                I build brands
+                <br />
+                people <span>remember.</span>
+              </h1>
+            </FadeIn>
 
             <p className="hero-lead">
               Helping businesses build brands people trust,
@@ -68,7 +71,7 @@ export default function Home() {
                 href="/contact"
                 className="button button-secondary"
               >
-                Let's Talk
+                Let&apos;s Talk
                 <span>↗</span>
               </Link>
 
@@ -226,8 +229,8 @@ export default function Home() {
 
             {featuredProjects.map((project, index) => (
 
+              <FadeIn key={project.slug} delay={index * 0.08}>
               <Link
-                key={project.slug}
                 href={`/work/${project.slug}`}
                 className="home-project-card"
               >
@@ -281,6 +284,7 @@ export default function Home() {
                 </div>
 
               </Link>
+              </FadeIn>
 
             ))}
 
@@ -334,7 +338,7 @@ export default function Home() {
             <div className="about-copy">
 
               <p>
-                I'm Mohamed Hesham, a Senior Brand &
+                I&apos;m Mohamed Hesham, a Senior Brand &
                 Graphic Designer based in Egypt. I help
                 businesses build visual identities that
                 strengthen perception, communicate value,
@@ -376,11 +380,11 @@ export default function Home() {
           <div className="cta-inner">
 
             <p className="cta-kicker">
-              Let's Work Together
+              Let&apos;s Work Together
             </p>
 
             <h2 className="cta-title">
-              Let's build a brand
+              Let&apos;s build a brand
               <br />
               people <span>remember.</span>
             </h2>

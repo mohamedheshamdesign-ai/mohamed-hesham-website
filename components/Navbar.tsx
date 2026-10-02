@@ -13,11 +13,14 @@ const links = [
 export default function Navbar() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const [prevPathname, setPrevPathname] = useState(pathname);
   const menuId = useId();
 
-  useEffect(() => {
+  // Close the menu on navigation (derived state, no effect needed)
+  if (prevPathname !== pathname) {
+    setPrevPathname(pathname);
     setOpen(false);
-  }, [pathname]);
+  }
 
   useEffect(() => {
     if (!open) return;
@@ -63,10 +66,11 @@ export default function Navbar() {
 
           <li>
             <Link href="/contact" className="nav-cta">
-              Let's Talk
+              Let&apos;s Talk
               <span>↗</span>
             </Link>
           </li>
+
         </ul>
 
         <button
@@ -120,7 +124,7 @@ export default function Navbar() {
 
             <li>
               <Link href="/contact" className="mobile-menu-cta">
-                Let's Talk
+                Let&apos;s Talk
                 <span>↗</span>
               </Link>
             </li>

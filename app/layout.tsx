@@ -1,11 +1,25 @@
 import type { Metadata } from "next";
 
+import { Analytics } from "@vercel/analytics/next";
+import { Geist, Geist_Mono } from "next/font/google";
+
 import "./globals.css";
 
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
+
 const siteUrl = "https://mohamed-hesham-design.vercel.app";
+
+const geistSans = Geist({
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
+});
+
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -114,13 +128,41 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html
+      lang="en"
+      className={`${geistSans.variable} ${geistMono.variable}`}
+    >
       <body>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Person",
+              name: "Mohamed Hesham",
+              url: siteUrl,
+              jobTitle: "Senior Brand & Graphic Designer",
+              address: {
+                "@type": "PostalAddress",
+                addressCountry: "EG",
+              },
+              sameAs: [
+                "https://www.facebook.com/mohamed.hesham.design1/",
+                "https://www.instagram.com/mohamed.hesham.design1/",
+                "https://www.linkedin.com/in/mohamedheshamdesign/",
+                "https://www.behance.net/mohamedheshamdesign",
+              ],
+            }),
+          }}
+        />
+
         <Navbar />
 
         {children}
 
         <Footer />
+
+        <Analytics />
       </body>
     </html>
   );

@@ -1,5 +1,6 @@
 import fs from "fs";
 import path from "path";
+import { z } from "zod";
 
 const worksDirectory = path.join(
   process.cwd(),
@@ -19,15 +20,20 @@ export type ProjectMedia = {
   name: string;
 };
 
-export type Project = {
-  title: string;
-  slug: string;
-  category: string;
-  description: string;
-  challenge: string;
-  solution: string;
-  results: string;
-  featured?: boolean;
+const projectSchema = z.object({
+  title: z.string().min(1),
+  slug: z.string().min(1),
+  category: z.string(),
+  description: z.string(),
+  challenge: z.string(),
+  solution: z.string(),
+  results: z.string(),
+  featured: z.boolean().optional(),
+  cover: z.string().optional(),
+  images: z.array(z.string()).optional(),
+});
+
+export type Project = z.infer<typeof projectSchema> & {
   cover: string;
   images: string[];
   media: ProjectMedia[];
@@ -86,7 +92,7 @@ function isMediaFile(fileName: string) {
    SORT MEDIA
 ========================================================= */
 
-function sortMediaFiles(files: string[]) {
+export function sortMediaFiles(files: string[]) {
   return [...files].sort((a, b) => {
     const aName = path.basename(a, path.extname(a));
     const bName = path.basename(b, path.extname(b));
@@ -153,7 +159,7 @@ function getProjectFiles(slug: string) {
    FIND COVER
 ========================================================= */
 
-function findCoverFile(files: string[]) {
+export function findCoverFile(files: string[]) {
   if (files.length === 0) {
     return null;
   }
@@ -246,7 +252,9 @@ export function getProjects(): Project[] {
         "utf8"
       );
 
-      const project = JSON.parse(fileContents);
+      const project = projectSchema.parse(
+        JSON.parse(fileContents)
+      );
 
       const files = getProjectFiles(
         project.slug
@@ -287,6 +295,15 @@ export function getProjects(): Project[] {
     .filter(
       (project): project is Project =>
         project !== null
+    )
+
+    // De-duplicate by slug (folder name and JSON slug must match;
+    // this guards against placeholder duplicates)
+    .filter(
+      (project, index, array) =>
+        array.findIndex(
+          (p) => p.slug === project.slug
+        ) === index
     );
 }
 
@@ -321,8 +338,8 @@ export function getProjectBySlug(
     "utf8"
   );
 
-  const project = JSON.parse(
-    fileContents
+  const project = projectSchema.parse(
+    JSON.parse(fileContents)
   );
 
   const files = getProjectFiles(slug);

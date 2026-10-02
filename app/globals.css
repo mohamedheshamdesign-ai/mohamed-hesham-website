@@ -4315,3 +4315,55 @@ video.project-media {
     width: 100%;
   }
 }
+
+/* =========================================================
+   ERROR PAGES
+========================================================= */
+
+.not-found-page,
+.error-page {
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  text-align: center;
+  padding: 48px 24px;
+}
+
+.not-found-page h1,
+.error-page h1 {
+  font-size: 48px;
+  margin: 0;
+}
+
+.error-page button {
+  border: 1px solid var(--border);
+  background: var(--dark);
+  color: white;
+  padding: 12px 24px;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+@keyframes skeleton {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+.project-next {
+  padding: 64px 0;
+  border-top: 1px solid var(--border);
+}
+
+.project-next-link {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.project-next-link h3 {
+  font-size: 32px;
+  margin: 0;
+}

@@ -270,7 +270,7 @@ export default function AboutPage() {
           <div className="border-t border-gray-200 pt-14">
 
             <p className="text-sm uppercase tracking-[0.2em] text-gray-500">
-              Let's Talk
+              Let&apos;s Talk
             </p>
 
             <h2
