@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 type TestimonialsProps = {
   testimonials: string[];
@@ -30,6 +30,20 @@ export default function Testimonials({
       return prev + 1;
     });
   };
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrent((prev) => {
+        if (prev >= maxIndex) {
+          return 0;
+        }
+
+        return prev + 1;
+      });
+    }, 4500);
+
+    return () => clearInterval(timer);
+  }, [maxIndex]);
 
   const previous = () => {
     setCurrent((prev) => {

@@ -2,8 +2,14 @@ import { getProjects } from "@/lib/projects";
 
 import WorkGrid from "@/components/WorkGrid";
 
-export default function WorkPage() {
+export default async function WorkPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ tag?: string }>;
+}) {
   const projects = getProjects();
+
+  const { tag } = await searchParams;
 
   return (
     <main className="editorial-work-page">
@@ -30,7 +36,7 @@ export default function WorkPage() {
             </p>
           </div>
 
-          <WorkGrid projects={projects} />
+          <WorkGrid projects={projects} initialTag={tag} />
 
         </div>
       </section>

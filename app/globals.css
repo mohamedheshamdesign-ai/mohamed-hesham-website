@@ -4514,3 +4514,50 @@ video.project-media {
   from { transform: translate3d(-4%, -3%, 0) scale(1); }
   to { transform: translate3d(4%, 3%, 0) scale(1.08); }
 }
+
+/* =========================================================
+   AVAILABILITY BADGE
+========================================================= */
+
+.availability-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 6px 14px;
+  font-size: 12px;
+  color: var(--muted);
+  background: #fff;
+}
+
+.availability-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: #22c55e;
+  box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.2);
+}
+
+/* =========================================================
+   PROJECT DETAIL NUMBERED LABELS
+========================================================= */
+
+.project-detail-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.project-detail-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 999px;
+  background: #111;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 600;
+}

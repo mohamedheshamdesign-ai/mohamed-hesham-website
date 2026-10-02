@@ -77,7 +77,7 @@ export default function ProjectGallery({
                 >
                   <Image
                     src={media}
-                    alt={title}
+                    alt={`${title} — gallery image`}
                     width={2000}
                     height={2000}
                     sizes="(max-width: 920px) calc(100vw - 48px), 900px"

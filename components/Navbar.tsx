@@ -50,6 +50,11 @@ export default function Navbar() {
           <span>Mohamed Hesham</span>
         </Link>
 
+        <span className="availability-badge">
+          <span className="availability-dot" />
+          Available for freelance
+        </span>
+
         <ul className="desktop-nav-links">
           {links.map((link) => (
             <li key={link.href}>

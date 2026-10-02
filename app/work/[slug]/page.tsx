@@ -12,6 +12,7 @@ import {
 
 type PageProps = {
   params: Promise<{ slug: string }>;
+  searchParams: Promise<{ from?: string }>;
 };
 
 export async function generateMetadata({
@@ -39,8 +40,16 @@ export async function generateMetadata({
 
 export default async function ProjectPage({
   params,
+  searchParams,
 }: PageProps) {
   const { slug } = await params;
+
+  const from = (await searchParams)?.from;
+
+  const backHref =
+    from && from !== "All"
+      ? `/work?tag=${encodeURIComponent(from)}`
+      : "/work";
 
   let project;
 
@@ -102,7 +111,7 @@ export default async function ProjectPage({
             </p>
 
             <Link
-              href="/work"
+              href={backHref}
               className="project-back-link"
             >
               ← Back to work
@@ -142,6 +151,7 @@ export default async function ProjectPage({
             <div className="project-detail">
 
               <p className="project-detail-label">
+                <span className="project-detail-icon">01</span>
                 Challenge
               </p>
 
@@ -157,6 +167,7 @@ export default async function ProjectPage({
             <div className="project-detail">
 
               <p className="project-detail-label">
+                <span className="project-detail-icon">02</span>
                 Solution
               </p>
 
@@ -172,6 +183,7 @@ export default async function ProjectPage({
             <div className="project-detail">
 
               <p className="project-detail-label">
+                <span className="project-detail-icon">03</span>
                 Results
               </p>
 

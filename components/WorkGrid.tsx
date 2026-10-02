@@ -21,10 +21,12 @@ function getTags(category: string) {
 
 export default function WorkGrid({
   projects,
+  initialTag,
 }: {
   projects: WorkProject[];
+  initialTag?: string;
 }) {
-  const [activeTag, setActiveTag] = useState("All");
+  const [activeTag, setActiveTag] = useState(initialTag || "All");
 
   const tags = useMemo(() => {
     const all = projects.flatMap((p) => getTags(p.category));
@@ -63,7 +65,7 @@ export default function WorkGrid({
           return (
             <Link
               key={project.slug}
-              href={`/work/${project.slug}`}
+              href={`/work/${project.slug}?from=${encodeURIComponent(activeTag)}`}
               className={`editorial-project ${
                 isEven
                   ? "editorial-project-image-first"
