@@ -31,6 +31,16 @@ export default function Testimonials({
     });
   };
 
+  const previous = () => {
+    setCurrent((prev) => {
+      if (prev <= 0) {
+        return maxIndex;
+      }
+
+      return prev - 1;
+    });
+  };
+
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrent((prev) => {
@@ -44,16 +54,6 @@ export default function Testimonials({
 
     return () => clearInterval(timer);
   }, [maxIndex]);
-
-  const previous = () => {
-    setCurrent((prev) => {
-      if (prev <= 0) {
-        return maxIndex;
-      }
-
-      return prev - 1;
-    });
-  };
 
   if (total === 0) {
     return null;

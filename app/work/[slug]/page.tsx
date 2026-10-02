@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 
 import Link from "next/link";
+import Image from "next/image";
 
 import ProjectGallery from "@/components/ProjectGallery";
 
@@ -133,8 +134,54 @@ export default async function ProjectPage({
             {project.description}
           </p>
 
+          {/* Meta row */}
+
+          <div className="project-meta">
+
+            <div className="project-meta-item">
+              <span className="project-meta-label">Role</span>
+              <span className="project-meta-value">Brand &amp; Graphic Designer</span>
+            </div>
+
+            <div className="project-meta-item">
+              <span className="project-meta-label">Services</span>
+              <span className="project-meta-value">{project.category}</span>
+            </div>
+
+            <div className="project-meta-item">
+              <span className="project-meta-label">Location</span>
+              <span className="project-meta-value">Egypt</span>
+            </div>
+
+          </div>
+
         </div>
       </section>
+
+
+      {/* =====================================================
+          COVER IMAGE
+      ===================================================== */}
+
+      {project.cover && (
+        <section className="project-cover">
+
+          <div className="project-media-container">
+
+            <Image
+              src={project.cover}
+              alt={project.title}
+              width={2000}
+              height={1300}
+              priority
+              sizes="(max-width: 920px) calc(100vw - 48px), 1100px"
+              className="project-cover-image"
+            />
+
+          </div>
+
+        </section>
+      )}
 
 
       {/* =====================================================

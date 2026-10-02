@@ -28,21 +28,41 @@ export default function WorkGrid({
 }) {
   const [activeTag, setActiveTag] = useState(initialTag || "All");
 
+  const [query, setQuery] = useState("");
+
   const tags = useMemo(() => {
     const all = projects.flatMap((p) => getTags(p.category));
 
     return ["All", ...Array.from(new Set(all))];
   }, [projects]);
 
-  const visible =
+  const visible = (
     activeTag === "All"
       ? projects
       : projects.filter((p) =>
           getTags(p.category).includes(activeTag)
-        );
+        )
+  ).filter((p) => {
+    if (!query.trim()) return true;
+
+    const haystack =
+      `${p.title} ${p.category} ${p.description}`.toLowerCase();
+
+    return haystack.includes(query.trim().toLowerCase());
+  });
 
   return (
     <>
+      <div className="work-search">
+        <input
+          type="search"
+          placeholder="Search projects..."
+          value={query}
+          onChange={(event) => setQuery(event.target.value)}
+          aria-label="Search projects"
+        />
+      </div>
+
       <div className="work-filters">
         {tags.map((tag) => (
           <button

@@ -6,6 +6,7 @@ import { getTestimonials } from "@/lib/testimonials";
 
 import Testimonials from "@/components/Testimonials";
 import FadeIn from "@/components/FadeIn";
+import Magnetic from "@/components/Magnetic";
 
 export default function Home() {
   const featuredProjects = getFeaturedProjects();
@@ -59,21 +60,25 @@ export default function Home() {
 
             <div className="hero-actions">
 
-              <Link
-                href="/work"
-                className="button button-primary"
-              >
-                View My Work
-                <span>↗</span>
-              </Link>
+              <Magnetic>
+                <Link
+                  href="/work"
+                  className="button button-primary"
+                >
+                  View My Work
+                  <span>↗</span>
+                </Link>
+              </Magnetic>
 
-              <Link
-                href="/contact"
-                className="button button-secondary"
-              >
-                Let&apos;s Talk
-                <span>↗</span>
-              </Link>
+              <Magnetic>
+                <Link
+                  href="/contact"
+                  className="button button-secondary"
+                >
+                  Let&apos;s Talk
+                  <span>↗</span>
+                </Link>
+              </Magnetic>
 
             </div>
 

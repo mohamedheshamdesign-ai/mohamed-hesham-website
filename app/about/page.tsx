@@ -132,28 +132,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* ================= STATS ================= */}
-      <section className="border-t border-gray-200 bg-white">
-        <div className="mx-auto grid max-w-6xl grid-cols-2 gap-8 px-6 py-16 md:grid-cols-4">
-          {[
-            { number: "8+", label: "Years Experience" },
-            { number: "9+", label: "Projects Shipped" },
-            { number: "23+", label: "Client Reviews" },
-            { number: "6+", label: "Industries Served" },
-          ].map((stat) => (
-            <div key={stat.label} className="text-center md:text-left">
-              <p className="text-4xl font-bold tracking-tight md:text-5xl">
-                {stat.number}
-              </p>
-
-              <p className="mt-2 text-sm uppercase tracking-[0.2em] text-gray-500">
-                {stat.label}
-              </p>
-            </div>
-          ))}
-        </div>
-      </section>
-
       {/* ================= SERVICES ================= */}
       <section className="border-t border-gray-200 bg-[#f7f8fa]">
         <div className="mx-auto max-w-6xl px-6 py-20 md:py-28">
