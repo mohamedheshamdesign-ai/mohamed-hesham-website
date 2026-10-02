@@ -4367,3 +4367,150 @@ video.project-media {
   font-size: 32px;
   margin: 0;
 }
+
+/* =========================================================
+   SCROLL PROGRESS
+========================================================= */
+
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: var(--accent);
+  z-index: 9998;
+  transition: width 80ms linear;
+}
+
+/* =========================================================
+   BACK TO TOP
+========================================================= */
+
+.back-to-top {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: #111;
+  color: #fff;
+  cursor: pointer;
+  z-index: 9997;
+  font-size: 18px;
+}
+
+/* =========================================================
+   LIGHTBOX
+========================================================= */
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.92);
+  z-index: 9996;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 48px;
+  cursor: zoom-out;
+}
+
+.lightbox-image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  background: transparent;
+  color: #fff;
+  border: none;
+  font-size: 28px;
+  cursor: pointer;
+}
+
+.project-media-button {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: zoom-in;
+}
+
+/* =========================================================
+   WORK FILTERS
+========================================================= */
+
+.work-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 32px;
+}
+
+.work-filter {
+  border: 1px solid var(--border);
+  background: #fff;
+  color: var(--muted);
+  border-radius: 999px;
+  padding: 8px 16px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 160ms ease;
+}
+
+.work-filter-active {
+  background: #111;
+  color: #fff;
+  border-color: #111;
+}
+
+/* =========================================================
+   PROJECT CARD HOVER DEPTH
+========================================================= */
+
+.home-project-photo,
+.editorial-project-photo {
+  transition: transform 500ms ease;
+}
+
+.home-project-card:hover .home-project-photo,
+.editorial-project:hover .editorial-project-photo {
+  transform: scale(1.06);
+}
+
+.home-project-card:hover .home-project-overlay,
+.editorial-project:hover .editorial-project-image-overlay {
+  opacity: 1;
+}
+
+/* =========================================================
+   HERO ANIMATED BACKGROUND
+========================================================= */
+
+.hero-section {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(600px circle at 20% 20%, rgba(37, 99, 235, 0.10), transparent 60%),
+    radial-gradient(600px circle at 80% 70%, rgba(37, 99, 235, 0.08), transparent 60%);
+  animation: hero-drift 12s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+@keyframes hero-drift {
+  from { transform: translate3d(-4%, -3%, 0) scale(1); }
+  to { transform: translate3d(4%, 3%, 0) scale(1.08); }
+}

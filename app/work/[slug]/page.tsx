@@ -1,8 +1,9 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 
-import Image from "next/image";
 import Link from "next/link";
+
+import ProjectGallery from "@/components/ProjectGallery";
 
 import {
   getProjectBySlug,
@@ -34,23 +35,6 @@ export async function generateMetadata({
   } catch {
     return { title: "Project not found" };
   }
-}
-
-function isVideo(src: string) {
-  const cleanSrc = src.split("?")[0].toLowerCase();
-
-  return (
-    cleanSrc.endsWith(".mp4") ||
-    cleanSrc.endsWith(".webm") ||
-    cleanSrc.endsWith(".mov") ||
-    cleanSrc.endsWith(".m4v")
-  );
-}
-
-function isGif(src: string) {
-  const cleanSrc = src.split("?")[0].toLowerCase();
-
-  return cleanSrc.endsWith(".gif");
 }
 
 export default async function ProjectPage({
@@ -211,78 +195,10 @@ export default async function ProjectPage({
 
         <div className="project-media-container">
 
-          <div className="project-gallery-list">
-
-            {project.images.map((media: string) => {
-
-              /* =========================
-                 VIDEO
-              ========================= */
-
-              if (isVideo(media)) {
-                return (
-                  <figure
-                    key={media}
-                    className="project-media-item"
-                  >
-                    <video
-                      className="project-media"
-                      src={media}
-                      controls
-                      playsInline
-                      preload="metadata"
-                    />
-                  </figure>
-                );
-              }
-
-
-              /* =========================
-                 GIF
-              ========================= */
-
-              if (isGif(media)) {
-                return (
-                  <figure
-                    key={media}
-                    className="project-media-item"
-                  >
-                    <Image
-                      src={media}
-                      alt={project.title}
-                      width={2000}
-                      height={2000}
-                      unoptimized
-                      className="project-media project-media-gif"
-                    />
-                  </figure>
-                );
-              }
-
-
-              /* =========================
-                 IMAGE
-              ========================= */
-
-              return (
-                <figure
-                  key={media}
-                  className="project-media-item"
-                >
-                  <Image
-                    src={media}
-                    alt={project.title}
-                    width={2000}
-                    height={2000}
-                    sizes="(max-width: 920px) calc(100vw - 48px), 900px"
-                    className="project-media"
-                  />
-                </figure>
-              );
-
-            })}
-
-          </div>
+        <ProjectGallery
+          title={project.title}
+          images={project.media.map((m) => m.src)}
+        />
 
         </div>
 

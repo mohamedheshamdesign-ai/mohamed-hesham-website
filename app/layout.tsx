@@ -7,6 +7,8 @@ import "./globals.css";
 
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import ScrollProgress from "@/components/ScrollProgress";
+import BackToTop from "@/components/BackToTop";
 
 
 const siteUrl = "https://mohamed-hesham-design.vercel.app";
@@ -156,13 +158,18 @@ export default function RootLayout({
           }}
         />
 
+        <ScrollProgress />
+
         <Navbar />
 
         {children}
 
         <Footer />
 
+        <BackToTop />
+
         <Analytics />
+
       </body>
     </html>
   );

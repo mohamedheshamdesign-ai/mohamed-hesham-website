@@ -1,6 +1,6 @@
-import Image from "next/image";
-import Link from "next/link";
 import { getProjects } from "@/lib/projects";
+
+import WorkGrid from "@/components/WorkGrid";
 
 export default function WorkPage() {
   const projects = getProjects();
@@ -30,66 +30,7 @@ export default function WorkPage() {
             </p>
           </div>
 
-          {/* Editorial Grid */}
-
-          <div className="editorial-grid">
-            {projects.map((project, index) => {
-              const isEven = index % 2 === 0;
-
-              return (
-                <Link
-                  key={project.slug}
-                  href={`/work/${project.slug}`}
-                  className={`editorial-project ${
-                    isEven
-                      ? "editorial-project-image-first"
-                      : "editorial-project-text-first"
-                  }`}
-                >
-                  {/* IMAGE */}
-
-                  <div className="editorial-project-image">
-                    <Image
-                      src={project.cover}
-                      alt={project.title}
-                      fill
-                      sizes="(max-width: 800px) 100vw, 50vw"
-                      className="editorial-project-photo"
-                      priority={index < 2}
-                    />
-
-                    <div className="editorial-project-image-overlay">
-                      <span>View Case Study</span>
-                      <span>↗</span>
-                    </div>
-                  </div>
-
-                  {/* INFO */}
-
-                  <div className="editorial-project-content">
-                    <div>
-                      <p className="editorial-project-category">
-                        {project.category}
-                      </p>
-
-                      <h2 className="editorial-project-title">
-                        {project.title}
-                      </h2>
-
-                      <p className="editorial-project-description">
-                        {project.description}
-                      </p>
-                    </div>
-
-                    <span className="editorial-project-read">
-                      View project
-                      <span>↗</span>
-                    </span>
-                  </div>
-                </Link>
-              );
-            })}
-          </div>
+          <WorkGrid projects={projects} />
 
         </div>
       </section>
