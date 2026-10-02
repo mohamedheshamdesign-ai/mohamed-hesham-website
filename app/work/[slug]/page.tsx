@@ -148,11 +148,6 @@ export default async function ProjectPage({
               <span className="project-meta-value">{project.category}</span>
             </div>
 
-            <div className="project-meta-item">
-              <span className="project-meta-label">Location</span>
-              <span className="project-meta-value">Egypt</span>
-            </div>
-
           </div>
 
         </div>
