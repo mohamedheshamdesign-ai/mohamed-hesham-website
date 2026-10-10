@@ -7,6 +7,7 @@ import Image from "next/image";
 
 import ProjectGallery from "@/components/ProjectGallery";
 import ProjectBackLink from "@/components/ProjectBackLink";
+import ProjectTypePreview from "@/components/ProjectTypePreview";
 
 import {
   getProjectBySlug,
@@ -172,7 +173,7 @@ export default async function ProjectPage({
           COVER IMAGE
       ===================================================== */}
 
-      {project.cover && (
+      {project.hasRealCover ? (
         <section className="project-cover">
 
           <div className="project-media-container">
@@ -188,6 +189,16 @@ export default async function ProjectPage({
             />
 
           </div>
+
+        </section>
+      ) : (
+        <section className={`project-cover project-cover-art ${project.coverArt}`}>
+
+          <ProjectTypePreview
+            title={project.title}
+            category={project.category}
+            label="CASE STUDY"
+          />
 
         </section>
       )}

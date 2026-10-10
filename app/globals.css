@@ -3532,120 +3532,64 @@ video.project-media {
 }
 
 /* =========================================================
-   TESTIMONIALS IMAGE SLIDER
+   TESTIMONIALS SLIDER
 ========================================================= */
 
-.testimonials-section {
-  padding: 140px 0;
+.studio-testimonials {
+  padding: 72px 0 92px;
 
-  background: #f5f7fa;
-
-  overflow: hidden;
+  border-top: 1px solid var(--border);
 }
 
-
-.testimonials-heading {
-  text-align: center;
-
-  margin-bottom: 60px;
+.studio-testimonials .studio-section-heading {
+  margin-bottom: 48px;
 }
-
-
-.testimonials-heading .section-kicker {
-  margin-bottom: 18px;
-}
-
-
-.testimonials-title {
-  margin: 0;
-
-  color: #111111;
-
-  font-size: clamp(42px, 5vw, 68px);
-
-  font-weight: 650;
-
-  line-height: 0.98;
-
-  letter-spacing: -0.065em;
-}
-
-
-.testimonials-title span {
-  color: #a1a8b3;
-}
-
-
-/* =========================================================
-   SLIDER
-========================================================= */
 
 .testimonials-slider {
   position: relative;
 }
 
-
 .testimonials-viewport {
-  width: 100%;
-
   overflow: hidden;
-}
 
+  border-radius: 5px;
+}
 
 .testimonials-track {
   display: flex;
 
-  width: 100%;
-
-  transition:
-    transform 650ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  transition: transform 0.55s cubic-bezier(0.65, 0.05, 0.36, 1);
 }
-
 
 .testimonial-slide {
-  width: 33.333333%;
+  flex: 0 0 calc(100% / 3);
 
-  flex: 0 0 33.333333%;
+  min-width: 0;
 
-  padding: 0 10px;
+  padding: 0 9px;
 }
-
-
-/* =========================================================
-   IMAGE
-========================================================= */
 
 .testimonial-image-card {
   position: relative;
 
-  width: 100%;
-
   aspect-ratio: 16 / 10;
+
+  border-radius: 5px;
 
   overflow: hidden;
 
-  background: #e9edf2;
-
-  border-radius: 18px;
+  background: var(--studio-cream);
 }
-
 
 .testimonial-image-card img {
   object-fit: cover;
 
-  transition:
-    transform 600ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  transition: transform 0.5s;
 }
 
-
-.testimonial-image-card:hover img {
-  transform: scale(1.025);
+.testimonial-slide:hover .testimonial-image-card img {
+  transform: scale(1.02);
 }
-
-
-/* =========================================================
-   CONTROLS
-========================================================= */
 
 .testimonials-controls {
   display: flex;
@@ -3656,9 +3600,8 @@ video.project-media {
 
   margin-top: 28px;
 
-  padding: 0 10px;
+  padding: 0 9px;
 }
-
 
 .testimonials-counter {
   display: flex;
@@ -3667,7 +3610,7 @@ video.project-media {
 
   gap: 8px;
 
-  color: #111111;
+  color: var(--studio-ink);
 
   font-size: 11px;
 
@@ -3676,18 +3619,15 @@ video.project-media {
   letter-spacing: 0.12em;
 }
 
-
 .testimonial-counter-line {
-  color: #b8bec7;
+  color: #a6aa9d;
 }
-
 
 .testimonials-arrows {
   display: flex;
 
   gap: 10px;
 }
-
 
 .testimonial-arrow {
   display: flex;
@@ -3696,117 +3636,57 @@ video.project-media {
 
   justify-content: center;
 
-  width: 48px;
+  width: 46px;
 
-  height: 48px;
+  height: 46px;
 
   padding: 0;
 
-  border: 1px solid #d9dee5;
+  border: 1px solid var(--border);
 
   border-radius: 50%;
 
-  background: #ffffff;
+  background: #fffefb;
 
-  color: #111111;
+  color: var(--studio-ink);
 
-  font-size: 18px;
+  font-size: 17px;
 
   cursor: pointer;
 
   transition:
-    background 180ms ease,
-    color 180ms ease,
-    border-color 180ms ease,
-    transform 180ms ease;
+    background 0.18s ease,
+    color 0.18s ease,
+    border-color 0.18s ease,
+    transform 0.18s ease;
 }
 
-
 .testimonial-arrow:hover {
-  background: #111111;
+  background: var(--studio-teal);
 
-  border-color: #111111;
+  border-color: var(--studio-teal);
 
-  color: #ffffff;
+  color: #fff;
 
   transform: translateY(-2px);
 }
 
-
-/* =========================================================
-   TABLET
-========================================================= */
-
 @media (max-width: 900px) {
-
   .testimonial-slide {
-    width: 50%;
-
-    flex-basis: 50%;
+    flex: 0 0 50%;
   }
-
 }
-
-
-/* =========================================================
-   MOBILE
-========================================================= */
 
 @media (max-width: 600px) {
-
-  .testimonials-section {
-    padding: 90px 0;
-  }
-
-
-  .testimonials-heading {
-    margin-bottom: 40px;
-  }
-
-
-  .testimonials-title {
-    font-size: 42px;
-  }
-
-
   .testimonial-slide {
-    width: 100%;
-
-    flex-basis: 100%;
-
-    padding: 0;
+    flex: 0 0 100%;
   }
-
-
-  .testimonial-image-card {
-    aspect-ratio: 16 / 10;
-
-    border-radius: 14px;
-  }
-
-
-  .testimonials-controls {
-    padding: 0;
-  }
-
 }
 
-/* =========================================================
-   CONTACT FORM STATUS
-========================================================= */
-
-.contact-submit:disabled {
-  opacity: 0.65;
-  cursor: wait;
-  transform: none;
-  box-shadow: none;
-}
-
-.contact-success,
-.contact-error {
-  margin: -2px 0 0;
-  font-size: 13px;
-  line-height: 1.6;
+@media (max-width: 700px) {
+  .studio-testimonials {
+    padding: 62px 0 72px;
+  }
 }
 
 /* Better social links */
@@ -4607,3 +4487,63 @@ section[id] { scroll-margin-top: 110px; }
 .not-found-page { background: var(--studio-paper); color: var(--studio-ink); }
 .not-found-page a { background: var(--studio-teal); color: white; padding: 15px 22px; border-radius: 4px; }
 @media (max-width: 550px) { .lightbox { padding: 65px 12px; } .lightbox-previous, .lightbox-next { top: auto; bottom: 15px; } }
+
+/* =========================================================
+   PROJECT COVER ART (no real cover photo yet)
+========================================================= */
+
+.project-cover-art {
+  position: relative;
+  width: min(1180px, calc(100% - 48px));
+  margin: 0 auto;
+  min-height: 46vh;
+  border-radius: 16px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.project-cover-art .preview-caption {
+  top: 34px;
+  font-size: 9px;
+  letter-spacing: .28em;
+}
+
+.project-cover-art .preview-emblem {
+  width: 92px;
+  height: 92px;
+}
+
+.project-cover-art .project-type-preview > strong {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-weight: 400;
+  letter-spacing: -.04em;
+  font-size: clamp(34px, 5vw, 72px);
+}
+
+.project-cover-art .preview-subtitle {
+  font-size: 9px;
+  letter-spacing: .22em;
+  margin-top: 15px;
+}
+
+.project-cover-art .preview-label {
+  bottom: 30px;
+  font-size: 8px;
+  letter-spacing: .12em;
+}
+
+@media (max-width: 700px) {
+  .project-cover-art {
+    width: calc(100% + 48px);
+    margin: 0 -24px;
+    min-height: 58vw;
+    border-radius: 0;
+  }
+
+  .project-cover-art .preview-emblem {
+    width: 64px;
+    height: 64px;
+  }
+}

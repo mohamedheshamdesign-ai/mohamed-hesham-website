@@ -94,21 +94,32 @@ export default function Testimonials({
   }
 
   return (
-    <section className="testimonials-section">
-      <div className="section-container">
+    <section
+      className="studio-testimonials"
+      aria-labelledby="testimonials-heading"
+    >
+      <div className="studio-container">
 
         {/* Heading */}
 
-        <div className="testimonials-heading">
-          <p className="section-kicker">
-            What Clients Say
-          </p>
+        <div className="studio-section-heading">
+          <div>
+            <p className="studio-eyebrow">
+              <span>06 /</span> WHAT CLIENTS SAY
+            </p>
 
-          <h2 className="testimonials-title">
-            Trusted by brands
+            <h2 id="testimonials-heading">
+              Trusted by brands.
+              <br />
+              <em>that value great design.</em>
+            </h2>
+          </div>
+
+          <p className="section-aside">
+            A few kind words from recent projects.
             <br />
-            <span>that value great design.</span>
-          </h2>
+            Real feedback, after real work.
+          </p>
         </div>
 
 

@@ -1,3 +1,4 @@
+import crypto from "crypto";
 import fs from "fs";
 import path from "path";
 import { z } from "zod";
@@ -35,6 +36,8 @@ const projectSchema = z.object({
 
 export type Project = z.infer<typeof projectSchema> & {
   cover: string;
+  hasRealCover: boolean;
+  coverArt: string;
   images: string[];
   media: ProjectMedia[];
 };
@@ -196,6 +199,139 @@ export function findCoverFile(files: string[]) {
 
 
 /* =========================================================
+   PLACEHOLDER COVER DETECTION
+========================================================= */
+
+/**
+ * Typographic tile variants used when a project has no real cover photo
+ * (see `getPlaceholderHashes`). A project shows its tile as long as it
+ * only contains placeholder media — adding a real cover swaps it out.
+ */
+export const PLACEHOLDER_ART: Record<string, string> = {
+  "al-mashreq": "project-art-travel",
+  alitalia: "project-art-bold",
+  "atractive-collection": "project-art-beauty",
+  "diana-essential-body-hair-care": "project-art-beauty",
+  everest: "project-art-connect",
+  "infinity-connect-group": "project-art-connect",
+  "memo-trips": "project-art-travel",
+  "olive-branch": "project-art-olive",
+  ultrascan: "project-art-bold",
+};
+
+function sha256File(filePath: string): string {
+  return crypto
+    .createHash("sha256")
+    .update(fs.readFileSync(filePath))
+    .digest("hex");
+}
+
+/**
+ * Every media file is hashed at build time. A file is treated as a generic
+ * placeholder when the exact same bytes appear in two or more projects
+ * (the original "00–03" stock images were copied into every project
+ * folder). All other images are genuinely unique to their project.
+ */
+let placeholderHashesCache: Set<string> | null = null;
+
+function buildPlaceholderHashes(): Set<string> {
+  const counts = new Map<string, number>();
+
+  for (const folder of getProjectFolders()) {
+    for (const file of getProjectFiles(folder)) {
+      const hash = sha256File(
+        path.join(publicProjectsDirectory, folder, file)
+      );
+      counts.set(hash, (counts.get(hash) ?? 0) + 1);
+    }
+  }
+
+  const placeholders = new Set<string>();
+
+  for (const [hash, count] of counts) {
+    if (count >= 2) placeholders.add(hash);
+  }
+
+  return placeholders;
+}
+
+function getPlaceholderHashes(): Set<string> {
+  if (!placeholderHashesCache) {
+    placeholderHashesCache = buildPlaceholderHashes();
+  }
+
+  return placeholderHashesCache;
+}
+
+type CoverResolution = {
+  cover: string;
+  hasRealCover: boolean;
+  coverFile: string | null;
+};
+
+function resolveCover(
+  slug: string,
+  files: string[]
+): CoverResolution {
+  const coverFile = findCoverFile(files);
+
+  if (!coverFile) {
+    return {
+      cover: "",
+      hasRealCover: false,
+      coverFile: null,
+    };
+  }
+
+  const directory = path.join(
+    publicProjectsDirectory,
+    slug
+  );
+
+  const placeholders = getPlaceholderHashes();
+
+  const declaredIsReal = !placeholders.has(
+    sha256File(path.join(directory, coverFile))
+  );
+
+  if (declaredIsReal) {
+    return {
+      cover: `/projects/${slug}/${coverFile}`,
+      hasRealCover: true,
+      coverFile,
+    };
+  }
+
+  // The declared cover is a placeholder. Fall back to the first genuinely
+  // unique photo in the project, if one exists.
+  const realFile = files.find((file) => {
+    if (file === coverFile) return false;
+
+    return (
+      getMediaType(file) === "image" &&
+      !placeholders.has(
+        sha256File(path.join(directory, file))
+      )
+    );
+  });
+
+  if (realFile) {
+    return {
+      cover: `/projects/${slug}/${realFile}`,
+      hasRealCover: true,
+      coverFile: realFile,
+    };
+  }
+
+  return {
+    cover: "",
+    hasRealCover: false,
+    coverFile,
+  };
+}
+
+
+/* =========================================================
    BUILD MEDIA
 ========================================================= */
 
@@ -219,12 +355,12 @@ function buildMedia(
    GET ALL PROJECTS
 ========================================================= */
 
-export function getProjects(): Project[] {
+function getProjectFolders(): string[] {
   if (!fs.existsSync(worksDirectory)) {
     return [];
   }
 
-  const folders = fs
+  return fs
     .readdirSync(worksDirectory)
     .filter((folder) => {
       const folderPath = path.join(
@@ -234,8 +370,10 @@ export function getProjects(): Project[] {
 
       return fs.statSync(folderPath).isDirectory();
     });
+}
 
-  return folders
+export function getProjects(): Project[] {
+  return getProjectFolders()
     .map((folder) => {
       const filePath = path.join(
         worksDirectory,
@@ -260,23 +398,31 @@ export function getProjects(): Project[] {
         project.slug
       );
 
-      const coverFile = findCoverFile(files);
+      const coverResolved = resolveCover(
+        project.slug,
+        files
+      );
 
-      if (!coverFile) {
+      if (!coverResolved.coverFile) {
         return null;
       }
 
       return {
         ...project,
 
-        cover: `/projects/${project.slug}/${coverFile}`,
+        cover: coverResolved.cover,
+
+        hasRealCover: coverResolved.hasRealCover,
+
+        coverArt:
+          PLACEHOLDER_ART[project.slug] ??
+          "project-art-travel",
 
         images: files
           .filter(
             (file) =>
-              file !== coverFile &&
-              getMediaType(file) !== "video" &&
-              getMediaType(file) !== "gif"
+              file !== coverResolved.coverFile &&
+              getMediaType(file) === "image"
           )
           .map(
             (file) =>
@@ -288,7 +434,7 @@ export function getProjects(): Project[] {
           files
         ).filter(
           (media) =>
-            media.name !== coverFile
+            media.name !== coverResolved.coverFile
         ),
       };
     })
@@ -344,24 +490,33 @@ export function getProjectBySlug(
 
   const files = getProjectFiles(slug);
 
-  const coverFile = findCoverFile(files);
+  const coverResolved = resolveCover(
+    slug,
+    files
+  );
 
   const allMedia = buildMedia(
     slug,
     files
   );
 
-  const galleryMedia = allMedia.filter(
-    (media) =>
-      media.name !== coverFile
-  );
+  const galleryMedia = coverResolved.coverFile
+    ? allMedia.filter(
+        (media) =>
+          media.name !== coverResolved.coverFile
+      )
+    : allMedia;
 
   return {
     ...project,
 
-    cover: coverFile
-      ? `/projects/${slug}/${coverFile}`
-      : "",
+    cover: coverResolved.cover,
+
+    hasRealCover: coverResolved.hasRealCover,
+
+    coverArt:
+      PLACEHOLDER_ART[slug] ??
+      "project-art-travel",
 
     images: galleryMedia
       .filter(

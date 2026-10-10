@@ -4,12 +4,16 @@ import { useMemo, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
+import ProjectTypePreview from "@/components/ProjectTypePreview";
+
 type WorkProject = {
   slug: string;
   title: string;
   category: string;
   description: string;
   cover: string;
+  hasRealCover: boolean;
+  coverArt: string;
 };
 
 const filters = ["All", "Brand Identity", "Packaging", "Digital"];
@@ -51,14 +55,22 @@ export default function WorkGrid({ projects, initialTag, featured = false }: {
       <div className={`studio-project-grid ${featured ? "studio-project-grid-featured" : ""}`}>
         {visible.map((project, index) => {
           return <Link key={project.slug} href={`/work/${project.slug}?from=${encodeURIComponent(activeTag)}`} className="studio-project-card">
-            <div className="studio-project-art project-art-real">
-              <Image
-                src={project.cover}
-                fill
-                sizes={featured ? "(max-width: 550px) 90vw, (max-width: 800px) 45vw, 30vw" : "(max-width: 550px) 90vw, 45vw"}
-                alt={`${project.title} — project cover`}
-                className="studio-project-image"
-              />
+            <div className={`studio-project-art ${project.hasRealCover ? "project-art-real" : project.coverArt}`}>
+              {project.hasRealCover ? (
+                <Image
+                  src={project.cover}
+                  fill
+                  sizes={featured ? "(max-width: 550px) 90vw, (max-width: 800px) 45vw, 30vw" : "(max-width: 550px) 90vw, 45vw"}
+                  alt={`${project.title} — project cover`}
+                  className="studio-project-image"
+                />
+              ) : (
+                <ProjectTypePreview
+                  title={project.title}
+                  category={project.category}
+                  index={index + 1}
+                />
+              )}
               <span className="project-art-index" aria-hidden="true">{(index + 1).toString().padStart(2, "0")}</span>
               <span className="project-art-arrow" aria-hidden="true">↗</span>
             </div>
