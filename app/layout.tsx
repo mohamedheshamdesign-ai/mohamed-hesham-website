@@ -67,10 +67,6 @@ export const metadata: Metadata = {
 
   category: "Design",
 
-  alternates: {
-    canonical: "/",
-  },
-
   robots: {
     index: true,
     follow: true,
@@ -157,6 +153,8 @@ export default function RootLayout({
             }),
           }}
         />
+
+        <a className="skip-link" href="#main-content">Skip to content</a>
 
         <ScrollProgress />
 

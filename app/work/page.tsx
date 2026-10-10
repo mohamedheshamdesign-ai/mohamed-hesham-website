@@ -1,6 +1,14 @@
+import type { Metadata } from "next";
 import { getProjects } from "@/lib/projects";
 
 import WorkGrid from "@/components/WorkGrid";
+
+export const metadata: Metadata = {
+  title: 'Selected Work',
+  description: 'Explore brand identities, packaging, and digital experiences by Mohamed Hesham, with the strategy and design thinking behind each project.',
+  alternates: { canonical: '/work' },
+  openGraph: { title: 'Selected Work', description: 'Explore brand identities, packaging, and digital experiences by Mohamed Hesham, with the strategy and design thinking behind each project.', url: '/work' },
+};
 
 export default async function WorkPage({
   searchParams,
@@ -12,7 +20,7 @@ export default async function WorkPage({
   const { tag } = await searchParams;
 
   return (
-    <main className="editorial-work-page">
+    <main id="main-content" tabIndex={-1} className="editorial-work-page">
       <section className="editorial-work">
         <div className="work-container">
 
@@ -36,7 +44,7 @@ export default async function WorkPage({
             </p>
           </div>
 
-          <WorkGrid projects={projects} initialTag={tag} />
+          <WorkGrid key={tag || "All"} projects={projects} initialTag={tag} />
 
         </div>
       </section>

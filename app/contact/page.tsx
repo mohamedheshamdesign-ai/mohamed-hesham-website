@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useState } from "react";
+import { FormEvent, Suspense, use, useState } from "react";
 
 const EMAIL = "mohamed.hesham.design@gmail.com";
 
@@ -23,31 +23,20 @@ const SOCIALS = [
   },
 ];
 
-export default function ContactPage() {
+type ContactPageProps = {
+  searchParams: Promise<{ service?: string | string[] }>;
+};
+
+function ContactContent({ searchParams }: ContactPageProps) {
+  const params = use(searchParams);
+  const requestedService = typeof params.service === "string" ? params.service : "";
   const [isSending, setIsSending] = useState(false);
   const [sent, setSent] = useState(false);
   const [error, setError] = useState("");
 
-  const openGmail = () => {
-    const subject = encodeURIComponent(
-      "Project Inquiry — Mohamed Hesham"
-    );
-
-    const body = encodeURIComponent(
-      "Hi Mohamed,\n\nI'd like to discuss a project with you.\n\n"
-    );
-
-    const gmailUrl =
-      `https://mail.google.com/mail/?view=cm&fs=1` +
-      `&to=${encodeURIComponent(EMAIL)}` +
-      `&su=${subject}` +
-      `&body=${body}`;
-
-    window.open(gmailUrl, "_blank", "noopener,noreferrer");
-  };
-
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    if (isSending) return;
 
     setIsSending(true);
     setSent(false);
@@ -56,16 +45,25 @@ export default function ContactPage() {
     const form = event.currentTarget;
     const formData = new FormData(form);
 
-    const name = String(formData.get("name") || "");
-    const email = String(formData.get("email") || "");
+    if (formData.get("website")) { setIsSending(false); return; }
+
+    const name = String(formData.get("name") || "").trim();
+    const email = String(formData.get("email") || "").trim();
     const service = String(formData.get("service") || "");
-    const message = String(formData.get("message") || "");
+    const message = String(formData.get("message") || "").trim();
+
+    if (!name || !message) {
+      setError("Please add your name and a few details about your project.");
+      setIsSending(false);
+      return;
+    }
 
     try {
       const response = await fetch(
         `https://formsubmit.co/ajax/${EMAIL}`,
         {
           method: "POST",
+          signal: AbortSignal.timeout(15000),
           headers: {
             "Content-Type": "application/json",
             Accept: "application/json",
@@ -75,6 +73,9 @@ export default function ContactPage() {
             email,
             service,
             message,
+            budget: String(formData.get("budget") || "Not specified"),
+            timeline: String(formData.get("timeline") || "Not specified"),
+            _replyto: email,
             _subject: `New Project Inquiry from ${name}`,
             _template: "table",
           }),
@@ -83,7 +84,7 @@ export default function ContactPage() {
 
       const data = await response.json();
 
-      if (!response.ok || data.success === false) {
+      if (!response.ok || (data.success !== true && data.success !== "true")) {
         throw new Error("Failed to send");
       }
 
@@ -91,7 +92,7 @@ export default function ContactPage() {
       form.reset();
     } catch {
       setError(
-        "Something went wrong while sending your message. Please try again or use Send Mail."
+        "Something went wrong while sending your message. Your details are still here. Please try again or email me directly."
       );
     } finally {
       setIsSending(false);
@@ -99,11 +100,11 @@ export default function ContactPage() {
   };
 
   return (
-    <main className="contact-page">
+    <main id="main-content" tabIndex={-1} className="contact-page">
       <div className="contact-container">
         <section className="contact-hero">
           <div className="contact-heading">
-            <p className="contact-kicker">Get In Touch</p>
+            <p className="contact-kicker">YOUR NEXT CHAPTER STARTS HERE</p>
 
             <h1 className="contact-title">
               Let&apos;s create something
@@ -112,8 +113,8 @@ export default function ContactPage() {
             </h1>
 
             <p className="contact-intro">
-              Have a project in mind? Tell me about it, and let&apos;s
-              build a brand that people trust, remember, and choose.
+              Tell me a little about your business and what you have in mind.
+              I’ll review your brief and get back to you with the next steps.
             </p>
           </div>
 
@@ -143,16 +144,11 @@ export default function ContactPage() {
                 <div className="contact-block-content">
                   <p className="contact-label">Email</p>
 
-                  <p className="contact-value">{EMAIL}</p>
+                  <a className="contact-value" href={`mailto:${EMAIL}`}>{EMAIL}</a>
 
-                  <button
-                    type="button"
-                    onClick={openGmail}
-                    className="contact-action"
-                  >
-                    Send Mail
-                    <span>↗</span>
-                  </button>
+                  <a href={`mailto:${EMAIL}?subject=Project%20Inquiry`} className="contact-action">
+                    Send an email <span aria-hidden="true">↗</span>
+                  </a>
                 </div>
               </div>
 
@@ -231,8 +227,14 @@ export default function ContactPage() {
             {/* FORM */}
             <form
               className="contact-form"
+              action={`https://formsubmit.co/${EMAIL}`}
+              method="post"
+              aria-busy={isSending}
               onSubmit={handleSubmit}
             >
+              <noscript><p className="contact-error">JavaScript is disabled. Submitting will open the form provider, or you can <a href={`mailto:${EMAIL}`} className="underline">email me directly</a>.</p></noscript>
+              <div className="contact-form-intro"><h2>Tell me about your project.</h2><p>A few details are all we need to get the conversation started.</p></div>
+              <div className="sr-only" aria-hidden="true"><label htmlFor="website">Leave this blank</label><input id="website" name="website" type="text" tabIndex={-1} autoComplete="off" /></div>
               <div className="contact-form-row">
                 <div className="contact-field">
                   <label htmlFor="name">Your Name</label>
@@ -241,7 +243,9 @@ export default function ContactPage() {
                     id="name"
                     name="name"
                     type="text"
-                    placeholder="Ahmed"
+                    placeholder="Your name"
+                    autoComplete="name"
+                    maxLength={100}
                     required
                   />
                 </div>
@@ -253,7 +257,9 @@ export default function ContactPage() {
                     id="email"
                     name="email"
                     type="email"
-                    placeholder="ahmed@company.com"
+                    placeholder="you@company.com"
+                    autoComplete="email"
+                    maxLength={254}
                     required
                   />
                 </div>
@@ -266,8 +272,9 @@ export default function ContactPage() {
 
                 <select
                   id="service"
+                  key={requestedService}
                   name="service"
-                  defaultValue=""
+                  defaultValue={["Brand Identity", "Packaging Design", "Print Design", "Digital & Social", "Illustration", "UX / Interaction", "Other"].includes(requestedService) ? requestedService : ""}
                   required
                 >
                   <option value="" disabled>
@@ -302,6 +309,10 @@ export default function ContactPage() {
                 </select>
               </div>
 
+              <div className="contact-form-row">
+                <div className="contact-field"><label htmlFor="budget">Budget (optional)</label><select id="budget" name="budget" defaultValue=""><option value="">Let’s discuss</option><option>Under $1,000</option><option>$1,000 – $3,000</option><option>$3,000 – $5,000</option><option>$5,000+</option></select></div>
+                <div className="contact-field"><label htmlFor="timeline">Timeline (optional)</label><select id="timeline" name="timeline" defaultValue=""><option value="">I’m flexible</option><option>Within a month</option><option>1–3 months</option><option>3+ months</option></select></div>
+              </div>
               <div className="contact-field">
                 <label htmlFor="message">
                   Project Details
@@ -310,6 +321,7 @@ export default function ContactPage() {
                 <textarea
                   id="message"
                   name="message"
+                  maxLength={5000}
                   placeholder="Tell me about your project — timeline, goals, budget, or anything you'd like me to know..."
                   required
                 />
@@ -320,18 +332,19 @@ export default function ContactPage() {
                 className="contact-submit"
                 disabled={isSending}
               >
-                {isSending ? "Sending..." : "Send Message"}
+                {isSending ? "Sending..." : "Let’s start a conversation"}
                 <span>{isSending ? "…" : "↗"}</span>
               </button>
 
+              <p className="contact-privacy">Your details are used only to respond to your inquiry. This form is delivered via FormSubmit. Prefer not to use it? <a href={`mailto:${EMAIL}`} className="underline">Email me directly.</a></p>
               {sent && (
-                <p className="contact-success">
-                  Message sent successfully. Thank you!
+                <p className="contact-success" role="status" aria-live="polite">
+                  Thank you — your inquiry has been submitted. I’ll be in touch to discuss your project.
                 </p>
               )}
 
               {error && (
-                <p className="contact-error">
+                <p className="contact-error" role="alert">
                   {error}
                 </p>
               )}
@@ -340,5 +353,12 @@ export default function ContactPage() {
         </section>
       </div>
     </main>
+  );
+}
+export default function ContactPage({ searchParams }: ContactPageProps) {
+  return (
+    <Suspense fallback={<main id="main-content" className="contact-page"><div className="contact-container contact-hero">Preparing your project inquiry… <a className="underline" href={`mailto:${EMAIL}`}>You can also email me directly.</a></div></main>}>
+      <ContactContent searchParams={searchParams} />
+    </Suspense>
   );
 }

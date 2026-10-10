@@ -11,6 +11,12 @@ const routes = [
   "/work/al-mashreq",
   "/work/infinity-connect-group",
   "/work/memo-trips",
+  "/work/alitalia",
+  "/work/atractive-collection",
+  "/work/diana-essential-body-hair-care",
+  "/work/everest",
+  "/work/olive-branch",
+  "/work/ultrascan",
   "/sitemap.xml",
   "/robots.txt",
 ];
