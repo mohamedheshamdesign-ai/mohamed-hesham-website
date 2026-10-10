@@ -1208,17 +1208,6 @@ a {
   letter-spacing: -0.025em;
 }
 
-.site-logo-mark {
-  width: 8px;
-  height: 8px;
-
-  border-radius: 999px;
-
-  background: #2563eb;
-
-  box-shadow: 0 0 0 5px rgba(37, 99, 235, 0.08);
-}
-
 .desktop-nav-links {
   display: flex;
   align-items: center;
@@ -1510,14 +1499,6 @@ a {
 .contact-container {
   width: min(1180px, calc(100% - 48px));
   margin: 0 auto;
-}
-
-.contact-hero {
-  padding: 90px 0 120px;
-}
-
-.contact-heading {
-  margin-bottom: 68px;
 }
 
 .contact-kicker {
@@ -3441,10 +3422,6 @@ video.project-media {
   line-height: 0.98;
 }
 
-.project-cta-title span {
-  color: #a1a8b3;
-}
-
 .project-cta-button {
   display: inline-flex;
   align-items: center;
@@ -3832,14 +3809,6 @@ video.project-media {
   line-height: 1.6;
 }
 
-.contact-success {
-  color: #15803d;
-}
-
-.contact-error {
-  color: #dc2626;
-}
-
 /* Better social links */
 
 .social-links {
@@ -4071,12 +4040,6 @@ video.project-media {
   justify-content: center;
   padding: 48px;
   cursor: zoom-out;
-}
-
-.lightbox-image {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
 }
 
 .lightbox-close {
@@ -4356,7 +4319,6 @@ section[id] { scroll-margin-top: 110px; }
 .studio-project-art { position: relative; aspect-ratio: 1.15; overflow: hidden; border-radius: 5px; background: #e9e6dc; isolation: isolate; transition: box-shadow .3s; }
 .project-art-real { background: #e4e7df; }
 .studio-project-image { object-fit: cover; object-position: 69% 50%; transform: scale(1.38); transition: transform .6s; }
-.studio-project-card:hover .studio-project-image { transform: scale(1.45); }
 .project-art-index { position: absolute; top: 15px; left: 17px; font-size: 9px; color: inherit; opacity: .55; }
 .project-art-arrow { position: absolute; bottom: 14px; right: 15px; background: #ffffffe0; color: var(--studio-teal); width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; opacity: 0; transform: translate(-4px, 4px); transition: .2s; }
 .studio-project-card:hover .project-art-arrow, .studio-project-card:focus-visible .project-art-arrow { opacity: 1; transform: none; }
