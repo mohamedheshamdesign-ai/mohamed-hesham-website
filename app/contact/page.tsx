@@ -2,6 +2,8 @@
 
 import { FormEvent, Suspense, use, useState } from "react";
 
+import { gmailComposeUrl } from "@/lib/site";
+
 const EMAIL = "mohamed.hesham.design@gmail.com";
 
 const SOCIALS = [
@@ -144,9 +146,9 @@ function ContactContent({ searchParams }: ContactPageProps) {
                 <div className="contact-block-content">
                   <p className="contact-label">Email</p>
 
-                  <a className="contact-value" href={`mailto:${EMAIL}`}>{EMAIL}</a>
+                  <a className="contact-value" href={gmailComposeUrl({ to: EMAIL })} target="_blank" rel="noopener noreferrer">{EMAIL}</a>
 
-                  <a href={`mailto:${EMAIL}?subject=Project%20Inquiry`} className="contact-action">
+                  <a href={gmailComposeUrl({ to: EMAIL, subject: "Project Inquiry" })} target="_blank" rel="noopener noreferrer" className="contact-action">
                     Send an email <span aria-hidden="true">↗</span>
                   </a>
                 </div>
@@ -232,7 +234,7 @@ function ContactContent({ searchParams }: ContactPageProps) {
               aria-busy={isSending}
               onSubmit={handleSubmit}
             >
-              <noscript><p className="contact-error">JavaScript is disabled. Submitting will open the form provider, or you can <a href={`mailto:${EMAIL}`} className="underline">email me directly</a>.</p></noscript>
+              <noscript><p className="contact-error">JavaScript is disabled. Submitting will open the form provider, or you can <a href={gmailComposeUrl({ to: EMAIL })} target="_blank" rel="noopener noreferrer" className="underline">email me directly</a>.</p></noscript>
               <div className="contact-form-intro"><h2>Tell me about your project.</h2><p>A few details are all we need to get the conversation started.</p></div>
               <div className="sr-only" aria-hidden="true"><label htmlFor="website">Leave this blank</label><input id="website" name="website" type="text" tabIndex={-1} autoComplete="off" /></div>
               <div className="contact-form-row">
@@ -336,7 +338,7 @@ function ContactContent({ searchParams }: ContactPageProps) {
                 <span>{isSending ? "…" : "↗"}</span>
               </button>
 
-              <p className="contact-privacy">Your details are used only to respond to your inquiry. This form is delivered via FormSubmit. Prefer not to use it? <a href={`mailto:${EMAIL}`} className="underline">Email me directly.</a></p>
+              <p className="contact-privacy">Your details are used only to respond to your inquiry. This form is delivered via FormSubmit. Prefer not to use it? <a href={gmailComposeUrl({ to: EMAIL })} target="_blank" rel="noopener noreferrer" className="underline">Email me directly.</a></p>
               {sent && (
                 <p className="contact-success" role="status" aria-live="polite">
                   Thank you — your inquiry has been submitted. I’ll be in touch to discuss your project.
@@ -357,7 +359,7 @@ function ContactContent({ searchParams }: ContactPageProps) {
 }
 export default function ContactPage({ searchParams }: ContactPageProps) {
   return (
-    <Suspense fallback={<main id="main-content" className="contact-page"><div className="contact-container contact-hero">Preparing your project inquiry… <a className="underline" href={`mailto:${EMAIL}`}>You can also email me directly.</a></div></main>}>
+    <Suspense fallback={<main id="main-content" className="contact-page"><div className="contact-container contact-hero">Preparing your project inquiry… <a className="underline" href={gmailComposeUrl({ to: EMAIL })} target="_blank" rel="noopener noreferrer">You can also email me directly.</a></div></main>}>
       <ContactContent searchParams={searchParams} />
     </Suspense>
   );

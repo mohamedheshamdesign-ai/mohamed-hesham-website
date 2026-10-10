@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { getFeaturedProjects } from "@/lib/projects";
 import { getTestimonials } from "@/lib/testimonials";
+import { gmailComposeUrl } from "@/lib/site";
 import WorkGrid from "@/components/WorkGrid";
 import Testimonials from "@/components/Testimonials";
 
@@ -86,7 +87,7 @@ export default function Home() {
 
       <Testimonials testimonials={testimonials} />
 
-      <section className="studio-cta"><div className="studio-container"><div className="cta-topline"><span className="studio-eyebrow">HAVE SOMETHING IN MIND?</span><span>LET&apos;S MAKE IT HAPPEN <span aria-hidden="true">↙</span></span></div><h2>Your next chapter<br />starts with <em>a conversation.</em></h2><div className="cta-bottom"><Link href="/contact" className="studio-button studio-button-light">Let&apos;s talk about your project <span aria-hidden="true">↗</span></Link><a href="mailto:mohamed.hesham.design@gmail.com" className="cta-email">Prefer email? Say hello <span aria-hidden="true">↗</span></a></div><div className="cta-decoration" aria-hidden="true">✳</div></div></section>
+      <section className="studio-cta"><div className="studio-container"><div className="cta-topline"><span className="studio-eyebrow">HAVE SOMETHING IN MIND?</span><span>LET&apos;S MAKE IT HAPPEN <span aria-hidden="true">↙</span></span></div><h2>Your next chapter<br />starts with <em>a conversation.</em></h2><div className="cta-bottom"><Link href="/contact" className="studio-button studio-button-light">Let&apos;s talk about your project <span aria-hidden="true">↗</span></Link><a href={gmailComposeUrl({ to: "mohamed.hesham.design@gmail.com" })} target="_blank" rel="noopener noreferrer" className="cta-email">Prefer email? Say hello <span aria-hidden="true">↗</span></a></div><div className="cta-decoration" aria-hidden="true">✳</div></div></section>
     </main>
   );
 }

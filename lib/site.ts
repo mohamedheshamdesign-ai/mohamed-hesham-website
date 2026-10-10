@@ -20,6 +20,33 @@ export function absoluteUrl(path = "/") {
   return new URL(path, siteUrl).toString();
 }
 
+/**
+ * Open Gmail's compose window with the recipient (and optional subject)
+ * pre-filled. Used instead of `mailto:` for email actions so they always
+ * open a working compose box — even on machines with no mail client set
+ * up (where a `mailto:` link can otherwise open an empty URL).
+ */
+export function gmailComposeUrl({
+  to,
+  subject,
+  body,
+}: {
+  to: string;
+  subject?: string;
+  body?: string;
+}) {
+  const params = new URLSearchParams({
+    view: "cm",
+    fs: "1",
+    to,
+  });
+
+  if (subject) params.set("su", subject);
+  if (body) params.set("body", body);
+
+  return `https://mail.google.com/mail/?${params.toString()}`;
+}
+
 /** Shared Open Graph/Twitter image used by pages without a dedicated image. */
 export const ogImage = {
   url: "/og-image.jpg",
