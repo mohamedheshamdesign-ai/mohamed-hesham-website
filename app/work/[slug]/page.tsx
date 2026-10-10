@@ -11,6 +11,12 @@ import {
   getProjects,
 } from "@/lib/projects";
 
+export const dynamicParams = false;
+
+export function generateStaticParams() {
+  return getProjects().map(project => ({ slug: project.slug }));
+}
+
 type PageProps = {
   params: Promise<{ slug: string }>;
   searchParams: Promise<{ from?: string }>;
@@ -45,13 +51,6 @@ export default async function ProjectPage({
 }: PageProps) {
   const { slug } = await params;
 
-  const from = (await searchParams)?.from;
-
-  const backHref =
-    from && from !== "All"
-      ? `/work?tag=${encodeURIComponent(from)}`
-      : "/work";
-
   let project;
 
   try {
@@ -59,6 +58,11 @@ export default async function ProjectPage({
   } catch {
     notFound();
   }
+
+  const from = (await searchParams)?.from;
+  const backHref = from && from !== "All"
+    ? `/work?tag=${encodeURIComponent(from)}`
+    : "/work";
 
   const allProjects = getProjects().filter(
     (p, i, arr) =>
@@ -89,7 +93,7 @@ export default async function ProjectPage({
   };
 
   return (
-    <main className="project-page bg-white text-black">
+    <main id="main-content" tabIndex={-1} className="project-page">
 
       <script
         type="application/ld+json"
@@ -249,10 +253,10 @@ export default async function ProjectPage({
 
         <div className="project-media-container">
 
-        <ProjectGallery
-          title={project.title}
-          images={project.media.map((m) => m.src)}
-        />
+          <ProjectGallery
+            title={project.title}
+            images={project.media.map((media) => media.src)}
+          />
 
         </div>
 

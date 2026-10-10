@@ -1,7 +1,12 @@
+import fs from "node:fs";
+import path from "node:path";
+
 import { describe, expect, it } from "vitest";
 
 import {
   findCoverFile,
+  getProjects,
+  getProjectBySlug,
   sortMediaFiles,
 } from "./projects";
 
@@ -45,5 +50,23 @@ describe("findCoverFile", () => {
 
   it("returns null for empty input", () => {
     expect(findCoverFile([])).toBeNull();
+  });
+});
+
+describe("portfolio project assets", () => {
+  const projects = getProjects();
+
+  it("loads all supplied projects without duplicate routes", () => {
+    expect(projects).toHaveLength(9);
+    expect(new Set(projects.map(project => project.slug)).size).toBe(projects.length);
+  });
+
+  it.each(projects)("keeps the cover and full gallery for $slug", project => {
+    const detail = getProjectBySlug(project.slug);
+    expect(detail.cover).toBe(project.cover);
+    expect(detail.media.length).toBeGreaterThan(0);
+    for (const src of [detail.cover, ...detail.media.map(media => media.src)]) {
+      expect(fs.existsSync(path.join(process.cwd(), "public", src))).toBe(true);
+    }
   });
 });
