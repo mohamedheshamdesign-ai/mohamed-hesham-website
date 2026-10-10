@@ -7,19 +7,51 @@ type TestimonialsProps = {
   testimonials: string[];
 };
 
+/**
+ * Keep this in sync with the `.testimonial-slide` widths in globals.css:
+ * 3 slides on desktop, 2 at <=900px, 1 at <=600px.
+ */
+function getSlidesPerView(): number {
+  if (typeof window === "undefined") return 3;
+
+  if (window.matchMedia("(max-width: 600px)").matches) return 1;
+  if (window.matchMedia("(max-width: 900px)").matches) return 2;
+
+  return 3;
+}
+
 export default function Testimonials({
   testimonials,
 }: TestimonialsProps) {
   const [current, setCurrent] = useState(0);
+  const [slidesPerView, setSlidesPerView] = useState(3);
 
   const total = testimonials.length;
 
-  const visibleSlides = 3;
+  const maxIndex = Math.max(0, total - slidesPerView);
 
-  const maxIndex = Math.max(
-    0,
-    total - visibleSlides
-  );
+  // Clamp at render time (e.g. after a breakpoint change shrinks the track).
+  const safeCurrent = Math.min(current, maxIndex);
+
+  // Track the responsive breakpoint so the transform and max index stay correct.
+  useEffect(() => {
+    const update = () => setSlidesPerView(getSlidesPerView());
+
+    update();
+
+    const mobileQuery = window.matchMedia("(max-width: 600px)");
+    const tabletQuery = window.matchMedia("(max-width: 900px)");
+
+    mobileQuery.addEventListener("change", update);
+    tabletQuery.addEventListener("change", update);
+    window.addEventListener("resize", update);
+
+    return () => {
+      mobileQuery.removeEventListener("change", update);
+      tabletQuery.removeEventListener("change", update);
+      window.removeEventListener("resize", update);
+    };
+  }, []);
 
   const next = () => {
     setCurrent((prev) => {
@@ -42,6 +74,8 @@ export default function Testimonials({
   };
 
   useEffect(() => {
+    if (maxIndex === 0) return;
+
     const timer = setInterval(() => {
       setCurrent((prev) => {
         if (prev >= maxIndex) {
@@ -80,7 +114,12 @@ export default function Testimonials({
 
         {/* Slider */}
 
-        <div className="testimonials-slider">
+        <div
+          className="testimonials-slider"
+          role="region"
+          aria-roledescription="carousel"
+          aria-label="Client testimonials"
+        >
 
           <div className="testimonials-viewport">
 
@@ -88,7 +127,7 @@ export default function Testimonials({
               className="testimonials-track"
               style={{
                 transform: `translateX(-${
-                  current * (100 / visibleSlides)
+                  safeCurrent * (100 / slidesPerView)
                 }%)`,
               }}
             >
@@ -125,7 +164,7 @@ export default function Testimonials({
             <div className="testimonials-counter">
 
               <span>
-                {String(current + 1).padStart(2, "0")}
+                {String(safeCurrent + 1).padStart(2, "0")}
               </span>
 
               <span className="testimonial-counter-line">

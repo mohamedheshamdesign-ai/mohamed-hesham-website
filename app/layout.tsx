@@ -10,8 +10,7 @@ import Footer from "@/components/Footer";
 import ScrollProgress from "@/components/ScrollProgress";
 import BackToTop from "@/components/BackToTop";
 
-
-const siteUrl = "https://mohamed-hesham-design.vercel.app";
+import { ogImage, siteDescription, siteName, siteUrl } from "@/lib/site";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,8 +30,7 @@ export const metadata: Metadata = {
     template: "%s — Mohamed Hesham",
   },
 
-  description:
-    "Mohamed Hesham is a Senior Brand & Graphic Designer based in Egypt, specializing in brand identity, packaging design, print design, visual systems, and production.",
+  description: siteDescription,
 
   keywords: [
     "Mohamed Hesham",
@@ -92,16 +90,9 @@ export const metadata: Metadata = {
     description:
       "Senior Brand & Graphic Designer based in Egypt specializing in brand identity, packaging, print design, visual systems, and production.",
 
-    siteName: "Mohamed Hesham",
+    siteName: siteName,
 
-    images: [
-      {
-        url: "/og-image.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Mohamed Hesham — Senior Brand & Graphic Designer",
-      },
-    ],
+    images: [ogImage],
   },
 
   twitter: {
@@ -137,7 +128,7 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Person",
-              name: "Mohamed Hesham",
+              name: siteName,
               url: siteUrl,
               jobTitle: "Senior Brand & Graphic Designer",
               address: {

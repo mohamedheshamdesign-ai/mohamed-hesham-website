@@ -70,6 +70,7 @@ export default function Navbar() {
                 className={`desktop-nav-link ${
                   isActive(link.href) ? "desktop-nav-link-active" : ""
                 }`}
+                aria-current={isActive(link.href) ? "page" : undefined}
               >
                 {link.label}
               </Link>
@@ -130,6 +131,7 @@ export default function Navbar() {
                   className={`mobile-menu-link ${
                     isActive(link.href) ? "mobile-menu-link-active" : ""
                   }`}
+                  aria-current={isActive(link.href) ? "page" : undefined}
                 >
                   <span>{link.label}</span>
                   <span>↗</span>

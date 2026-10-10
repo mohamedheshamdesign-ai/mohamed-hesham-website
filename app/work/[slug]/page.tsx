@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 
@@ -5,11 +6,13 @@ import Link from "next/link";
 import Image from "next/image";
 
 import ProjectGallery from "@/components/ProjectGallery";
+import ProjectBackLink from "@/components/ProjectBackLink";
 
 import {
   getProjectBySlug,
   getProjects,
 } from "@/lib/projects";
+import { ogImage, siteName } from "@/lib/site";
 
 export const dynamicParams = false;
 
@@ -19,7 +22,6 @@ export function generateStaticParams() {
 
 type PageProps = {
   params: Promise<{ slug: string }>;
-  searchParams: Promise<{ from?: string }>;
 };
 
 export async function generateMetadata({
@@ -29,15 +31,26 @@ export async function generateMetadata({
 
   try {
     const project = getProjectBySlug(slug);
+    const path = `/work/${slug}`;
+    const images = project.cover ? [project.cover] : [ogImage.url];
 
     return {
       title: project.title,
       description: project.description,
-      alternates: { canonical: `/work/${slug}` },
+      alternates: { canonical: path },
       openGraph: {
+        type: "article",
+        url: path,
         title: project.title,
         description: project.description,
-        images: project.cover ? [project.cover] : [],
+        siteName,
+        images,
+      },
+      twitter: {
+        card: "summary_large_image",
+        title: project.title,
+        description: project.description,
+        images,
       },
     };
   } catch {
@@ -47,7 +60,6 @@ export async function generateMetadata({
 
 export default async function ProjectPage({
   params,
-  searchParams,
 }: PageProps) {
   const { slug } = await params;
 
@@ -58,11 +70,6 @@ export default async function ProjectPage({
   } catch {
     notFound();
   }
-
-  const from = (await searchParams)?.from;
-  const backHref = from && from !== "All"
-    ? `/work?tag=${encodeURIComponent(from)}`
-    : "/work";
 
   const allProjects = getProjects().filter(
     (p, i, arr) =>
@@ -115,12 +122,15 @@ export default async function ProjectPage({
               Case Study
             </p>
 
-            <Link
-              href={backHref}
-              className="project-back-link"
+            <Suspense
+              fallback={
+                <Link href="/work" className="project-back-link">
+                  ← Back to work
+                </Link>
+              }
             >
-              ← Back to work
-            </Link>
+              <ProjectBackLink />
+            </Suspense>
 
           </div>
 
