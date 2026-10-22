@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 
+import { pageMetadata } from "@/lib/site";
+
 const services = [
   { title: "Brand identity", description: "Logo systems, color palettes, typography, and guidelines that give your business a clear, consistent personality.", service: "Brand Identity" },
   { title: "Packaging design", description: "Product packaging that connects your brand story to the shelf, with production-ready artwork and thoughtful details.", service: "Packaging Design" },
@@ -11,12 +13,11 @@ const services = [
   { title: "UX & interaction", description: "Brand-led interface design that considers how people find, understand, and interact with your business.", service: "UX / Interaction" },
 ];
 
-export const metadata: Metadata = {
-  title: 'About',
-  description: 'Meet Mohamed Hesham, a senior brand and graphic designer bringing strategic thinking and hands-on production experience to every project.',
-  alternates: { canonical: '/about' },
-  openGraph: { title: 'About', description: 'Meet Mohamed Hesham, a senior brand and graphic designer bringing strategic thinking and hands-on production experience to every project.', url: '/about' },
-};
+export const metadata: Metadata = pageMetadata({
+  title: "About",
+  description: "Meet Mohamed Hesham, a senior brand and graphic designer bringing strategic thinking and hands-on production experience to every project.",
+  path: "/about",
+});
 
 export default function AboutPage() {
   return <main id="main-content" tabIndex={-1} className="studio-home">

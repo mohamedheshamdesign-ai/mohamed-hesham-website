@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
 import { getProjects } from "@/lib/projects";
+import { pageMetadata } from "@/lib/site";
 
 import WorkGrid from "@/components/WorkGrid";
 
-export const metadata: Metadata = {
-  title: 'Selected Work',
-  description: 'Explore brand identities, packaging, and digital experiences by Mohamed Hesham, with the strategy and design thinking behind each project.',
-  alternates: { canonical: '/work' },
-  openGraph: { title: 'Selected Work', description: 'Explore brand identities, packaging, and digital experiences by Mohamed Hesham, with the strategy and design thinking behind each project.', url: '/work' },
-};
+export const metadata: Metadata = pageMetadata({
+  title: "Selected Work",
+  description: "Explore brand identities, packaging, and digital experiences by Mohamed Hesham, with the strategy and design thinking behind each project.",
+  path: "/work",
+});
 
 export default async function WorkPage({
   searchParams,

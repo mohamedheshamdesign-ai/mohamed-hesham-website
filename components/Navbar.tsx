@@ -17,6 +17,7 @@ export default function Navbar() {
   const [prevPathname, setPrevPathname] = useState(pathname);
   const menuId = useId();
   const toggleRef = useRef<HTMLButtonElement>(null);
+  const menuRef = useRef<HTMLDivElement>(null);
 
   // Close the menu on navigation (derived state, no effect needed)
   if (prevPathname !== pathname) {
@@ -29,14 +30,51 @@ export default function Navbar() {
 
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
+        event.preventDefault();
         setOpen(false);
         toggleRef.current?.focus();
+        return;
+      }
+
+      if (event.key === "Tab" && menuRef.current) {
+        const focusableElements = menuRef.current.querySelectorAll<HTMLElement>(
+          'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
+        );
+
+        if (focusableElements.length === 0) return;
+
+        const firstElement = focusableElements[0];
+        const lastElement = focusableElements[focusableElements.length - 1];
+
+        if (event.shiftKey) {
+          if (document.activeElement === firstElement) {
+            event.preventDefault();
+            lastElement.focus();
+          }
+        } else {
+          if (document.activeElement === lastElement) {
+            event.preventDefault();
+            firstElement.focus();
+          }
+        }
       }
     };
 
     const previousOverflow = document.body.style.overflow;
     const onResize = () => { if (window.innerWidth > 800) setOpen(false); };
     document.body.style.overflow = "hidden";
+
+    // Focus first focusable element when menu opens
+    setTimeout(() => {
+      if (menuRef.current) {
+        const focusableElements = menuRef.current.querySelectorAll<HTMLElement>(
+          'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
+        );
+        if (focusableElements.length > 0) {
+          focusableElements[0].focus();
+        }
+      }
+    }, 0);
 
     window.addEventListener("keydown", onKeyDown);
     window.addEventListener("resize", onResize);
@@ -119,7 +157,8 @@ export default function Navbar() {
       </nav>
 
       {open && (
-        <div id={menuId} className="mobile-menu">
+        <div id={menuId} ref={menuRef} className="mobile-menu" role="dialog" aria-modal="true" aria-labelledby="mobile-menu-title">
+          <span id="mobile-menu-title" className="sr-only">Mobile navigation</span>
           <ul className="mobile-menu-list">
             {links.map((link) => (
               <li key={link.href}>
@@ -138,7 +177,7 @@ export default function Navbar() {
             ))}
 
             <li>
-              <Link href="/contact" className="mobile-menu-cta">
+              <Link href="/contact" className="mobile-menu-cta" onClick={() => setOpen(false)}>
                 Start a project
                 <span>↗</span>
               </Link>

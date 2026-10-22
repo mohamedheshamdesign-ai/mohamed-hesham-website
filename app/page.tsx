@@ -2,10 +2,9 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { getFeaturedProjects } from "@/lib/projects";
-import { getTestimonials } from "@/lib/testimonials";
 import { gmailComposeUrl } from "@/lib/site";
 import WorkGrid from "@/components/WorkGrid";
-import Testimonials from "@/components/Testimonials";
+import WhatYouGet from "@/components/WhatYouGet";
 
 const services = [
   { number: "01", title: "Brand identity", copy: "More than a logo. A distinctive visual world that tells your story and makes your business instantly recognizable.", items: "Logo systems · Visual identity · Brand guidelines", icon: "identity" },
@@ -24,12 +23,23 @@ export const metadata: Metadata = {
   title: { absolute: "Mohamed Hesham — Senior Brand & Graphic Designer" },
   description: 'Independent brand and graphic designer in Egypt. Thoughtful brand identity, packaging, print, and digital design for ambitious businesses.',
   alternates: { canonical: '/' },
-  openGraph: { title: 'Mohamed Hesham — Senior Brand & Graphic Designer', description: 'Independent brand and graphic designer in Egypt. Thoughtful brand identity, packaging, print, and digital design for ambitious businesses.', url: '/' },
+  openGraph: {
+    type: 'website',
+    url: '/',
+    title: 'Mohamed Hesham — Senior Brand & Graphic Designer',
+    description: 'Independent brand and graphic designer in Egypt. Thoughtful brand identity, packaging, print, and digital design for ambitious businesses.',
+    images: [{ url: '/og-image.jpg', width: 1200, height: 630, alt: 'Mohamed Hesham — Senior Brand & Graphic Designer' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Mohamed Hesham — Senior Brand & Graphic Designer',
+    description: 'Independent brand and graphic designer in Egypt. Thoughtful brand identity, packaging, print, and digital design for ambitious businesses.',
+    images: ['/og-image.jpg'],
+  },
 };
 
 export default function Home() {
   const projects = getFeaturedProjects();
-  const testimonials = getTestimonials();
   const order = ["al-mashreq", "atractive-collection", "memo-trips"];
   const selected = [...projects].sort((a, b) => {
     const rank = (slug: string) => order.includes(slug) ? order.indexOf(slug) : order.length;
@@ -85,7 +95,7 @@ export default function Home() {
 
       <section className="studio-faq studio-container" aria-labelledby="faq-heading"><div><p className="studio-eyebrow"><span>05 /</span> BEFORE WE SAY HELLO</p><h2 id="faq-heading">A few things<br /><em>you might be wondering.</em></h2></div><div className="faq-list"><details><summary>What does a project typically cost?<span aria-hidden="true">+</span></summary><p>Every business and brief is different. Share your goals, scope, and budget, and I&apos;ll put together a tailored proposal with clear deliverables before we start.</p></details><details><summary>Can we work together remotely?<span aria-hidden="true">+</span></summary><p>Absolutely. I&apos;m based in Egypt and collaborate remotely, using calls, shared presentations, and regular feedback to keep everything moving in the same direction.</p></details><details><summary>What do you need to get started?<span aria-hidden="true">+</span></summary><p>A little about your business, what you want to achieve, and your ideal timeline. You don&apos;t need a perfect brief — we&apos;ll work through the details together.</p></details><details><summary>Will I receive production-ready files?<span aria-hidden="true">+</span></summary><p>Yes. Final deliverables are agreed in your proposal and can include editable source files, print-ready artwork, digital exports, and guidelines for using your new identity.</p></details></div></section>
 
-      <Testimonials testimonials={testimonials} />
+      <WhatYouGet />
 
       <section className="studio-cta"><div className="studio-container"><div className="cta-topline"><span className="studio-eyebrow">HAVE SOMETHING IN MIND?</span><span>LET&apos;S MAKE IT HAPPEN <span aria-hidden="true">↙</span></span></div><h2>Your next chapter<br />starts with <em>a conversation.</em></h2><div className="cta-bottom"><Link href="/contact" className="studio-button studio-button-light">Let&apos;s talk about your project <span aria-hidden="true">↗</span></Link><a href={gmailComposeUrl({ to: "mohamed.hesham.design@gmail.com" })} target="_blank" rel="noopener noreferrer" className="cta-email">Prefer email? Say hello <span aria-hidden="true">↗</span></a></div><div className="cta-decoration" aria-hidden="true">✳</div></div></section>
     </main>

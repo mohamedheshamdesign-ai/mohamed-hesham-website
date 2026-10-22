@@ -2,23 +2,33 @@ import { Suspense } from "react";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 
-import Link from "next/link";
 import Image from "next/image";
+import Link from "next/link";
 
-import ProjectGallery from "@/components/ProjectGallery";
+import CaseStudyDeliverables from "@/components/case-study/CaseStudyDeliverables";
+import CaseStudyFacts from "@/components/case-study/CaseStudyFacts";
+import CaseStudyGallery from "@/components/case-study/CaseStudyGallery";
+import CaseStudyNav from "@/components/case-study/CaseStudyNav";
+import CaseStudyNarrative from "@/components/case-study/CaseStudyNarrative";
+import CaseStudyPalette from "@/components/case-study/CaseStudyPalette";
+import CaseStudyRelated from "@/components/case-study/CaseStudyRelated";
 import ProjectBackLink from "@/components/ProjectBackLink";
 import ProjectTypePreview from "@/components/ProjectTypePreview";
 
 import {
+  getAdjacentProjects,
   getProjectBySlug,
   getProjects,
+  getRelatedProjects,
 } from "@/lib/projects";
 import { ogImage, siteName } from "@/lib/site";
 
 export const dynamicParams = false;
 
 export function generateStaticParams() {
-  return getProjects().map(project => ({ slug: project.slug }));
+  return getProjects().map((project) => ({
+    slug: project.slug,
+  }));
 }
 
 type PageProps = {
@@ -33,7 +43,15 @@ export async function generateMetadata({
   try {
     const project = getProjectBySlug(slug);
     const path = `/work/${slug}`;
-    const images = project.cover ? [project.cover] : [ogImage.url];
+
+    const cover = project.cover
+      ? {
+          url: project.cover,
+          width: project.coverWidth,
+          height: project.coverHeight,
+          alt: `${project.title} — brand identity by ${siteName}`,
+        }
+      : ogImage;
 
     return {
       title: project.title,
@@ -45,13 +63,13 @@ export async function generateMetadata({
         title: project.title,
         description: project.description,
         siteName,
-        images,
+        images: [cover],
       },
       twitter: {
         card: "summary_large_image",
         title: project.title,
         description: project.description,
-        images,
+        images: [cover.url],
       },
     };
   } catch {
@@ -72,28 +90,24 @@ export default async function ProjectPage({
     notFound();
   }
 
-  const allProjects = getProjects().filter(
-    (p, i, arr) =>
-      arr.findIndex((q) => q.slug === p.slug) === i
-  );
+  const allProjects = getProjects();
 
   const currentIndex = allProjects.findIndex(
     (p) => p.slug === project.slug
   );
 
-  const nextProject =
-    allProjects.length > 1
-      ? allProjects[
-          (currentIndex + 1) % allProjects.length
-        ]
-      : null;
+  const { previous, next } = getAdjacentProjects(
+    project.slug
+  );
+
+  const related = getRelatedProjects(project.slug, 3);
 
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "CreativeWork",
     name: project.title,
     description: project.description,
-    image: project.cover,
+    ...(project.cover ? { image: project.cover } : {}),
     creator: {
       "@type": "Person",
       name: "Mohamed Hesham",
@@ -101,8 +115,11 @@ export default async function ProjectPage({
   };
 
   return (
-    <main id="main-content" tabIndex={-1} className="project-page">
-
+    <main
+      id="main-content"
+      tabIndex={-1}
+      className="case-study"
+    >
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -111,21 +128,18 @@ export default async function ProjectPage({
       />
 
       {/* =====================================================
-          PROJECT HERO
+          HEADER
       ===================================================== */}
 
-      <section className="project-header">
-        <div className="project-container">
-
-          <div className="project-header-top">
-
-            <p className="project-kicker">
-              Case Study
-            </p>
-
+      <header className="cs-header">
+        <div className="cs-container">
+          <div className="cs-header-top">
             <Suspense
               fallback={
-                <Link href="/work" className="project-back-link">
+                <Link
+                  href="/work"
+                  className="project-back-link"
+                >
                   ← Back to work
                 </Link>
               }
@@ -133,217 +147,137 @@ export default async function ProjectPage({
               <ProjectBackLink />
             </Suspense>
 
+            <p className="cs-kicker">
+              Case study
+              <span aria-hidden="true">
+                {" "}
+                /{" "}
+                {(currentIndex + 1)
+                  .toString()
+                  .padStart(2, "0")}
+              </span>
+            </p>
           </div>
 
-          <h1 className="project-title">
-            {project.title}
-          </h1>
+          <h1 className="cs-title">{project.title}</h1>
 
-          <p className="project-category">
-            {project.category}
+          <p className="cs-subtitle">
+            {project.services.join("  ·  ")}
           </p>
 
-          <div className="project-header-line" />
+          <p className="cs-lede">{project.description}</p>
 
-          <p className="project-description">
-            {project.description}
-          </p>
-
-          {/* Meta row */}
-
-          <div className="project-meta">
-
-            <div className="project-meta-item">
-              <span className="project-meta-label">Role</span>
-              <span className="project-meta-value">Brand &amp; Graphic Designer</span>
-            </div>
-
-            <div className="project-meta-item">
-              <span className="project-meta-label">Services</span>
-              <span className="project-meta-value">{project.category}</span>
-            </div>
-
-          </div>
-
+          <CaseStudyFacts
+            client={project.client ?? project.title}
+            sector={project.sector}
+            role={project.role}
+            services={project.services}
+          />
         </div>
-      </section>
-
+      </header>
 
       {/* =====================================================
-          COVER IMAGE
+          COVER
       ===================================================== */}
 
       {project.hasRealCover ? (
-        <section className="project-cover">
-
-          <div className="project-media-container">
-
-            <Image
-              src={project.cover}
-              alt={project.title}
-              width={2000}
-              height={1300}
-              priority
-              sizes="(max-width: 920px) calc(100vw - 48px), 1100px"
-              className="project-cover-image"
-            />
-
-          </div>
-
+        <section className="cs-cover">
+          <Image
+            src={project.cover}
+            alt={`${project.title} — primary brand artwork`}
+            width={project.coverWidth}
+            height={project.coverHeight}
+            priority
+            sizes="100vw"
+            className="cs-cover-image"
+          />
         </section>
       ) : (
-        <section className={`project-cover project-cover-art ${project.coverArt}`}>
-
+        <section
+          className={`cs-cover cs-cover-art ${project.coverArt}`}
+        >
           <ProjectTypePreview
             title={project.title}
             category={project.category}
             label="CASE STUDY"
           />
-
         </section>
       )}
 
-
       {/* =====================================================
-          CHALLENGE / SOLUTION / RESULTS
+          NARRATIVE
       ===================================================== */}
 
-      <section className="project-details">
-        <div className="project-container">
+      <div className="cs-container">
+        <CaseStudyNarrative
+          overview={project.description}
+          challenge={project.challenge}
+          solution={project.solution}
+          results={project.results}
+        />
 
-          <div className="project-details-grid">
+        {(project.palette?.length ?? 0) > 0 ||
+        project.deliverables.length > 0 ? (
+          <div className="cs-specs">
+            <CaseStudyPalette
+              palette={project.palette ?? []}
+            />
 
-            {/* Challenge */}
-
-            <div className="project-detail">
-
-              <p className="project-detail-label">
-                <span className="project-detail-icon">01</span>
-                Challenge
-              </p>
-
-              <p className="project-detail-text">
-                {project.challenge}
-              </p>
-
-            </div>
-
-
-            {/* Solution */}
-
-            <div className="project-detail">
-
-              <p className="project-detail-label">
-                <span className="project-detail-icon">02</span>
-                Solution
-              </p>
-
-              <p className="project-detail-text">
-                {project.solution}
-              </p>
-
-            </div>
-
-
-            {/* Results */}
-
-            <div className="project-detail">
-
-              <p className="project-detail-label">
-                <span className="project-detail-icon">03</span>
-                Results
-              </p>
-
-              <p className="project-detail-text">
-                {project.results}
-              </p>
-
-            </div>
-
+            <CaseStudyDeliverables
+              deliverables={project.deliverables}
+            />
           </div>
-
-        </div>
-      </section>
-
+        ) : null}
+      </div>
 
       {/* =====================================================
-          PROJECT MEDIA
+          GALLERY
       ===================================================== */}
 
-      <section className="project-gallery">
+      {project.chapters.length > 0 && (
+        <CaseStudyGallery
+          title={project.title}
+          chapters={project.chapters}
+        />
+      )}
 
-        <div className="project-media-container">
+      {/* =====================================================
+          RELATED
+      ===================================================== */}
 
-          <ProjectGallery
-            title={project.title}
-            images={project.media.map((media) => media.src)}
-          />
-
-        </div>
-
-      </section>
-
+      <CaseStudyRelated projects={related} />
 
       {/* =====================================================
           CTA
       ===================================================== */}
 
-      <section className="project-cta">
+      <section className="cs-cta">
+        <div className="cs-container cs-cta-inner">
+          <p className="cs-cta-kicker">
+            Have a brand that needs this level of detail?
+          </p>
 
-        <div className="project-container">
+          <h2 className="cs-cta-title">
+            Let&apos;s build something
+            <br />
+            <em>worth remembering.</em>
+          </h2>
 
-          <div className="project-cta-inner">
-
-            <p className="project-cta-kicker">
-              Interested in building a stronger brand?
-            </p>
-
-            <h2 className="project-cta-title">
-              Let&apos;s create something
-              <br />
-              <span>meaningful.</span>
-            </h2>
-
-            <Link
-              href="/contact"
-              className="project-cta-button"
-            >
-              Get In Touch
-              <span>↗</span>
-            </Link>
-
-          </div>
-
+          <Link
+            href="/contact"
+            className="studio-button studio-button-light"
+          >
+            Start a project
+            <span aria-hidden="true">↗</span>
+          </Link>
         </div>
-
       </section>
-
 
       {/* =====================================================
-          NEXT PROJECT
+          PREVIOUS / NEXT
       ===================================================== */}
 
-      <section className="project-next">
-
-        <div className="project-container">
-
-          {nextProject && (
-            <Link
-              href={`/work/${nextProject.slug}`}
-              className="project-next-link"
-            >
-              <span>Next project</span>
-
-              <h3>{nextProject.title}</h3>
-
-              <span>View case study ↗</span>
-            </Link>
-          )}
-
-        </div>
-
-      </section>
-
+      <CaseStudyNav previous={previous} next={next} />
     </main>
   );
 }
