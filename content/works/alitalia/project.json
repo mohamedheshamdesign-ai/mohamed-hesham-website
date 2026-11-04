@@ -1,28 +1,75 @@
 {
-  "title": "Alitalia Clean Tools",
-  "slug": "alitalia",
-  "category": "Printing • Packaging • Brand Applications",
-  "description": "Alitalia Clean Tools is an Egyptian brand specializing in cleaning tools and household cleaning products. The project focused on developing and applying a consistent visual language across a diverse range of product categories, from scouring pads and mops to microfiber products and cleaning accessories. The goal was to create packaging and promotional materials that maintained a recognizable brand presence while allowing each product line to communicate its own character.",
-  "challenge": "With a growing range of cleaning products and different packaging formats, Alitalia needed a visual system capable of maintaining brand consistency across multiple product lines. The challenge was to balance a unified brand appearance with enough flexibility to differentiate individual products and collections. Packaging also needed to remain clear, visually engaging, and practical across different sizes, formats, and retail applications.",
-  "solution": "A flexible packaging and print design system was developed around the Alitalia visual identity. The work included product packaging, scouring pad packs, mop and cleaning tool packaging, microfiber product boxes, retail materials, cards, and supporting promotional designs. Distinctive color combinations, product-focused layouts, and consistent brand elements were used to create visual differentiation while keeping the entire product range connected under one recognizable identity.",
-  "results": "The resulting system brought greater visual consistency across Alitalia's diverse product range while giving individual products enough flexibility to stand apart. The packaging and print applications created a more unified presence across different formats, while social media and promotional materials extended the same visual language into digital communication. Together, the applications established a scalable foundation for presenting new products and maintaining consistency across the brand's growing range.",
-  "featured": true,
-  "cover": "/projects/alitalia/cover.jpg",
+  "title": "Crowd",
+  "slug": "crowd",
+  "category": "Brand Identity • Brand Guidelines • Logo Design",
+  "description": "Crowd is a real estate and construction company in Egypt built around the idea of people coming together to shape the future of urban living. I created its logo and brand book, translating that idea of collective strength into a mark and a visual system that feel solid and trustworthy, yet warm and human.",
+  "challenge": "A construction brand usually leans on heavy, corporate imagery. Crowd needed to feel dependable enough for people making one of the biggest investments of their lives, while also expressing something different: a company where customers and employees are part of something bigger. The identity had to carry that collaborative spirit without losing the credibility the industry demands.",
+  "solution": "I built the logo from three simple ideas: the letter C, a house, and a person. Together they form a single mark in which a human figure sits at the heart of the home, so the people behind the buildings are always visible. The identity is anchored by a confident palette of Nile Blue for trust and stability, paired with a bright blue and an orangey yellow for optimism and energy, set in Milliard for a clean, modern voice. I then extended the mark into a repeating pattern and documented everything in a brand book covering the brand principles, manifesto and main claim, followed by logo usage, colour and typography rules.",
+  "results": "Crowd now has a complete and ready-to-use brand foundation: a distinctive logo with full-colour and single-colour versions, a defined palette, a typography choice, a supporting pattern, and a brand book that sets out its positioning and how to apply the identity consistently as the company grows.",
+  "featured": false,
+  "cover": "/projects/crowd/cover.jpg",
   "images": [],
-  "client": "Alitalia Clean Tools",
-  "sector": "Cleaning tools & home care",
+  "client": "Crowd",
+  "sector": "Real Estate & Construction",
   "services": [
-    "Printing",
-    "Packaging",
-    "Brand applications"
+    "Brand identity",
+    "Logo design",
+    "Brand guidelines"
   ],
   "deliverables": [
-    "Product packaging",
-    "Scouring pad packs",
-    "Mop & cleaning tool packaging",
-    "Microfiber product boxes",
-    "Retail materials",
-    "Cards",
-    "Promotional & social designs"
+    "Logo & icon",
+    "Logo colour variations",
+    "Brand positioning & manifesto",
+    "Colour palette",
+    "Typography",
+    "Brand pattern",
+    "Brand book"
+  ],
+  "palette": [
+    {
+      "name": "Nile Blue",
+      "value": "#183751"
+    },
+    {
+      "name": "Blue",
+      "value": "#3390CE"
+    },
+    {
+      "name": "Orangey Yellow",
+      "value": "#F9B416"
+    }
+  ],
+  "ownsSharedMedia": true,
+  "chapters": [
+    {
+      "title": "Introduction",
+      "note": "The company, the industry, and the brief.",
+      "media": []
+    },
+    {
+      "title": "Brand foundation",
+      "note": "The positioning that shapes everything: a collaborative force building the future of urban living.",
+      "media": []
+    },
+    {
+      "title": "Logo system",
+      "note": "A letter, a house and a person, combined into one mark.",
+      "media": []
+    },
+    {
+      "title": "Colour",
+      "note": "Deep Nile Blue for trust, with bright blue and yellow for energy.",
+      "media": []
+    },
+    {
+      "title": "Typography",
+      "note": "A clean, modern typeface that keeps the brand clear and confident.",
+      "media": []
+    },
+    {
+      "title": "Brand elements",
+      "note": "A pattern built from the brand mark, in blue and yellow.",
+      "media": []
+    }
   ]
 }
