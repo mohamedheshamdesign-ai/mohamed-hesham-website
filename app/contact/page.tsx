@@ -276,7 +276,7 @@ function ContactContent({ searchParams }: ContactPageProps) {
                   id="service"
                   key={requestedService}
                   name="service"
-                  defaultValue={["Brand Identity", "Packaging Design", "Print Design", "Digital & Social", "Illustration", "UX / Interaction", "Other"].includes(requestedService) ? requestedService : ""}
+                  defaultValue={["Brand Identity", "Packaging & Print", "Applications & Touchpoints", "Other"].includes(requestedService) ? requestedService : ""}
                   required
                 >
                   <option value="" disabled>
@@ -287,24 +287,12 @@ function ContactContent({ searchParams }: ContactPageProps) {
                     Brand Identity
                   </option>
 
-                  <option value="Packaging Design">
-                    Packaging Design
+                  <option value="Packaging & Print">
+                    Packaging &amp; Print
                   </option>
 
-                  <option value="Print Design">
-                    Print Design
-                  </option>
-
-                  <option value="Digital & Social">
-                    Digital &amp; Social
-                  </option>
-
-                  <option value="Illustration">
-                    Illustration
-                  </option>
-
-                  <option value="UX / Interaction">
-                    UX / Interaction
+                  <option value="Applications & Touchpoints">
+                    Applications &amp; Touchpoints
                   </option>
 
                   <option value="Other">Other</option>
