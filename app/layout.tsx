@@ -26,7 +26,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
 
   title: {
-    default: "Mohamed Hesham — Senior Brand & Graphic Designer",
+    default: "Mohamed Hesham — Brand Identity Designer",
     template: "%s — Mohamed Hesham",
   },
 
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
   keywords: [
     "Mohamed Hesham",
     "Mohamed Hesham Designer",
-    "Senior Brand Designer",
+    "Brand Identity Designer",
     "Brand Designer Egypt",
     "Graphic Designer Egypt",
     "Cairo Graphic Designer",
@@ -85,10 +85,10 @@ export const metadata: Metadata = {
 
     locale: "en_US",
 
-    title: "Mohamed Hesham — Senior Brand & Graphic Designer",
+    title: "Mohamed Hesham — Brand Identity Designer",
 
     description:
-      "Senior Brand & Graphic Designer based in Egypt specializing in brand identity, packaging, print design, visual systems, and production.",
+      "Brand identity designer based in Egypt. I build and unify brand identities across every touchpoint: guidelines, packaging, print and digital. Arabic, English or both.",
 
     siteName: siteName,
 
@@ -98,10 +98,10 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
 
-    title: "Mohamed Hesham — Senior Brand & Graphic Designer",
+    title: "Mohamed Hesham — Brand Identity Designer",
 
     description:
-      "Senior Brand & Graphic Designer specializing in brand identity, packaging, print design, and visual systems.",
+      "Brand identity designer based in Egypt. Brand identity systems, packaging, print and digital, unified across every touchpoint.",
 
     images: ["/og-image.jpg"],
   },
@@ -130,7 +130,7 @@ export default function RootLayout({
               "@type": "Person",
               name: siteName,
               url: siteUrl,
-              jobTitle: "Senior Brand & Graphic Designer",
+              jobTitle: "Brand Identity Designer",
               address: {
                 "@type": "PostalAddress",
                 addressCountry: "EG",
