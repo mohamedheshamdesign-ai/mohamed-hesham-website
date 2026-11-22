@@ -94,7 +94,7 @@ export default function Navbar() {
       <nav className="site-nav" aria-label="Primary">
         <Link href="/" className="site-logo">
           <span className="site-logo-mark" aria-hidden="true"><svg viewBox="0 0 40 40"><path d="M20 0 24 13 34 6 27 16 40 20 27 24 34 34 24 27 20 40 16 27 6 34 13 24 0 20 13 16 6 6 16 13Z" fill="currentColor" /></svg></span>
-          <span className="logo-name">Mohamed Hesham<span>BRAND &amp; GRAPHIC DESIGNER</span></span>
+          <span className="logo-name">Mohamed Hesham<span>BRAND IDENTITY DESIGNER</span></span>
         </Link>
 
 
