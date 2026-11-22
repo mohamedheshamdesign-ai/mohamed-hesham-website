@@ -7,7 +7,6 @@
   "solution": "I built the logo from three simple ideas: the letter C, a house, and a person. Together they form a single mark in which a human figure sits at the heart of the home, so the people behind the buildings are always visible. The identity is anchored by a confident palette of Nile Blue for trust and stability, paired with a bright blue and an orangey yellow for optimism and energy, set in Milliard for a clean, modern voice. I then extended the mark into a repeating pattern and documented everything in a brand book covering the brand principles, manifesto and main claim, followed by logo usage, colour and typography rules.",
   "results": "Crowd now has a complete and ready-to-use brand foundation: a distinctive logo with full-colour and single-colour versions, a defined palette, a typography choice, a supporting pattern, and a brand book that sets out its positioning and how to apply the identity consistently as the company grows.",
   "featured": false,
-  "cover": "/projects/crowd/cover.jpg",
   "images": [],
   "client": "Crowd",
   "sector": "Real Estate & Construction",
@@ -39,7 +38,7 @@
       "value": "#F9B416"
     }
   ],
-  "ownsSharedMedia": true,
+  "ownsSharedMedia": false,
   "chapters": [
     {
       "title": "Introduction",
