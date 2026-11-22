@@ -31,7 +31,7 @@ const principles = [
     copy: "You work directly with me — no hand-offs, no lost context between the strategy and the artwork.",
   },
   {
-    title: "Bilingual by default",
+    title: "Arabic, English or both",
     copy: "Arabic and English identities are designed together, so both keep the same personality and balance.",
   },
   {
@@ -119,4 +119,4 @@ export default function WhatYouGet() {
       </div>
     </section>
   );
-}
+          }
