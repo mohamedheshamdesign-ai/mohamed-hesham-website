@@ -13,7 +13,7 @@ export const siteUrl =
 export const siteName = "Mohamed Hesham";
 
 export const siteDescription =
-  "Mohamed Hesham is a Senior Brand & Graphic Designer based in Egypt, specializing in brand identity, packaging design, print design, visual systems, and production.";
+  "Mohamed Hesham is a brand identity designer based in Egypt. He builds and unifies brand identities across every touchpoint: guidelines, packaging, print and digital. Arabic, English or both.";
 
 /** Build an absolute URL from a site-relative path. */
 export function absoluteUrl(path = "/") {
@@ -52,7 +52,7 @@ export const ogImage = {
   url: "/og-image.jpg",
   width: 1200,
   height: 630,
-  alt: `${siteName} — Senior Brand & Graphic Designer`,
+  alt: `${siteName} — Brand Identity Designer`,
 };
 
 /**
