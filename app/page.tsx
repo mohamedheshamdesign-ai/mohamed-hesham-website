@@ -7,9 +7,9 @@ import WorkGrid from "@/components/WorkGrid";
 import WhatYouGet from "@/components/WhatYouGet";
 
 const services = [
-  { number: "01", title: "Brand identity", copy: "More than a logo. A distinctive visual world that tells your story and makes your business instantly recognizable.", items: "Logo systems · Visual identity · Brand guidelines", icon: "identity" },
-  { number: "02", title: "Packaging & print", copy: "Thoughtful design you can hold. Packaging and print that connect with people, from the first look to the last detail.", items: "Product packaging · Editorial · Print production", icon: "package" },
-  { number: "03", title: "Digital experiences", copy: "Your brand, brought to life online. Consistent, engaging design across the places your customers find you.", items: "Website design · Social media · Digital assets", icon: "digital" },
+  { number: "01", title: "Brand identity systems", copy: "More than a logo: the system and the rollout that keep every touchpoint consistent.", items: "Logo systems · Visual identity · Brand guidelines", icon: "identity" },
+  { number: "02", title: "Packaging & print production", copy: "Production-aware design you can hold: ranges, labels, boxes and print-ready artwork.", items: "Product packaging · Editorial · Print production", icon: "package" },
+  { number: "03", title: "Applications & touchpoints", copy: "Your brand carried into the places people meet it: stationery, social, presentations and the everyday surfaces in between.", items: "Stationery & collateral · Social & digital assets · Presentations & documents", icon: "digital" },
 ];
 
 const process = [
@@ -20,20 +20,20 @@ const process = [
 ];
 
 export const metadata: Metadata = {
-  title: { absolute: "Mohamed Hesham — Senior Brand & Graphic Designer" },
-  description: 'Independent brand and graphic designer in Egypt. Thoughtful brand identity, packaging, print, and digital design for ambitious businesses.',
+  title: { absolute: "Mohamed Hesham — Brand Identity Designer" },
+  description: 'Brand identity designer based in Egypt. I build and unify brand identities across every touchpoint: guidelines, packaging, print and digital. Arabic, English or both.',
   alternates: { canonical: '/' },
   openGraph: {
     type: 'website',
     url: '/',
-    title: 'Mohamed Hesham — Senior Brand & Graphic Designer',
-    description: 'Independent brand and graphic designer in Egypt. Thoughtful brand identity, packaging, print, and digital design for ambitious businesses.',
-    images: [{ url: '/og-image.jpg', width: 1200, height: 630, alt: 'Mohamed Hesham — Senior Brand & Graphic Designer' }],
+    title: 'Mohamed Hesham — Brand Identity Designer',
+    description: 'Brand identity designer based in Egypt. I build and unify brand identities across every touchpoint: guidelines, packaging, print and digital. Arabic, English or both.',
+    images: [{ url: '/og-image.jpg', width: 1200, height: 630, alt: 'Mohamed Hesham — Brand Identity Designer' }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Mohamed Hesham — Senior Brand & Graphic Designer',
-    description: 'Independent brand and graphic designer in Egypt. Thoughtful brand identity, packaging, print, and digital design for ambitious businesses.',
+    title: 'Mohamed Hesham — Brand Identity Designer',
+    description: 'Brand identity designer based in Egypt. I build and unify brand identities across every touchpoint: guidelines, packaging, print and digital. Arabic, English or both.',
     images: ['/og-image.jpg'],
   },
 };
@@ -52,8 +52,8 @@ export default function Home() {
         <div className="studio-hero-copy">
           <div className="availability"><span className="status-dot" /> Independent designer. Open to collaborations.</div>
           <p className="studio-eyebrow hero-intro">HI, I’M MOHAMED HESHAM</p>
-          <h1 id="hero-heading">Good design.<br />Great brands.<br /><em>Lasting impact.</em></h1>
-          <p className="studio-hero-description">I turn ambitious businesses into memorable brands.<br className="desktop-break" /> Brand identity, packaging, and digital design —<br className="desktop-break" /> with purpose, personality, and a little unexpected.</p>
+          <h1 id="hero-heading">Brand thinking.<br /><em>Real execution.</em></h1>
+          <p className="studio-hero-description">I build and unify brand identities across every touchpoint —<br className="desktop-break" /> from the logo and guidelines to packaging, print and digital.<br className="desktop-break" /> Arabic, English or both.</p>
           <div className="studio-actions">
             <Link className="studio-button" href="/contact">Let&apos;s build your brand <span aria-hidden="true">↗</span></Link>
             <a className="studio-text-link" href="#selected-work">Explore my work <span aria-hidden="true">↓</span></a>
@@ -72,12 +72,12 @@ export default function Home() {
       </section>
 
       <div className="studio-proof studio-container">
-        <div className="proof-experience"><strong>8<span>+</span></strong><span>Years of experience.<br />Always a fresh perspective.</span></div>
+        <div className="proof-experience"><strong>AR<span>·</span>EN</strong><span>One system everywhere.<br />Arabic, English or both.</span></div>
         <div className="proof-note">From a first idea to a full brand world.<br /><strong>Thoughtfully made. Ready for the real world.</strong></div>
         <a href="#selected-work" className="scroll-cue">SCROLL TO EXPLORE <span aria-hidden="true">↓</span></a>
       </div>
 
-      <div className="expertise-ribbon" aria-label="Design expertise"><div className="studio-container"><span>BRAND IDENTITY</span><span className="ribbon-star" aria-hidden="true">✳</span><span>PACKAGING &amp; PRINT</span><span className="ribbon-star" aria-hidden="true">✳</span><span>DIGITAL EXPERIENCES</span><span className="ribbon-star" aria-hidden="true">✳</span><span>DESIGN THAT CONNECTS</span><span className="ribbon-star" aria-hidden="true">✳</span></div></div>
+      <div className="expertise-ribbon" aria-label="Design expertise"><div className="studio-container"><span>BRAND IDENTITY</span><span className="ribbon-star" aria-hidden="true">✳</span><span>PACKAGING &amp; PRINT</span><span className="ribbon-star" aria-hidden="true">✳</span><span>APPLICATIONS &amp; TOUCHPOINTS</span><span className="ribbon-star" aria-hidden="true">✳</span><span>DESIGN THAT CONNECTS</span><span className="ribbon-star" aria-hidden="true">✳</span></div></div>
 
       <section id="selected-work" className="studio-work studio-container" aria-labelledby="work-heading">
         <div className="studio-section-heading"><div><p className="studio-eyebrow"><span>01 /</span> SELECTED WORK</p><h2 id="work-heading">Different brands.<br /><em>Same thoughtful approach.</em></h2></div><div className="section-aside"><p>A selection of identities and experiences.<br />Each with a story. Each with a purpose.</p><Link className="studio-text-link" href="/work">View all projects <span aria-hidden="true">↗</span></Link></div></div>
@@ -86,10 +86,10 @@ export default function Home() {
 
       <section id="services" className="studio-services" aria-labelledby="services-heading"><div className="studio-container">
         <div className="studio-section-heading"><div><p className="studio-eyebrow"><span>02 /</span> HOW I CAN HELP</p><h2 id="services-heading">Your vision.<br /><em>My creative toolkit.</em></h2></div><p className="section-aside">Starting something new or ready for a refresh?<br />Let&apos;s give your brand the attention it deserves.</p></div>
-        <div className="studio-service-grid">{services.map(service => <Link href={`/contact?service=${encodeURIComponent(service.title === "Brand identity" ? "Brand Identity" : service.title === "Packaging & print" ? "Packaging Design" : "Digital & Social")}`} className="studio-service-card" key={service.number}><div className="service-card-top"><span>{service.number}</span><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="1.5">{service.icon === "identity" ? <><circle cx="20" cy="20" r="14" /><rect x="18" y="18" width="25" height="25" rx="1" /></> : service.icon === "package" ? <><path d="m24 4 18 10v21L24 45 6 35V14Z M6 14l18 10 18-10M24 24v21M15 9l18 10" /></> : <><rect x="5" y="7" width="38" height="29" rx="3" /><path d="M5 15h38M17 43h14M24 36v7M10 11h1M14 11h1M18 11h1" /></>}</svg><span className="service-arrow" aria-hidden="true">↗</span></div><h3>{service.title}</h3><p>{service.copy}</p><div className="service-deliverables">{service.items}</div></Link>)}</div>
+        <div className="studio-service-grid">{services.map(service => <Link href={`/contact?service=${encodeURIComponent(service.title === "Brand identity systems" ? "Brand Identity" : service.title === "Packaging & print production" ? "Packaging & Print" : "Applications & Touchpoints")}`} className="studio-service-card" key={service.number}><div className="service-card-top"><span>{service.number}</span><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="1.5">{service.icon === "identity" ? <><circle cx="20" cy="20" r="14" /><rect x="18" y="18" width="25" height="25" rx="1" /></> : service.icon === "package" ? <><path d="m24 4 18 10v21L24 45 6 35V14Z M6 14l18 10 18-10M24 24v21M15 9l18 10" /></> : <><rect x="5" y="7" width="38" height="29" rx="3" /><path d="M5 15h38M17 43h14M24 36v7M10 11h1M14 11h1M18 11h1" /></>}</svg><span className="service-arrow" aria-hidden="true">↗</span></div><h3>{service.title}</h3><p>{service.copy}</p><div className="service-deliverables">{service.items}</div></Link>)}</div>
       </div></section>
 
-      <section className="studio-about studio-container" aria-labelledby="about-heading"><div className="studio-about-photo"><div className="about-photo-backdrop" /><Image src="/about-profile.png" alt="Mohamed Hesham in his design studio" width={600} height={700} sizes="(max-width: 800px) 90vw, 35vw" /><span className="about-photo-label">THE PERSON BEHIND THE PIXELS</span></div><div className="studio-about-copy"><p className="studio-eyebrow"><span>03 /</span> A DESIGNER. A THINKER. YOUR PARTNER.</p><h2 id="about-heading">Good work starts<br />with <em>a good connection.</em></h2><p>I&apos;m Mohamed, a senior brand and graphic designer with a belief that the best design doesn&apos;t just look good. It makes people feel something.</p><p>I bring strategic thinking, hands-on production experience, and a genuine investment in your business to every project. You work directly with me — from our first conversation to the final detail.</p><Link href="/about" className="studio-text-link">A little more about me <span aria-hidden="true">↗</span></Link><div className="about-signature">Mohamed Hesham<span>Brand &amp; Graphic Designer</span></div></div></section>
+      <section className="studio-about studio-container" aria-labelledby="about-heading"><div className="studio-about-photo"><div className="about-photo-backdrop" /><Image src="/about-profile.png" alt="Mohamed Hesham in his design studio" width={600} height={700} sizes="(max-width: 800px) 90vw, 35vw" /><span className="about-photo-label">THE PERSON BEHIND THE PIXELS</span></div><div className="studio-about-copy"><p className="studio-eyebrow"><span>03 /</span> A DESIGNER. A THINKER. YOUR PARTNER.</p><h2 id="about-heading">Good work starts<br />with <em>a good connection.</em></h2><p>I&apos;m Mohamed, a brand identity designer with a belief that the best design doesn&apos;t just look good. It makes people feel something.</p><p>I bring strategic thinking, hands-on production experience, and a genuine investment in your business to every project. You work directly with me — from our first conversation to the final detail.</p><Link href="/about" className="studio-text-link">A little more about me <span aria-hidden="true">↗</span></Link><div className="about-signature">Mohamed Hesham<span>Brand Identity Designer</span></div></div></section>
 
       <section className="studio-process" aria-labelledby="process-heading"><div className="studio-container"><div className="studio-section-heading"><div><p className="studio-eyebrow"><span>04 /</span> THE WAY WE WORK</p><h2 id="process-heading">A clear process.<br /><em>A shared direction.</em></h2></div><p className="section-aside">No guesswork. No disappearing acts.<br />Just open communication and considered design.</p></div><div className="process-grid">{process.map((step, index) => <div className="process-step" key={step.title}><div className="process-number">0{index + 1}<span aria-hidden="true">{index === 3 ? "✓" : "→"}</span></div><h3>{step.title}</h3><p>{step.copy}</p></div>)}</div></div></section>
 
@@ -100,4 +100,4 @@ export default function Home() {
       <section className="studio-cta"><div className="studio-container"><div className="cta-topline"><span className="studio-eyebrow">HAVE SOMETHING IN MIND?</span><span>LET&apos;S MAKE IT HAPPEN <span aria-hidden="true">↙</span></span></div><h2>Your next chapter<br />starts with <em>a conversation.</em></h2><div className="cta-bottom"><Link href="/contact" className="studio-button studio-button-light">Let&apos;s talk about your project <span aria-hidden="true">↗</span></Link><a href={gmailComposeUrl({ to: "mohamed.hesham.design@gmail.com" })} target="_blank" rel="noopener noreferrer" className="cta-email">Prefer email? Say hello <span aria-hidden="true">↗</span></a></div><div className="cta-decoration" aria-hidden="true">✳</div></div></section>
     </main>
   );
-}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              }
