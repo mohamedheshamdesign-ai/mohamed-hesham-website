@@ -9,6 +9,7 @@
   "results": "A bilingual packaging set for Virginia: logo, olive oil bottle labels and cartons, coconut oil labels and stickers, with dielines ready for print.",
   "featured": false,
   "images": [],
+  "order": 27,
   "client": "Virginia",
   "sector": "Food & Oil",
   "services": [
@@ -29,7 +30,6 @@
       "value": "#7FA329"
     }
   ],
-  "ownsSharedMedia": true,
   "chapters": [
     {
       "title": "Introduction",
@@ -45,5 +45,6 @@
         "02.jpg"
       ]
     }
-  ]
+  ],
+  "ownsSharedMedia": true
 }

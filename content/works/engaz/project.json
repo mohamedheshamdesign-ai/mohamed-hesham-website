@@ -8,7 +8,9 @@
   "solution": "",
   "results": "Rollup design for a constructions company.",
   "featured": false,
+  "cover": "/projects/engaz/cover-artwork.jpg",
   "images": [],
+  "order": 14,
   "client": "Engaz",
   "sector": "Constructions",
   "services": [
@@ -17,15 +19,14 @@
   "deliverables": [
     "Rollup"
   ],
-  "ownsSharedMedia": true,
   "chapters": [
     {
       "title": "Selected applications",
+      "note": "Original artwork and mockups from the supplied portfolio presentation.",
       "media": [
         "source-applications.jpg"
-      ],
-      "note": "Original artwork and mockups from the supplied portfolio presentation."
+      ]
     }
   ],
-  "cover": "/projects/engaz/cover-artwork.jpg"
+  "ownsSharedMedia": true
 }
