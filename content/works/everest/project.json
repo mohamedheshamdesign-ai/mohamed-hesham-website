@@ -10,7 +10,6 @@
   "featured": false,
   "cover": "/projects/everest/cover-artwork.jpg",
   "images": [],
-  "order": 15,
   "client": "Everest Professional",
   "sector": "Professional hair & beauty care",
   "services": [
@@ -29,31 +28,31 @@
   "chapters": [
     {
       "title": "Packaging overview",
-      "note": "Original design presentation from the supplied portfolio.",
       "media": [
         "presentation-01.jpg"
-      ]
+      ],
+      "note": "Original design presentation from the supplied portfolio."
     },
     {
       "title": "Carton dieline",
-      "note": "Original design presentation from the supplied portfolio.",
       "media": [
         "presentation-02.jpg"
-      ]
+      ],
+      "note": "Original design presentation from the supplied portfolio."
     },
     {
       "title": "Serum box",
-      "note": "Original design presentation from the supplied portfolio.",
       "media": [
         "presentation-03.jpg"
-      ]
+      ],
+      "note": "Original design presentation from the supplied portfolio."
     },
     {
       "title": "Product and stationery",
-      "note": "Original design presentation from the supplied portfolio.",
       "media": [
         "presentation-04.jpg"
-      ]
+      ],
+      "note": "Original design presentation from the supplied portfolio."
     }
   ],
   "ownsSharedMedia": true

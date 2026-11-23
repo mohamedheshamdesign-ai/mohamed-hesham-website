@@ -10,7 +10,6 @@
   "featured": false,
   "cover": "/projects/diana-essential-body-hair-care/cover-source.jpg",
   "images": [],
-  "order": 12,
   "client": "Diana Essential Body & Hair Care",
   "sector": "Body & hair care",
   "services": [
@@ -24,7 +23,6 @@
   "chapters": [
     {
       "title": "Shower-gel collection",
-      "note": "Bottle presentation mockups supplied in the Diana project folder.",
       "media": [
         "product-01.jpg",
         "product-02.jpg",
@@ -34,7 +32,8 @@
         "product-06.jpg",
         "product-07.jpg",
         "product-08.jpg"
-      ]
+      ],
+      "note": "Bottle presentation mockups supplied in the Diana project folder."
     }
   ],
   "ownsSharedMedia": true

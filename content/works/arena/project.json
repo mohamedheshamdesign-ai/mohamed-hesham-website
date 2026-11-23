@@ -8,9 +8,7 @@
   "solution": "",
   "results": "Logo and menu for a café and restaurant.",
   "featured": false,
-  "cover": "/projects/arena/cover-artwork.jpg",
   "images": [],
-  "order": 5,
   "client": "Arena",
   "sector": "Cafe & Restaurant",
   "services": [
@@ -21,14 +19,15 @@
     "Logo",
     "Menu"
   ],
+  "ownsSharedMedia": true,
   "chapters": [
     {
       "title": "Selected applications",
-      "note": "Original artwork and mockups from the supplied portfolio presentation.",
       "media": [
         "source-applications.jpg"
-      ]
+      ],
+      "note": "Original artwork and mockups from the supplied portfolio presentation."
     }
   ],
-  "ownsSharedMedia": true
+  "cover": "/projects/arena/cover-artwork.jpg"
 }

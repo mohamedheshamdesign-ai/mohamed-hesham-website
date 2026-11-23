@@ -9,7 +9,6 @@
   "results": "A complete packaging family: logo, scourer and scrubber display cards, mop and refill packs, towel packs, boxes and social media designs, one recognizable brand system across the whole range, ready for print and shelf.",
   "featured": true,
   "images": [],
-  "order": 3,
   "client": "Alitalia",
   "sector": "Cleaning Tools Trading",
   "services": [
@@ -35,6 +34,7 @@
       "value": "#0E3568"
     }
   ],
+  "ownsSharedMedia": false,
   "chapters": [
     {
       "title": "Introduction",
@@ -82,6 +82,5 @@
         "17.jpg"
       ]
     }
-  ],
-  "ownsSharedMedia": false
+  ]
 }

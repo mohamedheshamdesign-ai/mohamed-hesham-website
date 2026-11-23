@@ -8,9 +8,7 @@
   "solution": "",
   "results": "Logo, flyer and social media designs for an artist store.",
   "featured": false,
-  "cover": "/projects/asmaa-art/cover-artwork.jpg",
   "images": [],
-  "order": 6,
   "client": "Asmaa Art",
   "sector": "Store & Artist",
   "services": [
@@ -23,14 +21,15 @@
     "Flyer",
     "Social media designs"
   ],
+  "ownsSharedMedia": true,
   "chapters": [
     {
       "title": "Selected applications",
-      "note": "Original artwork and mockups from the supplied portfolio presentation.",
       "media": [
         "source-applications.jpg"
-      ]
+      ],
+      "note": "Original artwork and mockups from the supplied portfolio presentation."
     }
   ],
-  "ownsSharedMedia": true
+  "cover": "/projects/asmaa-art/cover-artwork.jpg"
 }

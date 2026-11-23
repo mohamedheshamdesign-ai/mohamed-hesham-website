@@ -8,9 +8,7 @@
   "solution": "",
   "results": "Logo, business cards and letterhead for a constructions company.",
   "featured": false,
-  "cover": "/projects/continental/cover-artwork.jpg",
   "images": [],
-  "order": 10,
   "client": "Continental",
   "sector": "Constructions",
   "services": [
@@ -22,14 +20,15 @@
     "Business cards",
     "Letterhead"
   ],
+  "ownsSharedMedia": true,
   "chapters": [
     {
       "title": "Selected applications",
-      "note": "Original artwork and mockups from the supplied portfolio presentation.",
       "media": [
         "source-applications.jpg"
-      ]
+      ],
+      "note": "Original artwork and mockups from the supplied portfolio presentation."
     }
   ],
-  "ownsSharedMedia": true
+  "cover": "/projects/continental/cover-artwork.jpg"
 }

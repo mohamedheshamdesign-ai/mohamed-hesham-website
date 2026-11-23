@@ -9,7 +9,6 @@
   "results": "A complete, documented brand world for Onvaca: logo system with usage rules, colour and typography, ON pattern, stationery, print and magazine designs, merchandise, social media templates, and website and mobile app designs, all speaking one welcoming language.",
   "featured": true,
   "images": [],
-  "order": 24,
   "client": "Onvaca",
   "sector": "Travel & Hospitality",
   "services": [
@@ -40,6 +39,7 @@
       "value": "#111111"
     }
   ],
+  "ownsSharedMedia": true,
   "chapters": [
     {
       "title": "Introduction",
@@ -107,6 +107,5 @@
         "18.jpg"
       ]
     }
-  ],
-  "ownsSharedMedia": true
+  ]
 }

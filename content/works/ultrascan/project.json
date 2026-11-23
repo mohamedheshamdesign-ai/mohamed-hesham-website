@@ -10,7 +10,6 @@
   "featured": false,
   "cover": "/projects/ultrascan/cover-artwork.jpg",
   "images": [],
-  "order": 26,
   "client": "Ultrascan",
   "sector": "Medical & diagnostics",
   "services": [
@@ -31,31 +30,31 @@
   "chapters": [
     {
       "title": "Campaign overview",
-      "note": "Selected work from the supplied portfolio presentation.",
       "media": [
         "source-01.jpg"
-      ]
+      ],
+      "note": "Selected work from the supplied portfolio presentation."
     },
     {
       "title": "Social media",
-      "note": "Selected work from the supplied portfolio presentation.",
       "media": [
         "source-02.jpg"
-      ]
+      ],
+      "note": "Selected work from the supplied portfolio presentation."
     },
     {
       "title": "Vehicle and outdoor",
-      "note": "Selected work from the supplied portfolio presentation.",
       "media": [
         "source-03.jpg"
-      ]
+      ],
+      "note": "Selected work from the supplied portfolio presentation."
     },
     {
       "title": "Books and stationery",
-      "note": "Selected work from the supplied portfolio presentation.",
       "media": [
         "source-04.jpg"
-      ]
+      ],
+      "note": "Selected work from the supplied portfolio presentation."
     }
   ],
   "ownsSharedMedia": true

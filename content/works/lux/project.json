@@ -8,9 +8,7 @@
   "solution": "",
   "results": "Logo, menu and screen menu for a café and restaurant.",
   "featured": false,
-  "cover": "/projects/lux/cover-artwork.jpg",
   "images": [],
-  "order": 21,
   "client": "LUX",
   "sector": "Cafe & Restaurant",
   "services": [
@@ -22,14 +20,15 @@
     "Menu",
     "Screen menu"
   ],
+  "ownsSharedMedia": true,
   "chapters": [
     {
       "title": "Selected applications",
-      "note": "Original artwork and mockups from the supplied portfolio presentation.",
       "media": [
         "source-applications.jpg"
-      ]
+      ],
+      "note": "Original artwork and mockups from the supplied portfolio presentation."
     }
   ],
-  "ownsSharedMedia": true
+  "cover": "/projects/lux/cover-artwork.jpg"
 }

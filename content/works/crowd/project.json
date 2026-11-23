@@ -9,7 +9,6 @@
   "results": "Crowd now has a complete and ready-to-use brand foundation: a distinctive logo with full-colour and single-colour versions, a defined palette, a typography choice, a supporting pattern, and a brand book that sets out its positioning and how to apply the identity consistently as the company grows.",
   "featured": true,
   "images": [],
-  "order": 11,
   "client": "Crowd",
   "sector": "Real Estate & Construction",
   "services": [
@@ -40,6 +39,7 @@
       "value": "#F9B416"
     }
   ],
+  "ownsSharedMedia": true,
   "chapters": [
     {
       "title": "Introduction",
@@ -84,6 +84,5 @@
         "04.jpg"
       ]
     }
-  ],
-  "ownsSharedMedia": true
+  ]
 }

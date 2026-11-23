@@ -10,7 +10,6 @@
   "featured": false,
   "cover": "/projects/infinity-connect-group/cover-source.jpg",
   "images": [],
-  "order": 19,
   "client": "Infinity Connect Group",
   "sector": "Telecommunications & ICT",
   "services": [
@@ -29,7 +28,6 @@
   "chapters": [
     {
       "title": "Identity & logo system",
-      "note": "Selected design pages from the supplied brand-book file. Competitor logos and previous concepts are excluded.",
       "media": [
         "identity-12.jpg",
         "identity-13.jpg",
@@ -38,7 +36,8 @@
         "identity-23.jpg",
         "identity-24.jpg",
         "identity-26.jpg"
-      ]
+      ],
+      "note": "Selected design pages from the supplied brand-book file. Competitor logos and previous concepts are excluded."
     },
     {
       "title": "Typography, colour & patterns",

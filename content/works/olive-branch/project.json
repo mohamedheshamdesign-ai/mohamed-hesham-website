@@ -10,7 +10,6 @@
   "featured": false,
   "cover": "/projects/olive-branch/cover-artwork.jpg",
   "images": [],
-  "order": 23,
   "client": "Olive Branch",
   "sector": "Spices & seasonings",
   "services": [
@@ -26,10 +25,10 @@
   "chapters": [
     {
       "title": "Selected applications",
-      "note": "Original artwork and mockups from the supplied portfolio presentation.",
       "media": [
         "source-applications.jpg"
-      ]
+      ],
+      "note": "Original artwork and mockups from the supplied portfolio presentation."
     }
   ],
   "ownsSharedMedia": true

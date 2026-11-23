@@ -8,9 +8,7 @@
   "solution": "",
   "results": "Logo, business cards and invitation cards for a clothes store.",
   "featured": false,
-  "cover": "/projects/habiba-cardigan/cover-artwork.jpg",
   "images": [],
-  "order": 17,
   "client": "Habiba Cardigan",
   "sector": "Clothes Store",
   "services": [
@@ -22,14 +20,15 @@
     "Business cards",
     "Invitation cards"
   ],
+  "ownsSharedMedia": true,
   "chapters": [
     {
       "title": "Selected applications",
-      "note": "Original artwork and mockups from the supplied portfolio presentation.",
       "media": [
         "source-applications.jpg"
-      ]
+      ],
+      "note": "Original artwork and mockups from the supplied portfolio presentation."
     }
   ],
-  "ownsSharedMedia": true
+  "cover": "/projects/habiba-cardigan/cover-artwork.jpg"
 }

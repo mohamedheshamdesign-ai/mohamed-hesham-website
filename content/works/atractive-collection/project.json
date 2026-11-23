@@ -10,7 +10,6 @@
   "featured": false,
   "cover": "/projects/atractive-collection/cover-source.jpg",
   "images": [],
-  "order": 7,
   "client": "Atractive Collection",
   "sector": "Beauty & personal care",
   "services": [
@@ -26,7 +25,6 @@
   "chapters": [
     {
       "title": "Fragrance label system",
-      "note": "Full-size label artwork supplied for the body-splash range.",
       "media": [
         "label-01.jpg",
         "label-02.jpg",
@@ -40,7 +38,8 @@
         "label-15.jpg",
         "label-17.jpg",
         "label-22.jpg"
-      ]
+      ],
+      "note": "Full-size label artwork supplied for the body-splash range."
     },
     {
       "title": "Mini-format labels",
