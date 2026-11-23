@@ -635,3 +635,9 @@ body:has(.dash) .back-to-top {
   margin: 0;
   padding: 10px 22px;
 }
+.dash-cs-preview .dash-preview-banner {
+  max-width: none;
+  border-radius: 0;
+  border-width: 0 0 1px;
+  margin: 0;
+}
