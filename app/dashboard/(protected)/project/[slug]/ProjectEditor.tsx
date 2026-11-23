@@ -584,10 +584,10 @@ export default function ProjectEditor({ slug }: { slug: string }) {
           <div className="dash-card-preview-box">
             <div className="studio-project-card">
               <div className="studio-project-art project-art-real">
-                {(images.find((img) => img.name === coverName) || images[0]) && (
+                {(images.find((img) => img.name === coverName) || images.find((img) => /^cover\./i.test(img.name)) || images[0]) && (
                   // eslint-disable-next-line @next/next/no-img-element
                   <img
-                    src={thumbSrc((images.find((img) => img.name === coverName) || images[0]).src, 640)}
+                    src={thumbSrc((images.find((img) => img.name === coverName) || images.find((img) => /^cover\./i.test(img.name)) || images[0]).src, 640)}
                     alt=""
                     className="studio-project-image"
                     style={{ position: "absolute", inset: 0, width: "100%", height: "100%" }}
