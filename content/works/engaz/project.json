@@ -1,0 +1,21 @@
+{
+  "title": "Engaz",
+  "slug": "engaz",
+  "category": "Print",
+  "description": "Engaz is a constructions company in Egypt. I designed its rollup.",
+  "challenge": "",
+  "solution": "",
+  "results": "Rollup design for a constructions company.",
+  "featured": false,
+  "images": [],
+  "client": "Engaz",
+  "sector": "Constructions",
+  "services": [
+    "Print"
+  ],
+  "deliverables": [
+    "Rollup"
+  ],
+  "ownsSharedMedia": true,
+  "chapters": []
+}

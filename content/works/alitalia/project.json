@@ -1,74 +1,85 @@
 {
-  "title": "Crowd",
+  "title": "Alitalia",
   "slug": "alitalia",
-  "category": "Brand Identity • Brand Guidelines • Logo Design",
-  "description": "Crowd is a real estate and construction company in Egypt built around the idea of people coming together to shape the future of urban living. I created its logo and brand book, translating that idea of collective strength into a mark and a visual system that feel solid and trustworthy, yet warm and human.",
-  "challenge": "A construction brand usually leans on heavy, corporate imagery. Crowd needed to feel dependable enough for people making one of the biggest investments of their lives, while also expressing something different: a company where customers and employees are part of something bigger. The identity had to carry that collaborative spirit without losing the credibility the industry demands.",
-  "solution": "I built the logo from three simple ideas: the letter C, a house, and a person. Together they form a single mark in which a human figure sits at the heart of the home, so the people behind the buildings are always visible. The identity is anchored by a confident palette of Nile Blue for trust and stability, paired with a bright blue and an orangey yellow for optimism and energy, set in Milliard for a clean, modern voice. I then extended the mark into a repeating pattern and documented everything in a brand book covering the brand principles, manifesto and main claim, followed by logo usage, colour and typography rules.",
-  "results": "Crowd now has a complete and ready-to-use brand foundation: a distinctive logo with full-colour and single-colour versions, a defined palette, a typography choice, a supporting pattern, and a brand book that sets out its positioning and how to apply the identity consistently as the company grows.",
-  "featured": false,
+  "category": "Brand Identity • Packaging Design • Print Production",
+  "description": "Alitalia is an Egyptian cleaning tools trading company. I designed its logo and built a packaging system that carries the brand across a whole range of products — from stainless steel scourers and scrubbers to mops, towel packs and boxes — with sub-brands like TURBO, BAREEQ and Bio Clean each getting their own voice inside one family.",
+  "challenge": "Cleaning tools compete on crowded shelves where every pack shouts. Alitalia needed a brand that could stretch across very different products and price points — a scourer display card, a mop box, a refill pack — while staying instantly recognizable, and giving each sub-brand room to have its own character without breaking the family.",
+  "solution": "I designed the Alitalia logo around a clean, fresh water-drop mark and built a flexible packaging system on it. Each product line got its own colour energy and layout rhythm: bold display cards for TURBO scourers, a cool technical look for BAREEQ, and a bright playful voice for Bio Clean mops and refills. The system runs from small hanging cards to full display sheets and boxes, with social media designs extending the same visual language.",
+  "results": "A complete packaging family: logo, scourer and scrubber display cards, mop and refill packs, towel packs, boxes and social media designs — one recognizable brand system across the whole range, ready for print and shelf.",
+  "featured": true,
   "images": [],
-  "client": "Crowd",
-  "sector": "Real Estate & Construction",
+  "client": "Alitalia",
+  "sector": "Cleaning Tools Trading",
   "services": [
     "Brand identity",
-    "Logo design",
-    "Brand guidelines"
+    "Packaging design",
+    "Print production"
   ],
   "deliverables": [
-    "Logo & icon",
-    "Logo colour variations",
-    "Brand positioning & manifesto",
-    "Colour palette",
-    "Typography",
-    "Brand pattern",
-    "Brand book"
+    "Logo",
+    "Scourer & scrubber display cards",
+    "Mop & refill packaging",
+    "Towel packs",
+    "Boxes",
+    "Social media designs"
   ],
   "palette": [
     {
-      "name": "Nile Blue",
-      "value": "#183751"
+      "name": "Alitalia Blue",
+      "value": "#36ABD4"
     },
     {
-      "name": "Blue",
-      "value": "#3390CE"
-    },
-    {
-      "name": "Orangey Yellow",
-      "value": "#F9B416"
+      "name": "Deep Navy",
+      "value": "#0E3568"
     }
   ],
   "ownsSharedMedia": false,
   "chapters": [
     {
       "title": "Introduction",
-      "note": "The company, the industry, and the brief.",
-      "media": []
+      "note": "The company, the range, and the brief.",
+      "media": [
+        "02.jpg"
+      ]
     },
     {
-      "title": "Brand foundation",
-      "note": "The positioning that shapes everything: a collaborative force building the future of urban living.",
-      "media": []
+      "title": "Brand & sub-brands",
+      "note": "One family, several voices: Alitalia, TURBO, BAREEQ and Bio Clean.",
+      "media": [
+        "03.jpg",
+        "08.webp",
+        "09.webp"
+      ]
     },
     {
-      "title": "Logo system",
-      "note": "A letter, a house and a person, combined into one mark.",
-      "media": []
+      "title": "Scourer packaging",
+      "note": "Display cards and sheets built to shout from the shelf.",
+      "media": [
+        "04.webp",
+        "05.webp",
+        "06.webp",
+        "07.webp"
+      ]
     },
     {
-      "title": "Colour",
-      "note": "Deep Nile Blue for trust, with bright blue and yellow for energy.",
-      "media": []
+      "title": "Mop & home-care packaging",
+      "note": "Boxes, packs and refills for the Bio Clean line.",
+      "media": [
+        "10.webp",
+        "11.webp",
+        "12.webp",
+        "13.webp",
+        "14.webp",
+        "15.webp",
+        "16.jpg"
+      ]
     },
     {
-      "title": "Typography",
-      "note": "A clean, modern typeface that keeps the brand clear and confident.",
-      "media": []
-    },
-    {
-      "title": "Brand elements",
-      "note": "A pattern built from the brand mark, in blue and yellow.",
-      "media": []
+      "title": "Boxes & social media",
+      "note": "The system extended to shipping boxes and social posts.",
+      "media": [
+        "17.jpg"
+      ]
     }
   ]
 }

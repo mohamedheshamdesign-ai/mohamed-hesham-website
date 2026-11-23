@@ -40,7 +40,7 @@ export const metadata: Metadata = {
 
 export default function Home() {
   const projects = getFeaturedProjects();
-  const order = ["al-mashreq", "atractive-collection", "memo-trips"];
+  const order = ["alitalia", "crowd", "onvaca", "al-mashreq", "memo-trips"];
   const selected = [...projects].sort((a, b) => {
     const rank = (slug: string) => order.includes(slug) ? order.indexOf(slug) : order.length;
     return rank(a.slug) - rank(b.slug);

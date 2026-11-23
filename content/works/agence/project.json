@@ -1,0 +1,24 @@
+{
+  "title": "Agence",
+  "slug": "agence",
+  "category": "Logo Design • Print",
+  "description": "Agence is a car renting and trading company in Egypt. I designed its logo, business cards and car labels.",
+  "challenge": "",
+  "solution": "",
+  "results": "Logo, business card and car labels for a car renting and trading company.",
+  "featured": false,
+  "images": [],
+  "client": "Agence",
+  "sector": "Renting & Cars Trading",
+  "services": [
+    "Logo Design",
+    "Print"
+  ],
+  "deliverables": [
+    "Logo",
+    "Business cards",
+    "Car labels"
+  ],
+  "ownsSharedMedia": true,
+  "chapters": []
+}
