@@ -22,7 +22,8 @@ function thumbFor(project: { content: Record<string, unknown>; images: { name: s
   const cover = typeof project.content.cover === "string" ? project.content.cover : "";
   const name = cover.split("/").pop();
   const match = name ? project.images.find((img) => img.name === name) : undefined;
-  return (match || project.images[0])?.src || "";
+  const byName = project.images.find((img) => /^cover\./i.test(img.name));
+  return (match || byName || project.images[0])?.src || "";
 }
 
 export default function DashboardApp() {
