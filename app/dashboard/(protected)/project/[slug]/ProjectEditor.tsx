@@ -19,7 +19,12 @@ import type {
 } from "@/lib/dashboard/types";
 import { emptyOverlay } from "@/lib/dashboard/types";
 
-type Chapter = { title: string; note?: string; media: string[] };
+type Chapter = {
+  title: string;
+  note?: string;
+  layout?: "auto" | "full" | "wide" | "duo";
+  media: string[];
+};
 
 function slugify(title: string): string {
   return (
@@ -358,6 +363,9 @@ export default function ProjectEditor({ slug }: { slug: string }) {
         .map((chapter) => ({
           title: chapter.title,
           ...(chapter.note ? { note: chapter.note } : {}),
+          ...(chapter.layout && chapter.layout !== "auto"
+            ? { layout: chapter.layout }
+            : {}),
           media: chapter.media,
         }))
         .filter((chapter) => chapter.title && chapter.media.length),
@@ -611,6 +619,20 @@ export default function ProjectEditor({ slug }: { slug: string }) {
                 onChange={(e) => setChapter(ci, { note: e.target.value })}
                 placeholder="Small note (optional)"
               />
+              <select
+                aria-label="Chapter layout"
+                value={chapter.layout || "auto"}
+                onChange={(e) =>
+                  setChapter(ci, {
+                    layout: e.target.value as Chapter["layout"],
+                  })
+                }
+              >
+                <option value="auto">Layout: Auto (designed rhythm)</option>
+                <option value="full">Layout: Full width, one per row</option>
+                <option value="wide">Layout: Contained, one per row</option>
+                <option value="duo">Layout: Two side by side</option>
+              </select>
               <button
                 type="button"
                 className="danger"

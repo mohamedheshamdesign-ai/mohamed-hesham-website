@@ -42,8 +42,22 @@ const RHYTHM: MediaLayout[] = [
  * sequence never ends on a half-empty pair.
  */
 export function groupMediaByRhythm(
-  media: ProjectMedia[]
+  media: ProjectMedia[],
+  layout?: "auto" | "full" | "wide" | "duo"
 ): MediaGroup[] {
+  if (layout && layout !== "auto") {
+    const fixed: MediaGroup[] = [];
+    const size = layout === "duo" ? 2 : 1;
+    for (let i = 0; i < media.length; i += size) {
+      const slice = media.slice(i, i + size);
+      fixed.push({
+        layout: layout === "duo" && slice.length < 2 ? "wide" : layout,
+        media: slice,
+      });
+    }
+    return fixed;
+  }
+
   const groups: MediaGroup[] = [];
 
   let cursor = 0;

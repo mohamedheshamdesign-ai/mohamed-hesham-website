@@ -104,7 +104,8 @@ export default function CaseStudyGallery({
       <div className="cs-gallery">
         {chapters.map((chapter) => {
           const groups = groupMediaByRhythm(
-            chapter.media
+            chapter.media,
+            chapter.layout
           );
 
           return (

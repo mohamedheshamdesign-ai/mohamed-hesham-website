@@ -35,6 +35,8 @@ export type ProjectPaletteEntry = {
 export type ProjectChapter = {
   title: string;
   note?: string;
+  /** Optional layout. Omitted or "auto" keeps the designed rhythm. */
+  layout?: "auto" | "full" | "wide" | "duo";
   /** File names (relative to the project folder), in reading order. */
   media: string[];
 };
@@ -42,6 +44,7 @@ export type ProjectChapter = {
 const chapterSchema = z.object({
   title: z.string().min(1),
   note: z.string().optional(),
+  layout: z.enum(["auto", "full", "wide", "duo"]).optional(),
   media: z.array(z.string()),
 });
 
@@ -122,6 +125,7 @@ export type Project = Omit<
 export type ResolvedChapter = {
   title: string;
   note?: string;
+  layout?: "auto" | "full" | "wide" | "duo";
   media: ProjectMedia[];
 };
 
@@ -610,6 +614,7 @@ function resolveChapters(
     .map((chapter) => ({
       title: chapter.title,
       note: chapter.note,
+      layout: chapter.layout,
       media: chapter.media
         .map((name) => byName.get(name))
         .filter(

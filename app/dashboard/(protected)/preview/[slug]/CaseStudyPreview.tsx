@@ -15,7 +15,7 @@ import CaseStudyNarrative from "@/components/case-study/CaseStudyNarrative";
 import CaseStudyPalette from "@/components/case-study/CaseStudyPalette";
 import CaseStudyDeliverables from "@/components/case-study/CaseStudyDeliverables";
 
-type Chapter = { title: string; note?: string; media: string[] };
+type Chapter = { title: string; note?: string; layout?: "auto" | "full" | "wide" | "duo"; media: string[] };
 
 export default function CaseStudyPreview({ slug }: { slug: string }) {
   const [project, setProject] = useState<MergedProject | null>(null);
@@ -139,7 +139,7 @@ export default function CaseStudyPreview({ slug }: { slug: string }) {
                   <h3>{chapter.title}</h3>
                   {chapter.note && <p>{chapter.note}</p>}
                 </header>
-                {groupMediaByRhythm(items).map((group, gi) => (
+                {groupMediaByRhythm(items, chapter.layout).map((group, gi) => (
                   <div key={gi} className={`cs-group cs-group-${group.layout}`}>
                     {group.media.map((item) => (
                       <figure key={item.src} className="cs-media">
