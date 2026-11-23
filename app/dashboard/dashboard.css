@@ -625,3 +625,13 @@ body:has(.dash) .back-to-top {
   .dash-palette-row input:nth-of-type(3), .dash-palette-row button { grid-column: 1 / -1; }
 }
 .dash-button.danger { color: #b3261e; border-color: #e3b5b1; }
+
+/* Preview: use the full viewport so the case study has the same widths as the live page. */
+.dash-body:has(.dash-cs-preview) {
+  max-width: none;
+  padding: 0 0 60px;
+}
+.dash-cs-preview .dash-preview-banner {
+  margin: 0;
+  padding: 10px 22px;
+}
