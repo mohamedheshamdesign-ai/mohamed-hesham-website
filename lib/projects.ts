@@ -639,7 +639,10 @@ function buildProject(slug: string) {
     project.ownsSharedMedia === true
   );
 
-  const coverFile = findCoverFile(ownedFiles);
+  const requestedCover = project.cover ? path.basename(project.cover) : null;
+  const coverFile = requestedCover && ownedFiles.includes(requestedCover)
+    ? requestedCover
+    : findCoverFile(ownedFiles);
 
   const hasRealCover = Boolean(coverFile);
 
