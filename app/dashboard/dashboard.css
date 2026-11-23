@@ -605,3 +605,6 @@ body:has(.dash) .back-to-top {
     padding: 10px 14px;
   }
 }
+
+.dash-row-main small { display: block; }
+.dash-badges { display: flex; flex-wrap: wrap; }
