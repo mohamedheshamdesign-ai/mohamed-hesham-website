@@ -41,6 +41,91 @@ function uniqueName(name: string, taken: Set<string>): string {
   }
 }
 
+/** Comma separated list that keeps what the user is typing (commas and spaces included). */
+function ListInput({
+  value,
+  onChange,
+}: {
+  value: string[];
+  onChange: (list: string[]) => void;
+}) {
+  const [text, setText] = useState(value.join(", "));
+  return (
+    <input
+      value={text}
+      onChange={(e) => {
+        setText(e.target.value);
+        onChange(
+          e.target.value
+            .split(",")
+            .map((s) => s.trim())
+            .filter(Boolean)
+        );
+      }}
+      onBlur={() => setText(value.join(", "))}
+    />
+  );
+}
+
+type PaletteEntry = { name: string; value: string };
+
+function PaletteEditor({
+  palette,
+  onChange,
+}: {
+  palette: PaletteEntry[];
+  onChange: (next: PaletteEntry[]) => void;
+}) {
+  const update = (i: number, patch: Partial<PaletteEntry>) =>
+    onChange(palette.map((c, ci) => (ci === i ? { ...c, ...patch } : c)));
+  const valid = (v: string) => /^#[0-9a-fA-F]{6}$/.test(v);
+  return (
+    <div className="dash-palette">
+      <h3>Colour system</h3>
+      <p className="dash-muted small">
+        Brand colours shown as swatches on the case study. Pick a colour or type a hex code.
+      </p>
+      {palette.map((c, i) => (
+        <div className="dash-palette-row" key={i}>
+          <input
+            type="color"
+            aria-label={`Colour ${i + 1}`}
+            value={valid(c.value) ? c.value : "#000000"}
+            onChange={(e) => update(i, { value: e.target.value })}
+          />
+          <input
+            aria-label={`Colour ${i + 1} hex`}
+            value={c.value}
+            onChange={(e) => update(i, { value: e.target.value })}
+            placeholder="#17372C"
+            className={valid(c.value) ? "" : "invalid"}
+          />
+          <input
+            aria-label={`Colour ${i + 1} name`}
+            value={c.name}
+            onChange={(e) => update(i, { name: e.target.value })}
+            placeholder="Colour name"
+          />
+          <button
+            type="button"
+            className="dash-button ghost danger"
+            onClick={() => onChange(palette.filter((_, ci) => ci !== i))}
+          >
+            Remove
+          </button>
+        </div>
+      ))}
+      <button
+        type="button"
+        className="dash-button ghost"
+        onClick={() => onChange([...palette, { name: "", value: "#17372C" }])}
+      >
+        + Add colour
+      </button>
+    </div>
+  );
+}
+
 export default function ProjectEditor({ slug }: { slug: string }) {
   const isNew = slug === "new";
   const router = useRouter();
@@ -435,41 +520,27 @@ export default function ProjectEditor({ slug }: { slug: string }) {
         <div className="dash-grid2">
           <label>
             Services (comma separated, optional)
-            <input
-              value={(Array.isArray(content.services)
-                ? (content.services as string[])
-                : []
-              ).join(", ")}
-              onChange={(e) =>
-                set(
-                  "services",
-                  e.target.value
-                    .split(",")
-                    .map((s) => s.trim())
-                    .filter(Boolean)
-                )
-              }
+            <ListInput
+              value={Array.isArray(content.services) ? (content.services as string[]) : []}
+              onChange={(list) => set("services", list)}
             />
           </label>
           <label>
             Deliverables (comma separated, optional)
-            <input
-              value={(Array.isArray(content.deliverables)
-                ? (content.deliverables as string[])
-                : []
-              ).join(", ")}
-              onChange={(e) =>
-                set(
-                  "deliverables",
-                  e.target.value
-                    .split(",")
-                    .map((s) => s.trim())
-                    .filter(Boolean)
-                )
-              }
+            <ListInput
+              value={Array.isArray(content.deliverables) ? (content.deliverables as string[]) : []}
+              onChange={(list) => set("deliverables", list)}
             />
           </label>
         </div>
+        <PaletteEditor
+          palette={
+            Array.isArray(content.palette)
+              ? (content.palette as PaletteEntry[])
+              : []
+          }
+          onChange={(next) => set("palette", next)}
+        />
       </section>
 
       <section className="dash-card">

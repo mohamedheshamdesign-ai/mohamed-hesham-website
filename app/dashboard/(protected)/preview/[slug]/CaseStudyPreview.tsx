@@ -10,6 +10,10 @@ import {
 } from "@/lib/dashboard/client";
 import { loadOverlay } from "@/lib/dashboard/draft";
 import { groupMediaByRhythm } from "@/lib/case-study";
+import CaseStudyFacts from "@/components/case-study/CaseStudyFacts";
+import CaseStudyNarrative from "@/components/case-study/CaseStudyNarrative";
+import CaseStudyPalette from "@/components/case-study/CaseStudyPalette";
+import CaseStudyDeliverables from "@/components/case-study/CaseStudyDeliverables";
 
 type Chapter = { title: string; note?: string; media: string[] };
 
@@ -54,6 +58,15 @@ export default function CaseStudyPreview({ slug }: { slug: string }) {
   const services = Array.isArray(content.services)
     ? (content.services as string[])
     : [];
+  const palette = Array.isArray(content.palette)
+    ? (content.palette as { name: string; value: string }[]).filter(
+        (c) => c && /^#[0-9a-fA-F]{6}$/.test(c.value)
+      )
+    : [];
+  const deliverables = Array.isArray(content.deliverables)
+    ? (content.deliverables as string[])
+    : [];
+  const text = (k: string) => String(content[k] ?? "");
   const imageByName = new Map(project.images.map((img) => [img.name, img]));
 
   return (
@@ -71,6 +84,12 @@ export default function CaseStudyPreview({ slug }: { slug: string }) {
             <p className="cs-subtitle">{services.join("  ·  ")}</p>
           )}
           <p className="cs-lede">{project.description}</p>
+          <CaseStudyFacts
+            client={text("client") || project.title}
+            sector={text("sector") || undefined}
+            role={text("role")}
+            services={services}
+          />
         </div>
       </header>
 
@@ -85,6 +104,21 @@ export default function CaseStudyPreview({ slug }: { slug: string }) {
           />
         </section>
       )}
+
+      <div className="cs-container">
+        <CaseStudyNarrative
+          overview={project.description}
+          challenge={text("challenge")}
+          solution={text("solution")}
+          results={text("results")}
+        />
+        {palette.length > 0 || deliverables.length > 0 ? (
+          <div className="cs-specs">
+            <CaseStudyPalette palette={palette} />
+            <CaseStudyDeliverables deliverables={deliverables} />
+          </div>
+        ) : null}
+      </div>
 
       {chapters.length > 0 && (
         <div className="cs-gallery">

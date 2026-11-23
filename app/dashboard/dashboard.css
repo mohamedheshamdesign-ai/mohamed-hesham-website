@@ -608,3 +608,20 @@ body:has(.dash) .back-to-top {
 
 .dash-row-main small { display: block; }
 .dash-badges { display: flex; flex-wrap: wrap; }
+
+.dash-palette { margin-top: 18px; }
+.dash-palette h3 { margin: 0 0 4px; font-size: 15px; }
+.dash-palette-row {
+  display: grid;
+  grid-template-columns: 44px 120px 1fr auto;
+  gap: 8px;
+  align-items: center;
+  margin: 8px 0;
+}
+.dash-palette-row input[type="color"] { width: 44px; height: 36px; padding: 2px; }
+.dash-palette-row input.invalid { border-color: #b3261e; }
+@media (max-width: 700px) {
+  .dash-palette-row { grid-template-columns: 44px 1fr; }
+  .dash-palette-row input:nth-of-type(3), .dash-palette-row button { grid-column: 1 / -1; }
+}
+.dash-button.danger { color: #b3261e; border-color: #e3b5b1; }
