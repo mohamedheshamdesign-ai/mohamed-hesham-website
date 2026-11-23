@@ -49,6 +49,12 @@ const projectSchema = z.object({
   title: z.string().min(1),
   slug: z.string().min(1),
   category: z.string(),
+  /**
+   * Primary filter category: exactly one of the three public work
+   * filters, so filter counts always sum to the All work total.
+   * The free-text `category` stays as the descriptive service tags.
+   */
+  primaryCategory: z.enum(["brand-identity", "packaging", "digital"]),
   description: z.string(),
   challenge: z.string(),
   solution: z.string(),
@@ -56,6 +62,8 @@ const projectSchema = z.object({
   featured: z.boolean().optional(),
   cover: z.string().optional(),
   images: z.array(z.string()).optional(),
+  /** Explicit grid position managed by the private dashboard. */
+  order: z.number().optional(),
 
   /* ---------------------------------------------------------
      Editorial case study extensions. Every field is optional so
@@ -90,6 +98,8 @@ const projectSchema = z.object({
 export type ProjectContent = z.infer<
   typeof projectSchema
 >;
+
+export { projectSchema };
 
 export type Project = Omit<
   ProjectContent,
@@ -716,6 +726,14 @@ export function getProjects(): Project[] {
       array.findIndex(
         (p) => p.slug === project.slug
       ) === index
+  );
+
+  // Dashboard-managed order first; untouched projects keep their
+  // original folder order (stable sort).
+  unique.sort(
+    (a, b) =>
+      (a.order ?? Number.MAX_SAFE_INTEGER) -
+      (b.order ?? Number.MAX_SAFE_INTEGER)
   );
 
   projectsCache = unique;

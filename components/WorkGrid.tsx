@@ -9,6 +9,7 @@ type WorkProject = {
   slug: string;
   title: string;
   category: string;
+  primaryCategory: "brand-identity" | "packaging" | "digital";
   description: string;
   cover: string;
   hasRealCover: boolean;
@@ -17,11 +18,16 @@ type WorkProject = {
 
 const filters = ["All", "Brand Identity", "Packaging", "Digital"];
 
+const filterKeys: Record<string, WorkProject["primaryCategory"]> = {
+  "Brand Identity": "brand-identity",
+  Packaging: "packaging",
+  Digital: "digital",
+};
+
 function matchesFilter(project: WorkProject, filter: string) {
   if (filter === "All") return true;
-  if (filter === "Brand Identity") return /brand identity|branding|visual identity/i.test(project.category);
-  if (filter === "Packaging") return /packaging/i.test(project.category);
-  if (filter === "Digital") return /UI\/UX|digital|interaction/i.test(project.category);
+  const key = filterKeys[filter];
+  if (key) return project.primaryCategory === key;
   return project.category.toLowerCase().includes(filter.toLowerCase());
 }
 
