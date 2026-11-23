@@ -30,6 +30,43 @@
       "media": [
         "source-applications.jpg"
       ]
+    },
+    {
+      "title": "Mockups and social post",
+      "media": [
+        "mockup-cashew-jar.jpg",
+        "mockup-pepper-shaker.jpg",
+        "social-post-01.jpg"
+      ]
+    },
+    {
+      "title": "Spice label system",
+      "note": "One label per spice, same structure, a colour for each.",
+      "layout": "wide",
+      "media": [
+        "label-06.jpg",
+        "label-07.jpg",
+        "label-08.jpg",
+        "label-09.jpg",
+        "label-10.jpg",
+        "label-11.jpg",
+        "label-12.jpg",
+        "label-14.jpg",
+        "label-15.jpg",
+        "label-16.jpg",
+        "label-17.jpg",
+        "label-18.jpg",
+        "label-19.jpg",
+        "label-20.jpg",
+        "label-21.jpg",
+        "label-22.jpg"
+      ]
+    },
+    {
+      "title": "Flyer",
+      "media": [
+        "flyer-spices.jpg"
+      ]
     }
   ],
   "ownsSharedMedia": true
