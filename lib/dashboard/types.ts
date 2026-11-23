@@ -72,5 +72,5 @@ export type PublishProjectPayload = {
  */
 export function thumbSrc(src: string, width = 384): string {
   if (!src || !src.startsWith("/projects/")) return src;
-  return `/_next/image?url=${encodeURIComponent(src)}&w=${width}&q=60`;
+  return `/_next/image?url=${encodeURIComponent(src)}&w=${width}&q=75`;
 }
