@@ -641,3 +641,6 @@ body:has(.dash) .back-to-top {
   border-width: 0 0 1px;
   margin: 0;
 }
+
+.dash-card-preview { margin: 14px 0 18px; }
+.dash-card-preview-box { max-width: 360px; pointer-events: none; }

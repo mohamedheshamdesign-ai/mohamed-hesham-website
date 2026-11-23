@@ -576,6 +576,41 @@ export default function ProjectEditor({ slug }: { slug: string }) {
             e.target.value = "";
           }}
         />
+        <div className="dash-card-preview">
+          <p className="dash-muted small">
+            Card preview: how this project looks on the homepage and the work
+            page. It follows the cover and the title and services you edit.
+          </p>
+          <div className="dash-card-preview-box">
+            <div className="studio-project-card">
+              <div className="studio-project-art project-art-real">
+                {(images.find((img) => img.name === coverName) || images[0]) && (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    src={thumbSrc((images.find((img) => img.name === coverName) || images[0]).src, 640)}
+                    alt=""
+                    className="studio-project-image"
+                    style={{ position: "absolute", inset: 0, width: "100%", height: "100%" }}
+                  />
+                )}
+                <span className="project-art-arrow" aria-hidden="true">↗</span>
+              </div>
+              <div className="studio-project-meta">
+                <div>
+                  <h3>{String(content.title || "Untitled project")}</h3>
+                  <p>
+                    {String(content.category || "")
+                      .split("•")
+                      .slice(0, 2)
+                      .join(" / ")
+                      .trim()}
+                  </p>
+                </div>
+                <span aria-hidden="true">↗</span>
+              </div>
+            </div>
+          </div>
+        </div>
         <div className="dash-images">
           {images.map((img) => (
             <figure key={img.name} className={coverName === img.name ? "cover" : ""}>
