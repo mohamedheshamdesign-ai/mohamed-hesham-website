@@ -9,6 +9,7 @@ import type {
   Overlay,
   PublishProjectPayload,
 } from "./types";
+import type { PublishPlan } from "./plan";
 
 export async function fetchProjects(): Promise<ApiProject[]> {
   const res = await fetch("/api/dashboard/projects", { cache: "no-store" });
@@ -264,74 +265,26 @@ async function uploadOne(
   return data.blobSha as string;
 }
 
-export async function publishOverlay(
-  merged: MergedProject[],
-  overlay: Overlay,
+export async function executePlan(
+  plan: PublishPlan,
   onProgress?: (message: string) => void
 ): Promise<string> {
+  if (plan.projects.length === 0) throw new Error("Nothing to publish.");
   const payloads: PublishProjectPayload[] = [];
-
-  // Order is written for every project so the grid order is exactly what
-  // the dashboard list shows.
-  const orderBySlug = new Map(merged.map((p, i) => [p.slug, i + 1]));
-
-  // Deleted projects first. removedImages already carries every repo file
-  // (set when the delete happened), so folders do not orphan.
-  for (const [slug, draft] of Object.entries(overlay.projects)) {
-    if (!draft.deleted) continue;
-    payloads.push({
-      slug,
-      deleted: true,
-      content: null,
-      newImages: [],
-      removedImages: draft.isNew ? [] : draft.removedImages,
-    });
-  }
-
-  const changed = merged.filter((p) => p.changed);
-  for (const project of changed) {
-    const draft = overlay.projects[project.slug];
-    if (!draft) continue;
-    onProgress?.(`Uploading images for ${project.title}…`);
+  for (const project of plan.projects) {
     const newImages: Array<{ name: string; blobSha: string }> = [];
-    for (const img of draft.newImages) {
-      const blobSha = await uploadOne(img.blob, img.name);
-      newImages.push({ name: img.name, blobSha });
+    for (const img of project.newImages) {
+      onProgress?.(`Uploading ${img.name}…`);
+      newImages.push({ name: img.name, blobSha: await uploadOne(img.blob, img.name) });
     }
-    const content: Record<string, unknown> = {
-      ...draft.content,
-      slug: project.slug,
-      order: orderBySlug.get(project.slug) ?? 1,
-    };
-    delete content.__files;
     payloads.push({
       slug: project.slug,
-      content,
+      deleted: project.deleted,
+      content: project.content,
       newImages,
-      removedImages: draft.removedImages,
+      removedImages: project.removedImages,
     });
   }
-
-  // Unchanged projects only get their order written when the order changed.
-  const ordered = merged.filter(
-    (p) => !p.changed && (overlay.order.length > 0)
-  );
-  for (const project of ordered) {
-    const content: Record<string, unknown> = {
-      ...project.content,
-      slug: project.slug,
-      order: orderBySlug.get(project.slug) ?? 1,
-    };
-    payloads.push({
-      slug: project.slug,
-      content,
-      newImages: [],
-      removedImages: [],
-    });
-  }
-
-  if (payloads.length === 0) throw new Error("Nothing to publish.");
-
   onProgress?.("Publishing to the site…");
   const res = await fetch("/api/dashboard/publish", {
     method: "POST",

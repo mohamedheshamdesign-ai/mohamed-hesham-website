@@ -6,14 +6,15 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import {
   fetchProjects,
   mergeProjects,
+  executePlan,
   overlayHasChanges,
-  publishOverlay,
 } from "@/lib/dashboard/client";
 import {
   clearOverlay,
   loadOverlay,
   saveOverlay,
 } from "@/lib/dashboard/draft";
+import { buildPlan, type PublishPlan } from "@/lib/dashboard/plan";
 import type { ApiProject, Overlay } from "@/lib/dashboard/types";
 import { emptyOverlay } from "@/lib/dashboard/types";
 
@@ -22,6 +23,9 @@ export default function DashboardApp() {
   const [overlay, setOverlay] = useState<Overlay>(emptyOverlay());
   const [busy, setBusy] = useState("");
   const [error, setError] = useState("");
+  const [notice, setNotice] = useState("");
+  const [review, setReview] = useState<PublishPlan | null>(null);
+  const [ask, setAsk] = useState<{ kind: "remove" | "discard"; slug?: string } | null>(null);
 
   const reload = useCallback(async () => {
     const [projects, saved] = await Promise.all([
@@ -81,15 +85,13 @@ export default function DashboardApp() {
   }
 
   function remove(slug: string) {
+    setAsk({ kind: "remove", slug });
+  }
+
+  function doRemove(slug: string) {
     const project = merged.find((p) => p.slug === slug);
+    setAsk(null);
     if (!project) return;
-    if (
-      !window.confirm(
-        `Remove "${project.title}" from the site? This takes effect when you publish.`
-      )
-    ) {
-      return;
-    }
     const existing = overlay.projects[slug];
     update({
       ...overlay,
@@ -109,23 +111,44 @@ export default function DashboardApp() {
     });
   }
 
-  async function publish() {
-    if (
-      !window.confirm(
-        "Publish all pending changes to the live site? The site updates in about a minute."
-      )
-    ) {
-      return;
+  /** Step 1: re-read BOTH the live site and the saved draft, then show exactly what will change. */
+  async function startPublish() {
+    setError("");
+    setNotice("");
+    try {
+      setBusy("Checking changes…");
+      const [fresh, saved] = await Promise.all([fetchProjects(), loadOverlay()]);
+      setApiProjects(fresh);
+      setOverlay(saved);
+      const plan = buildPlan(fresh, saved);
+      setBusy("");
+      if (plan.projects.length === 0) {
+        await clearOverlay();
+        setOverlay(emptyOverlay());
+        setNotice("Nothing differs from the live site, so there is nothing to publish.");
+        return;
+      }
+      setReview(plan);
+    } catch (err) {
+      setBusy("");
+      setError(String((err as Error).message || err));
     }
+  }
+
+  /** Step 2: publish exactly the reviewed plan. */
+  async function confirmPublish() {
+    if (!review) return;
+    const plan = review;
+    setReview(null);
     setError("");
     try {
       setBusy("Preparing…");
-      await publishOverlay(merged, overlay, (message) => setBusy(message));
+      await executePlan(plan, (message) => setBusy(message));
       await clearOverlay();
       setOverlay(emptyOverlay());
       setBusy("");
-      window.alert(
-        "Published. The live site rebuilds in about a minute — open it shortly to see your changes."
+      setNotice(
+        "Published. The live site rebuilds in about a minute. Open it shortly to see your changes."
       );
       await reload();
     } catch (err) {
@@ -134,8 +157,8 @@ export default function DashboardApp() {
     }
   }
 
-  async function discard() {
-    if (!window.confirm("Discard all unpublished changes?")) return;
+  async function doDiscard() {
+    setAsk(null);
     await clearOverlay();
     setOverlay(emptyOverlay());
   }
@@ -172,14 +195,14 @@ export default function DashboardApp() {
             <button
               type="button"
               className="dash-button ghost"
-              onClick={discard}
+              onClick={() => setAsk({ kind: "discard" })}
             >
               Discard
             </button>
             <button
               type="button"
               className="dash-button primary"
-              onClick={publish}
+              onClick={startPublish}
               disabled={Boolean(busy)}
             >
               {busy || "Publish changes"}
@@ -187,7 +210,50 @@ export default function DashboardApp() {
           </div>
         </div>
       )}
+      {notice && <p className="dash-notice" role="status">{notice}</p>}
       {error && <p className="dash-error">{error}</p>}
+      {ask && (
+        <div className="dash-review" role="alertdialog">
+          <p>
+            {ask.kind === "remove"
+              ? `Remove "${merged.find((p) => p.slug === ask.slug)?.title || ask.slug}" from the site? This takes effect when you publish.`
+              : "Discard all unpublished changes?"}
+          </p>
+          <div>
+            <button type="button" className="dash-button ghost" onClick={() => setAsk(null)}>
+              Cancel
+            </button>
+            <button
+              type="button"
+              className="dash-button primary"
+              onClick={() => (ask.kind === "remove" ? doRemove(ask.slug as string) : doDiscard())}
+            >
+              {ask.kind === "remove" ? "Yes, remove" : "Yes, discard"}
+            </button>
+          </div>
+        </div>
+      )}
+      {review && (
+        <div className="dash-review" role="alertdialog">
+          <strong>Review before publishing</strong>
+          <ul>
+            {review.items.map((item) => (
+              <li key={item.slug}>
+                <b>{item.title}</b> - {item.kind === "new" ? "New" : item.kind === "removed" ? "Removed" : item.kind === "reordered" ? "Moved" : "Edited"}
+                <small> {item.details.join(" · ")}</small>
+              </li>
+            ))}
+          </ul>
+          <div>
+            <button type="button" className="dash-button ghost" onClick={() => setReview(null)}>
+              Back
+            </button>
+            <button type="button" className="dash-button primary" onClick={confirmPublish}>
+              Publish {review.items.length} change{review.items.length === 1 ? "" : "s"}
+            </button>
+          </div>
+        </div>
+      )}
 
       <ul className="dash-list">
         {merged.map((project, index) => (

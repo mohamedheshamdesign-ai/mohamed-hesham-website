@@ -563,3 +563,23 @@
     font-size: 12px;
   }
 }
+
+.dash-review {
+  background: #fff;
+  border: 1px solid #1c1c1c;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 18px;
+  font-size: 14px;
+}
+.dash-review ul { margin: 10px 0 14px; padding-left: 18px; }
+.dash-review li small { color: #666; }
+.dash-review > div { display: flex; gap: 8px; justify-content: flex-end; flex-wrap: wrap; }
+.dash-notice {
+  background: #eef8ee;
+  border: 1px solid #a9d3a9;
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin-bottom: 18px;
+  font-size: 14px;
+}
