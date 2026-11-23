@@ -44,8 +44,11 @@ export function verifySession(value: string | undefined | null): boolean {
 export function checkPassword(candidate: string): boolean {
   const real = process.env.DASHBOARD_PASSWORD || "";
   if (!real || !candidate) return false;
-  const pad = (s: string) => Buffer.from(s.padEnd(128, "").slice(0, 128));
-  return crypto.timingSafeEqual(pad(candidate), pad(real));
+  // Hash both sides so timingSafeEqual always sees equal-length buffers,
+  // whatever the candidate length.
+  const digest = (s: string) =>
+    crypto.createHash("sha256").update(s, "utf8").digest();
+  return crypto.timingSafeEqual(digest(candidate), digest(real));
 }
 
 export const SESSION_COOKIE_OPTIONS = {
