@@ -59,7 +59,9 @@
         "04.webp",
         "05.webp",
         "06.webp",
-        "07.webp"
+        "07.webp",
+        "scourer-carton-mockup.webp",
+        "scourer-pouch-mockup.webp"
       ]
     },
     {
@@ -72,7 +74,18 @@
         "13.webp",
         "14.webp",
         "15.webp",
-        "16.jpg"
+        "16.jpg",
+        "mop-sleeve-yellow.webp"
+      ]
+    },
+    {
+      "title": "Packaging dielines",
+      "note": "Flat print artwork for the cartons and boxes, before they are folded.",
+      "media": [
+        "dieline-scourer-carton.webp",
+        "dieline-broom-carton.webp",
+        "dieline-squeegee-carton.webp",
+        "dieline-tissue-box.webp"
       ]
     },
     {
