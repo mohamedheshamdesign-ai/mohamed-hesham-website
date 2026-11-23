@@ -42,6 +42,7 @@ export default function LoginForm() {
         autoFocus
         required
       />
+      <p className="dash-muted small">Hint: your hotspot password</p>
       {error && <p className="dash-error">{error}</p>}
       <button type="submit" disabled={busy || !password}>
         {busy ? "Signing in…" : "Sign in"}
