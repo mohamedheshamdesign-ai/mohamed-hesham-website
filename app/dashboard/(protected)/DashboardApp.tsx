@@ -18,6 +18,13 @@ import { buildPlan, type PublishPlan } from "@/lib/dashboard/plan";
 import type { ApiProject, Overlay } from "@/lib/dashboard/types";
 import { emptyOverlay } from "@/lib/dashboard/types";
 
+function thumbFor(project: { content: Record<string, unknown>; images: { name: string; src: string }[] }): string {
+  const cover = typeof project.content.cover === "string" ? project.content.cover : "";
+  const name = cover.split("/").pop();
+  const match = name ? project.images.find((img) => img.name === name) : undefined;
+  return (match || project.images[0])?.src || "";
+}
+
 export default function DashboardApp() {
   const [apiProjects, setApiProjects] = useState<ApiProject[] | null>(null);
   const [overlay, setOverlay] = useState<Overlay>(emptyOverlay());
@@ -260,9 +267,9 @@ export default function DashboardApp() {
           <li key={project.slug} className="dash-row">
             <span className="dash-pos">{String(index + 1).padStart(2, "0")}</span>
             <span className="dash-thumb">
-              {project.images[0] ? (
+              {thumbFor(project) ? (
                 // eslint-disable-next-line @next/next/no-img-element
-                <img src={project.images[0].src} alt="" />
+                <img src={thumbFor(project)} alt="" />
               ) : (
                 <span className="dash-thumb-empty">No image</span>
               )}

@@ -9,6 +9,7 @@ import {
   type MergedProject,
 } from "@/lib/dashboard/client";
 import { loadOverlay } from "@/lib/dashboard/draft";
+import { groupMediaByRhythm } from "@/lib/case-study";
 
 type Chapter = { title: string; note?: string; media: string[] };
 
@@ -85,33 +86,44 @@ export default function CaseStudyPreview({ slug }: { slug: string }) {
         </section>
       )}
 
-      <div className="cs-container">
-        {chapters.length > 0 && (
-          <div className="cs-gallery">
-            {chapters.map((chapter, i) => (
+      {chapters.length > 0 && (
+        <div className="cs-gallery">
+          {chapters.map((chapter, i) => {
+            const items = chapter.media
+              .map((name) => imageByName.get(name))
+              .filter((img): img is NonNullable<typeof img> => Boolean(img))
+              .map((img) => ({
+                src: img.src,
+                type: "image" as const,
+                name: img.name,
+                width: img.width,
+                height: img.height,
+              }));
+            return (
               <section key={i} className="cs-chapter">
-                <h2 className="cs-chapter-title">{chapter.title}</h2>
-                {chapter.note && (
-                  <p className="cs-chapter-note">{chapter.note}</p>
-                )}
-                {chapter.media.map((name) => {
-                  const img = imageByName.get(name);
-                  if (!img) return null;
-                  return (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img
-                      key={name}
-                      src={img.src}
-                      alt={`${project.title} — ${chapter.title}`}
-                      style={{ width: "100%", height: "auto", display: "block" }}
-                    />
-                  );
-                })}
+                <header className="cs-chapter-head">
+                  <h3>{chapter.title}</h3>
+                  {chapter.note && <p>{chapter.note}</p>}
+                </header>
+                {groupMediaByRhythm(items).map((group, gi) => (
+                  <div key={gi} className={`cs-group cs-group-${group.layout}`}>
+                    {group.media.map((item) => (
+                      <figure key={item.src} className="cs-media">
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
+                          className="cs-media-image"
+                          src={item.src}
+                          alt={`${project.title} - ${chapter.title}`}
+                        />
+                      </figure>
+                    ))}
+                  </div>
+                ))}
               </section>
-            ))}
-          </div>
-        )}
-      </div>
+            );
+          })}
+        </div>
+      )}
     </main>
   );
 }
