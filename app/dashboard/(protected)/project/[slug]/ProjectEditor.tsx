@@ -325,7 +325,7 @@ export default function ProjectEditor({ slug }: { slug: string }) {
   const coverName =
     typeof content.cover === "string" ? content.cover.split("/").pop() : "";
 
-  async function save() {
+  async function save(goPreview = false) {
     setError("");
     const title = String(content.title || "").trim();
     if (!title) {
@@ -402,7 +402,7 @@ export default function ProjectEditor({ slug }: { slug: string }) {
       next.order = [...next.order, finalSlug];
     }
     await saveOverlay(next);
-    router.push("/dashboard");
+    router.push(goPreview ? `/dashboard/preview/${finalSlug}` : "/dashboard");
   }
 
   if (error && !project) return <p className="dash-error">{error}</p>;
@@ -422,6 +422,7 @@ export default function ProjectEditor({ slug }: { slug: string }) {
 
       <section className="dash-card">
         <h2>Basics</h2>
+        <p className="dash-muted small">Title and category show on the homepage and work cards. The text fields fill the case-study page, top to bottom.</p>
         <div className="dash-grid2">
           <label>
             Title
@@ -641,6 +642,7 @@ export default function ProjectEditor({ slug }: { slug: string }) {
 
       <section className="dash-card">
         <h2>Case-study chapters</h2>
+        <p className="dash-muted small">The chapters appear in this order on the case-study page, under the text. Pick a layout per chapter, or leave Auto.</p>
         {chapters.map((chapter, ci) => (
           <div key={ci} className="dash-chapter">
             <div className="dash-chapter-head">
@@ -738,7 +740,14 @@ export default function ProjectEditor({ slug }: { slug: string }) {
         >
           Back
         </button>
-        <button type="button" className="dash-button primary" onClick={save}>
+        <button
+          type="button"
+          className="dash-button ghost"
+          onClick={() => save(true)}
+        >
+          Save and preview
+        </button>
+        <button type="button" className="dash-button primary" onClick={() => save()}>
           Save changes
         </button>
       </div>
