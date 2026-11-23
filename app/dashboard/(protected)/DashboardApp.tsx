@@ -1,5 +1,6 @@
 "use client";
 
+import { thumbSrc } from "@/lib/dashboard/types";
 import Link from "next/link";
 import { useCallback, useEffect, useMemo, useState } from "react";
 
@@ -270,7 +271,7 @@ export default function DashboardApp() {
             <span className="dash-thumb">
               {thumbFor(project) ? (
                 // eslint-disable-next-line @next/next/no-img-element
-                <img src={thumbFor(project)} alt="" />
+                <img src={thumbSrc(thumbFor(project))} alt="" loading="lazy" decoding="async" />
               ) : (
                 <span className="dash-thumb-empty">No image</span>
               )}

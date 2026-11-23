@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
+import { thumbSrc } from "@/lib/dashboard/types";
 import {
   fetchProjects,
   mergeProjects,
@@ -571,7 +572,7 @@ export default function ProjectEditor({ slug }: { slug: string }) {
           {images.map((img) => (
             <figure key={img.name} className={coverName === img.name ? "cover" : ""}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={img.src} alt={img.name} />
+              <img src={thumbSrc(img.src)} alt={img.name} loading="lazy" decoding="async" />
               <figcaption>{img.name}</figcaption>
               <div className="dash-img-actions">
                 <button
@@ -627,7 +628,7 @@ export default function ProjectEditor({ slug }: { slug: string }) {
                 return (
                   <figure key={name}>
                     {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={img.src} alt={name} />
+                    <img src={thumbSrc(img.src)} alt={name} loading="lazy" decoding="async" />
                     <div className="dash-img-actions">
                       <button type="button" onClick={() => chapterMove(ci, name, -1)}>
                         ←

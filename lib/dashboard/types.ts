@@ -64,3 +64,13 @@ export type PublishProjectPayload = {
   newImages: Array<{ name: string; blobSha: string }>;
   removedImages: string[];
 };
+
+/**
+ * Small optimized copy of a published image for dashboard grids. The dashboard
+ * used to load the full originals (some are 4000px wide), so tiles stayed blank
+ * for seconds. Draft images (blob/data URLs) are returned unchanged.
+ */
+export function thumbSrc(src: string, width = 384): string {
+  if (!src || !src.startsWith("/projects/")) return src;
+  return `/_next/image?url=${encodeURIComponent(src)}&w=${width}&q=60`;
+}
