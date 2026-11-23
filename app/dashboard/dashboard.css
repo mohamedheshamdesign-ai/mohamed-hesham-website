@@ -583,3 +583,25 @@
   margin-bottom: 18px;
   font-size: 14px;
 }
+
+/* The dashboard has its own bar: hide the public site chrome around it so the
+   two sticky headers never stack and clip the dashboard controls. */
+body:has(> .dash),
+body:has(.dash) {
+  --dash-chrome: 1;
+}
+body:has(.dash) .site-header,
+body:has(.dash) .site-footer,
+body:has(.dash) .scroll-progress,
+body:has(.dash) .back-to-top {
+  display: none !important;
+}
+.dash-top {
+  flex-wrap: wrap;
+  row-gap: 8px;
+}
+@media (max-width: 700px) {
+  .dash-top {
+    padding: 10px 14px;
+  }
+}
