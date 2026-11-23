@@ -67,6 +67,21 @@
       "media": [
         "flyer-spices.jpg"
       ]
+    },
+    {
+      "title": "Price stickers",
+      "note": "Small price stickers with barcode, one per spice.",
+      "layout": "duo",
+      "media": [
+        "sticker-01.jpg",
+        "sticker-02.jpg",
+        "sticker-03.jpg",
+        "sticker-04.jpg",
+        "sticker-05.jpg",
+        "sticker-06.jpg",
+        "sticker-07.jpg",
+        "sticker-08.jpg"
+      ]
     }
   ],
   "ownsSharedMedia": true
