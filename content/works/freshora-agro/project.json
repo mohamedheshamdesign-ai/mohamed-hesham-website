@@ -1,0 +1,47 @@
+{
+  "title": "Freshora Agro",
+  "slug": "freshora-agro",
+  "description": "An export catalogue for Freshora Agro, presenting fruit and vegetables through a consistent green-and-earth-tone page system. The work shown is catalogue and page design, not a claim of creating every product or certification featured inside.",
+  "challenge": "Make a varied produce range easy to browse while giving product photography and specification tables room to work.",
+  "solution": "Product spreads pair close-up photography with structured tables, curved fields of green and repeated brand details.",
+  "results": "A supplied catalogue design with a cover, company page and produce-range spreads.",
+  "category": "Catalogue design • Editorial design",
+  "featured": false,
+  "client": "Freshora Agro",
+  "sector": "Fresh produce export",
+  "role": "Brand identity & visual design",
+  "services": [
+    "Catalogue design",
+    "Editorial design"
+  ],
+  "deliverables": [
+    "Catalogue design",
+    "Editorial design"
+  ],
+  "cover": "/projects/freshora-agro/cover-source.jpg",
+  "chapters": [
+    {
+      "title": "Catalogue introduction",
+      "media": [
+        "design-01.jpg",
+        "design-04.jpg"
+      ]
+    },
+    {
+      "title": "Produce collection",
+      "media": [
+        "design-05.jpg",
+        "design-06.jpg",
+        "design-07.jpg",
+        "design-08.jpg",
+        "design-09.jpg",
+        "design-10.jpg",
+        "design-11.jpg",
+        "design-12.jpg",
+        "design-13.jpg",
+        "design-14.jpg"
+      ]
+    }
+  ],
+  "ownsSharedMedia": true
+}

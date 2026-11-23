@@ -1,0 +1,55 @@
+{
+  "title": "Suzana",
+  "slug": "suzana",
+  "description": "A visual identity presentation for Suzana bags and accessories. A flowing S and floral motif appear across logo variants, colour and type rules, stationery, gift packaging and shopping-bag mockups.",
+  "challenge": "Give the identity a consistent presence across small logo uses and more expressive packaging presentations.",
+  "solution": "A dark teal base supports plum and pink accents. The floral S, fine borders and restrained typography carry through the supplied mockups.",
+  "results": "A supplied identity and application study. Packaging images are presentation mockups, not evidence of manufactured products.",
+  "category": "Brand identity • Brand guidelines • Packaging applications",
+  "featured": false,
+  "client": "Suzana",
+  "sector": "Bags & accessories",
+  "role": "Brand identity & visual design",
+  "services": [
+    "Brand identity",
+    "Brand guidelines",
+    "Packaging applications"
+  ],
+  "deliverables": [
+    "Brand identity",
+    "Brand guidelines",
+    "Packaging applications"
+  ],
+  "cover": "/projects/suzana/cover-source.jpg",
+  "chapters": [
+    {
+      "title": "Mark & visual system",
+      "media": [
+        "design-01.jpg",
+        "design-04.jpg",
+        "design-05.jpg",
+        "design-06.jpg",
+        "design-07.jpg"
+      ]
+    },
+    {
+      "title": "Stationery & packaging",
+      "media": [
+        "design-08.jpg",
+        "design-09.jpg",
+        "design-10.jpg",
+        "design-11.jpg"
+      ],
+      "note": "Mockups included in the supplied identity presentation."
+    },
+    {
+      "title": "Supporting variants",
+      "media": [
+        "design-13.jpg",
+        "design-15.jpg",
+        "design-16.jpg"
+      ]
+    }
+  ],
+  "ownsSharedMedia": true
+}

@@ -2,12 +2,12 @@
   "title": "Infinity Connect Group",
   "slug": "infinity-connect-group",
   "category": "Brand Identity • Brand Guidelines • Corporate Brochure • Visual Identity • Editorial Design",
-  "description": "Infinity Connect Group (ICG) is a telecommunications and ICT solutions provider in Egypt, delivering integrated connectivity, infrastructure, technology, and field implementation solutions. The project focused on developing and documenting a complete corporate visual identity, followed by the design of the company's official 2026 English brochure. The identity presents ICG as a confident, internationally minded connectivity brand with a visual language built around technology, global reach, reliability, and continuous connection. ",
-  "challenge": "ICG needed a unified corporate identity that could represent a broad technology portfolio while communicating reliability, connectivity, and international reach. The brand had to work across different applications, from the primary logo and corporate materials to regional communication, digital environments, and physical materials. The company also required a professional brochure capable of organizing a large portfolio of telecom, ICT, infrastructure, security, networking, marine, fiber, and power solutions into a clear and visually consistent presentation.",
-  "solution": "A complete brand guideline system was developed around the ICG identity. The brand positioning defines Infinity Connect Group as a confident, internationally minded connectivity brand that should feel reliable for infrastructure, dynamic for technology, and human for partnerships. The identity attributes are Connected, Reliable, Borderless, Intelligent, Clear, and Forward-looking. \n\nThe visual system includes the ICG logo suite, logo variations, correct-use layouts, material applications, logo misuse guidelines, typography, color palette, gradients, and branded patterns. The guideline specifies Poppins and Roboto for English typography and Alexandria for Arabic typography, while the core colors include Abstract Navy, Blue Chill, and Black Pearl. The identity also introduces connectivity-inspired patterns based on the brand icon and global-map graphics to reinforce the international positioning.   \n\nThe corporate brochure was then designed as a 31-page 2026 official company presentation. It introduces ICG's company profile, vision, mission, worldwide connectivity, products, and services before presenting detailed product categories including VSAT and satellite terminals, Thuraya mobile satellite, Hytera radio communication, microwave links, surveillance and cameras, Peplink SD-WAN and 5G routers, RUCKUS networking, Durabook rugged computing, Zebra identification and data capture, ComNav marine navigation, fiber optics, and power and energy.  ",
-  "results": "The project created a consistent corporate visual foundation for Infinity Connect Group and extended it into a structured sales and communication document. The brand book establishes the rules needed to keep the identity consistent across applications, while the 2026 brochure transforms the extensive product and service portfolio into a cohesive editorial system. The brochure also presents ICG's service offering across connectivity solutions, SMS solutions, AVL/fleet tracking, cloud solutions, colocation services, smart solutions, Zoho solutions, and cybersecurity services. \n\nTogether, the identity and brochure establish a recognizable visual language based on dark navy and teal tones, high-contrast typography, technology-focused imagery, global connectivity graphics, structured information layouts, and recurring brand patterns.",
+  "description": "A visual identity and corporate brochure for Infinity Connect Group. The supplied designs connect a circular ICG mark, a dark navy-and-teal palette, a pattern system and product/service editorial pages.",
+  "challenge": "Connect a technical product and service portfolio through a clear visual identity and a consistent brochure layout.",
+  "solution": "A circular connectivity motif carries through the logo and patterns. Navy and teal provide a shared palette, while the brochure uses structured product grids and clear section dividers.",
+  "results": "Selected identity-system pages and brochure spreads from the supplied files. Product brands inside the brochure are presented as editorial content, not as separate identity-design claims.",
   "featured": false,
-  "cover": "/projects/infinity-connect-group/cover.jpg",
+  "cover": "/projects/infinity-connect-group/cover-source.jpg",
   "images": [],
   "client": "Infinity Connect Group",
   "sector": "Telecommunications & ICT",
@@ -23,5 +23,50 @@
     "Typography & colour standards",
     "Connectivity brand patterns",
     "31-page 2026 corporate brochure"
-  ]
+  ],
+  "chapters": [
+    {
+      "title": "Identity & logo system",
+      "media": [
+        "identity-12.jpg",
+        "identity-13.jpg",
+        "identity-14.jpg",
+        "identity-15.jpg",
+        "identity-23.jpg",
+        "identity-24.jpg",
+        "identity-26.jpg"
+      ],
+      "note": "Selected design pages from the supplied brand-book file. Competitor logos and previous concepts are excluded."
+    },
+    {
+      "title": "Typography, colour & patterns",
+      "media": [
+        "identity-29.jpg",
+        "identity-31.jpg",
+        "identity-32.jpg",
+        "identity-34.jpg",
+        "identity-36.jpg"
+      ]
+    },
+    {
+      "title": "Corporate brochure",
+      "media": [
+        "brochure-01.jpg",
+        "brochure-02.jpg",
+        "brochure-03.jpg",
+        "brochure-04.jpg",
+        "brochure-08.jpg",
+        "brochure-10.jpg",
+        "brochure-14.jpg",
+        "brochure-15.jpg",
+        "brochure-16.jpg",
+        "brochure-19.jpg",
+        "brochure-21.jpg",
+        "brochure-23.jpg",
+        "brochure-25.jpg",
+        "brochure-30.jpg"
+      ]
+    }
+  ],
+  "ownsSharedMedia": true
 }

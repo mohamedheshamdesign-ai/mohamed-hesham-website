@@ -1,0 +1,48 @@
+{
+  "title": "APEX BH Group",
+  "slug": "apex",
+  "description": "A visual identity and campaign system for APEX BH Group, an automotive service business. The supplied work combines a red-and-green wordmark, logo variants, typography and product-led service campaigns.",
+  "challenge": "Keep an automotive service brand recognizable across identity sheets, maintenance messages and oil-product promotions.",
+  "solution": "The identity uses an italic wordmark and a red, green, black and white palette. Campaign layouts connect workshop imagery, vehicles and product photography under the APEX mark.",
+  "results": "Selected logo guidelines and campaign designs from the supplied source files. No campaign performance or launch results are claimed.",
+  "category": "Brand identity • Brand guidelines • Social media design",
+  "featured": false,
+  "client": "APEX BH Group",
+  "sector": "Automotive services",
+  "role": "Brand identity & visual design",
+  "services": [
+    "Brand identity",
+    "Brand guidelines",
+    "Social media design"
+  ],
+  "deliverables": [
+    "Brand identity",
+    "Brand guidelines",
+    "Social media design"
+  ],
+  "cover": "/projects/apex/cover-source.jpg",
+  "chapters": [
+    {
+      "title": "Identity system",
+      "media": [
+        "design-01.jpg",
+        "design-03.jpg",
+        "design-04.jpg",
+        "design-05.jpg"
+      ]
+    },
+    {
+      "title": "Selected campaigns",
+      "media": [
+        "social-01.jpg",
+        "social-03.jpg",
+        "social-07.jpg",
+        "social-14.jpg",
+        "social-20.jpg",
+        "social-25.jpg"
+      ],
+      "note": "Campaign artwork supplied with the identity. Fanfaro is a product featured in the campaigns, not a separate identity-design claim."
+    }
+  ],
+  "ownsSharedMedia": true
+}

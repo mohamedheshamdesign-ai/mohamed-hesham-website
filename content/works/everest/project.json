@@ -7,7 +7,7 @@
   "solution": "A complete branding and packaging system was developed around the Everest Professional identity. The work included logo development, packaging design, product labels, box structures, dieline preparation, stickers, and business cards. A strong red-and-black visual direction was combined with clean typography and focused product presentation to create a premium and cohesive appearance across the different product lines. Packaging structures were also prepared with production requirements in mind, allowing the designs to translate from concept and mockup into physical applications.",
   "results": "The final system gave Everest Professional a cohesive and premium visual presence across its product range. Different packaging formats were brought together through a consistent design language while retaining enough flexibility for individual products such as Argan Oil, Shampoo, and Serum. The combination of branding, packaging, and production-ready dielines created a complete foundation for presenting the brand consistently across both products and supporting materials.",
   "featured": false,
-  "cover": "/projects/everest/cover.jpg",
+  "cover": "/projects/everest/cover-artwork.jpg",
   "images": [],
   "client": "Everest Professional",
   "sector": "Professional hair & beauty care",
@@ -23,5 +23,36 @@
     "Box structures & dielines",
     "Stickers",
     "Business cards"
-  ]
+  ],
+  "chapters": [
+    {
+      "title": "Packaging overview",
+      "media": [
+        "presentation-01.jpg"
+      ],
+      "note": "Original design presentation from the supplied portfolio."
+    },
+    {
+      "title": "Carton dieline",
+      "media": [
+        "presentation-02.jpg"
+      ],
+      "note": "Original design presentation from the supplied portfolio."
+    },
+    {
+      "title": "Serum box",
+      "media": [
+        "presentation-03.jpg"
+      ],
+      "note": "Original design presentation from the supplied portfolio."
+    },
+    {
+      "title": "Product and stationery",
+      "media": [
+        "presentation-04.jpg"
+      ],
+      "note": "Original design presentation from the supplied portfolio."
+    }
+  ],
+  "ownsSharedMedia": true
 }

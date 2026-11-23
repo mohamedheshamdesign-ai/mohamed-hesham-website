@@ -7,7 +7,7 @@
   "solution": "A cohesive visual system was developed around the Olive Branch logo, combining natural imagery, Arabic typography, and a fresh green color direction inspired by the brand name and its connection to nature. Product stickers were designed with consistent layouts and brand elements while allowing each spice to be identified through its own product imagery and color. The same visual language was extended into social media compositions to create a unified presence across packaging and digital communication.",
   "results": "The resulting system gave Olive Branch a consistent visual presence across its growing range of spice products. The label design created a recognizable connection between different products while preserving clear differentiation for individual spices. Supporting social media designs extended the packaging language into promotional communication, creating a more unified and recognizable brand presentation.",
   "featured": false,
-  "cover": "/projects/olive-branch/cover.jpg",
+  "cover": "/projects/olive-branch/cover-artwork.jpg",
   "images": [],
   "client": "Olive Branch",
   "sector": "Spices & seasonings",
@@ -20,5 +20,15 @@
     "Brand identity",
     "Product sticker labels",
     "Social media compositions"
-  ]
+  ],
+  "chapters": [
+    {
+      "title": "Selected applications",
+      "media": [
+        "source-applications.jpg"
+      ],
+      "note": "Original artwork and mockups from the supplied portfolio presentation."
+    }
+  ],
+  "ownsSharedMedia": true
 }

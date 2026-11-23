@@ -1,0 +1,52 @@
+{
+  "title": "Blowerall",
+  "slug": "blowerall",
+  "description": "Blowerall brings ventilation products and installation services into one visual system. The supplied designs cover the logo, business cards, warranty sheet and Arabic social campaigns.",
+  "challenge": "Use the same identity across small printed documents and image-led service campaigns.",
+  "solution": "A red-and-yellow mark and curved graphic elements connect product imagery, benefit-led headlines and contact details.",
+  "results": "A coordinated set of supplied identity, print and campaign applications.",
+  "category": "Brand identity • Print design • Social media design",
+  "featured": false,
+  "client": "Blowerall",
+  "sector": "Ventilation & air systems",
+  "role": "Brand identity & visual design",
+  "services": [
+    "Brand identity",
+    "Print design",
+    "Social media design"
+  ],
+  "deliverables": [
+    "Brand identity",
+    "Print design",
+    "Social media design"
+  ],
+  "cover": "/projects/blowerall/cover-source.jpg",
+  "chapters": [
+    {
+      "title": "Logo",
+      "media": [
+        "design-01.jpg"
+      ]
+    },
+    {
+      "title": "Cards & warranty",
+      "media": [
+        "card-01.jpg",
+        "card-02.jpg",
+        "warranty-01.jpg"
+      ]
+    },
+    {
+      "title": "Service campaigns",
+      "media": [
+        "social-01.jpg",
+        "social-02.jpg",
+        "social-05.jpg",
+        "social-06.jpg",
+        "social-07.jpg",
+        "social-10.jpg"
+      ]
+    }
+  ],
+  "ownsSharedMedia": true
+}

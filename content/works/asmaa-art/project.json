@@ -21,5 +21,14 @@
     "Social media designs"
   ],
   "ownsSharedMedia": true,
-  "chapters": []
+  "chapters": [
+    {
+      "title": "Selected applications",
+      "media": [
+        "source-applications.jpg"
+      ],
+      "note": "Original artwork and mockups from the supplied portfolio presentation."
+    }
+  ],
+  "cover": "/projects/asmaa-art/cover-artwork.jpg"
 }

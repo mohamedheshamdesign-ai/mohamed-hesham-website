@@ -7,7 +7,7 @@
   "solution": "A complete visual identity system was developed around a stylized Egyptian-inspired logo featuring a black dog-like figure positioned above a pyramid and desert landscape, accompanied by the MEMO trips wordmark and the tagline 'Your Memory in Egypt'. Multiple logo variations were created for different applications, including primary, secondary, horizontal, vertical, monochrome, and clear-space configurations. The brand guidelines established the logo construction, acceptable variations, color palette, typography, and visual usage. The visual language was supported by Egyptian landmarks, archaeological references, desert landscapes, and travel photography. The identity was then extended into a responsive travel website and mobile application featuring recommended cars, popular tours, popular attractions, travel content, and destination-focused experiences.",
   "results": "The project established a structured and scalable visual identity for MEMO trips that connects Egyptian cultural references with a contemporary travel experience. The documented logo system, color palette, typography, and visual guidelines provide a consistent foundation for the brand across different communication channels. The identity was successfully translated into digital products, including a responsive website and mobile interfaces designed to present tours, attractions, recommendations, and travel experiences in a clear and engaging way.",
   "featured": true,
-  "cover": "/projects/memo-trips/cover.jpg",
+  "cover": "/projects/memo-trips/cover-artwork.jpg",
   "images": [],
   "client": "MEMO trips",
   "sector": "Travel & tourism",
@@ -23,5 +23,64 @@
     "Colour & typography system",
     "Responsive website",
     "Mobile application"
-  ]
+  ],
+  "chapters": [
+    {
+      "title": "Brand introduction",
+      "media": [
+        "presentation-01.jpg"
+      ],
+      "note": "Original design presentation from the supplied portfolio."
+    },
+    {
+      "title": "Logo structure",
+      "media": [
+        "presentation-02.jpg"
+      ],
+      "note": "Original design presentation from the supplied portfolio."
+    },
+    {
+      "title": "Logo concept",
+      "media": [
+        "presentation-03.jpg"
+      ],
+      "note": "Original design presentation from the supplied portfolio."
+    },
+    {
+      "title": "Logo variations",
+      "media": [
+        "presentation-04.jpg"
+      ],
+      "note": "Original design presentation from the supplied portfolio."
+    },
+    {
+      "title": "Clear space",
+      "media": [
+        "presentation-05.jpg"
+      ],
+      "note": "Original design presentation from the supplied portfolio."
+    },
+    {
+      "title": "Colour system",
+      "media": [
+        "presentation-06.jpg"
+      ],
+      "note": "Original design presentation from the supplied portfolio."
+    },
+    {
+      "title": "Usage rules",
+      "media": [
+        "presentation-07.jpg"
+      ],
+      "note": "Original design presentation from the supplied portfolio."
+    },
+    {
+      "title": "Desktop and mobile interfaces",
+      "media": [
+        "presentation-08.jpg"
+      ],
+      "note": "Original design presentation from the supplied portfolio."
+    }
+  ],
+  "ownsSharedMedia": true
 }

@@ -2,7 +2,7 @@
   "title": "Hussein Selim Group",
   "slug": "hussein-selim-group",
   "category": "Print",
-  "description": "Hussein Selim Group is a supplies and constructions company in Egypt. I designed its letterhead and invoice.",
+  "description": "A collection of letterhead and invoice layouts presented under Hussein Selim Group in the supplied portfolio. The sheets include printed work for several businesses; the individual customer logos are not presented as separate identity-design projects.",
   "challenge": "",
   "solution": "",
   "results": "Letterhead and invoice for a supplies and constructions company.",
@@ -18,5 +18,15 @@
     "Invoice"
   ],
   "ownsSharedMedia": true,
-  "chapters": []
+  "chapters": [
+    {
+      "title": "Selected applications",
+      "media": [
+        "source-letterheads.jpg",
+        "source-invoices.jpg"
+      ],
+      "note": "Letterhead and invoice layouts shown together in the supplied group presentation. Client logos are part of the printed layouts, not separate logo-design claims."
+    }
+  ],
+  "role": "Print design"
 }

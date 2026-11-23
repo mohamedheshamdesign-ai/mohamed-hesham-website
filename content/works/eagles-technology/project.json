@@ -1,0 +1,50 @@
+{
+  "title": "Eagles Technology",
+  "slug": "eagles-technology",
+  "description": "A visual identity exploration for Eagles Technology, covering an eagle-and-barcode mark, colour and type rules, packaging applications and product-focused social layouts.",
+  "challenge": "Bring technology, product identification and protective packaging into one recognizable identity.",
+  "solution": "The supplied guideline explores an eagle, barcode and technology motif in purple and orange. Supporting campaign designs use a product-led layout system.",
+  "results": "Selected work from a supplied version 0.1 guideline and campaign files, presented as a design study rather than a claim of a final rollout.",
+  "category": "Brand identity • Brand guidelines • Social media design",
+  "featured": false,
+  "client": "Eagles Technology",
+  "sector": "Identification, packaging & technology",
+  "role": "Brand identity & visual design",
+  "services": [
+    "Brand identity",
+    "Brand guidelines",
+    "Social media design"
+  ],
+  "deliverables": [
+    "Brand identity",
+    "Brand guidelines",
+    "Social media design"
+  ],
+  "cover": "/projects/eagles-technology/cover-source.jpg",
+  "chapters": [
+    {
+      "title": "Identity study",
+      "media": [
+        "design-19.jpg",
+        "design-21.jpg",
+        "design-23.jpg",
+        "design-24.jpg",
+        "design-25.jpg",
+        "design-26.jpg",
+        "design-28.jpg"
+      ],
+      "note": "Selected pages from the supplied version 0.1 guideline."
+    },
+    {
+      "title": "Campaign applications",
+      "media": [
+        "social-01.jpg",
+        "social-02.jpg",
+        "social-03.jpg",
+        "social-04.jpg"
+      ],
+      "note": "The supplied social files show an alternate mark and colour treatment. They are shown as campaign work, not as the final guideline implementation."
+    }
+  ],
+  "ownsSharedMedia": true
+}

@@ -20,5 +20,14 @@
     "Letterhead"
   ],
   "ownsSharedMedia": true,
-  "chapters": []
+  "chapters": [
+    {
+      "title": "Selected applications",
+      "media": [
+        "source-applications.jpg"
+      ],
+      "note": "Original artwork and mockups from the supplied portfolio presentation."
+    }
+  ],
+  "cover": "/projects/continental/cover-artwork.jpg"
 }

@@ -1,29 +1,71 @@
 {
   "title": "Atractive Collection",
   "slug": "atractive-collection",
-  "category": "Brand Identity • Brand Guidelines • Packaging Design • Stationery",
-  "description": "Atractive Collection is a beauty and personal care brand offering a wide range of products including body care, hair care, fragrances, lotions, body splashes, hair masks, bikini creams, and serums. The project focused on developing a complete visual identity that communicates luxury, effectiveness, and affordability while creating a consistent and recognizable visual language across the brand's different product categories and communication materials.",
-  "challenge": "Atractive Collection needed a unified visual identity capable of bringing together a diverse range of beauty and personal care products under one recognizable brand language. The identity had to balance a premium and feminine character with an accessible and approachable personality, while remaining flexible enough to work across different packaging formats and physical brand applications. Another challenge was creating supporting visual elements that could strengthen recognition beyond the logo itself and maintain consistency across both Arabic and English communication.",
-  "solution": "A complete visual identity system was developed around a flexible logo suite consisting of a primary logo, logo mark, and logo variant. The identity was built around a warm cream and gold color palette supported by dark neutral tones, creating an elegant and premium visual character. Playfair Display and Montserrat were selected for English typography, while Cairo and Tajawal were used for Arabic communication. The floral logo mark was transformed into decorative patterns and textures that could extend the identity across different applications without relying solely on the logo. The visual system was then applied to a wide range of beauty product packaging including body splash, lotion, serum, hair mask, conditioner, and other personal care products, alongside business cards, letterheads, envelopes, notebooks, pens, shopping bags, T-shirts, caps, cups, and other branded materials.",
-  "results": "The project established a cohesive and scalable visual identity for Atractive Collection, creating a consistent connection between the brand, its product range, and its physical touchpoints. The combination of an elegant logo system, cream and gold palette, refined typography, floral patterns, and flexible packaging applications gave the brand a recognizable visual language that could adapt across multiple categories while maintaining a unified premium beauty aesthetic.",
+  "category": "Packaging Design • Label Design • Social Media Design",
+  "description": "Atractive Collection packaging and campaign design, shown through the supplied body-splash labels, mini-format variants and product-led social artwork. Pattern, colour and fragrance names distinguish the range while the central label structure stays consistent.",
+  "challenge": "Keep a large fragrance collection connected while making each variant easy to distinguish.",
+  "solution": "A repeated brand panel and information layout hold the label family together. Fragrance-specific patterns and colour treatments provide variety, while campaign artwork extends the product designs into social content.",
+  "results": "A selected set of supplied full-size labels, mini labels and campaign artwork. No sales results, brand launch or manufacturing outcome is claimed.",
   "featured": false,
-  "cover": "/projects/atractive-collection/cover.jpg",
+  "cover": "/projects/atractive-collection/cover-source.jpg",
   "images": [],
   "client": "Atractive Collection",
   "sector": "Beauty & personal care",
   "services": [
-    "Brand identity",
-    "Brand guidelines",
     "Packaging design",
-    "Stationery"
+    "Label design",
+    "Social media design"
   ],
   "deliverables": [
-    "Primary logo, mark & variant",
-    "Cream & gold colour palette",
-    "Typography system (Latin & Arabic)",
-    "Floral patterns & textures",
-    "Beauty product packaging",
-    "Stationery suite",
-    "Branded merchandise"
-  ]
+    "Body-splash labels",
+    "Mini-format labels",
+    "Product campaign designs"
+  ],
+  "chapters": [
+    {
+      "title": "Fragrance label system",
+      "media": [
+        "label-01.jpg",
+        "label-02.jpg",
+        "label-03.jpg",
+        "label-05.jpg",
+        "label-07.jpg",
+        "label-08.jpg",
+        "label-10.jpg",
+        "label-12.jpg",
+        "label-13.jpg",
+        "label-15.jpg",
+        "label-17.jpg",
+        "label-22.jpg"
+      ],
+      "note": "Full-size label artwork supplied for the body-splash range."
+    },
+    {
+      "title": "Mini-format labels",
+      "media": [
+        "mini-02.jpg",
+        "mini-05.jpg",
+        "mini-08.jpg",
+        "mini-12.jpg"
+      ]
+    },
+    {
+      "title": "Product campaigns",
+      "media": [
+        "social-01.jpg",
+        "social-03.jpg",
+        "social-04.jpg",
+        "social-07.jpg",
+        "social-08.jpg",
+        "social-13.jpg",
+        "social-16.jpg",
+        "social-20.jpg",
+        "social-28.jpg",
+        "social-33.jpg",
+        "social-38.jpg",
+        "social-46.jpg"
+      ]
+    }
+  ],
+  "ownsSharedMedia": true
 }

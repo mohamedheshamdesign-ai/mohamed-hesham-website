@@ -1,0 +1,63 @@
+{
+  "title": "CALMA Agency",
+  "slug": "calma",
+  "description": "A brand system for CALMA Agency, connecting its wordmark and monogram with guidelines, a company profile and social content. The presentation uses blue, white and black across editorial and campaign layouts.",
+  "challenge": "Connect an agency identity with its profile and an ongoing series of campaign messages.",
+  "solution": "The CALMA monogram becomes a repeating pattern and a visual anchor. A clear type system and alternating blue-and-white layouts link the profile to social content.",
+  "results": "A supplied identity presentation, company-profile design and selected social applications. Business-growth claims inside campaign artwork are advertising copy, not measured project outcomes.",
+  "category": "Brand identity • Brand guidelines • Company profile • Social media design",
+  "featured": false,
+  "client": "CALMA Agency",
+  "sector": "Marketing & sales agency",
+  "role": "Brand identity & visual design",
+  "services": [
+    "Brand identity",
+    "Brand guidelines",
+    "Company profile",
+    "Social media design"
+  ],
+  "deliverables": [
+    "Brand identity",
+    "Brand guidelines",
+    "Company profile",
+    "Social media design"
+  ],
+  "cover": "/projects/calma/cover-source.jpg",
+  "chapters": [
+    {
+      "title": "Identity & guidelines",
+      "media": [
+        "design-03.jpg",
+        "design-04.jpg",
+        "design-05.jpg",
+        "design-06.jpg",
+        "design-07.jpg",
+        "design-08.jpg"
+      ]
+    },
+    {
+      "title": "Company profile",
+      "media": [
+        "profile-01.jpg",
+        "profile-03.jpg",
+        "profile-04.jpg",
+        "profile-06.jpg",
+        "profile-07.jpg"
+      ]
+    },
+    {
+      "title": "Social content",
+      "media": [
+        "social-01.jpg",
+        "social-02.jpg",
+        "social-03.jpg",
+        "social-06.jpg",
+        "social-08.jpg",
+        "social-10.jpg",
+        "social-13.jpg",
+        "social-14.jpg"
+      ]
+    }
+  ],
+  "ownsSharedMedia": true
+}
