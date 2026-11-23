@@ -9,8 +9,10 @@
   "results": "Letterhead and invoice for a supplies and constructions company.",
   "featured": false,
   "images": [],
+  "order": 18,
   "client": "Hussein Selim Group",
   "sector": "Supplies & Constructions",
+  "role": "Print design",
   "services": [
     "Print"
   ],
@@ -18,16 +20,15 @@
     "Letterhead",
     "Invoice"
   ],
-  "ownsSharedMedia": true,
   "chapters": [
     {
       "title": "Selected applications",
+      "note": "Letterhead and invoice layouts shown together in the supplied group presentation. Client logos are part of the printed layouts, not separate logo-design claims.",
       "media": [
         "source-letterheads.jpg",
         "source-invoices.jpg"
-      ],
-      "note": "Letterhead and invoice layouts shown together in the supplied group presentation. Client logos are part of the printed layouts, not separate logo-design claims."
+      ]
     }
   ],
-  "role": "Print design"
+  "ownsSharedMedia": true
 }

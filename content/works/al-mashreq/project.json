@@ -10,6 +10,7 @@
   "featured": true,
   "cover": "/projects/al-mashreq/cover.jpg",
   "images": [],
+  "order": 1,
   "client": "Al Mashreq For Chemicals",
   "sector": "Agriculture & Fertilizers",
   "services": [
@@ -39,84 +40,84 @@
       "value": "#004F9F"
     }
   ],
-  "ownsSharedMedia": true,
   "chapters": [
     {
       "title": "Bilingual logo",
+      "note": "Original design presentation from the supplied portfolio.",
       "media": [
         "presentation-01.jpg"
-      ],
-      "note": "Original design presentation from the supplied portfolio."
+      ]
     },
     {
       "title": "Wordmark configurations",
+      "note": "Original design presentation from the supplied portfolio.",
       "media": [
         "presentation-02.jpg"
-      ],
-      "note": "Original design presentation from the supplied portfolio."
+      ]
     },
     {
       "title": "Logo construction",
+      "note": "Original design presentation from the supplied portfolio.",
       "media": [
         "presentation-03.jpg"
-      ],
-      "note": "Original design presentation from the supplied portfolio."
+      ]
     },
     {
       "title": "Colour variants",
+      "note": "Original design presentation from the supplied portfolio.",
       "media": [
         "presentation-04.jpg"
-      ],
-      "note": "Original design presentation from the supplied portfolio."
+      ]
     },
     {
       "title": "Brand colours",
+      "note": "Original design presentation from the supplied portfolio.",
       "media": [
         "presentation-05.jpg"
-      ],
-      "note": "Original design presentation from the supplied portfolio."
+      ]
     },
     {
       "title": "Latin typography",
+      "note": "Original design presentation from the supplied portfolio.",
       "media": [
         "presentation-06.jpg"
-      ],
-      "note": "Original design presentation from the supplied portfolio."
+      ]
     },
     {
       "title": "Arabic typography",
+      "note": "Original design presentation from the supplied portfolio.",
       "media": [
         "presentation-07.jpg"
-      ],
-      "note": "Original design presentation from the supplied portfolio."
+      ]
     },
     {
       "title": "Patterns and textures",
+      "note": "Original design presentation from the supplied portfolio.",
       "media": [
         "presentation-08.jpg"
-      ],
-      "note": "Original design presentation from the supplied portfolio."
+      ]
     },
     {
       "title": "Merchandise",
+      "note": "Original design presentation from the supplied portfolio.",
       "media": [
         "presentation-09.jpg"
-      ],
-      "note": "Original design presentation from the supplied portfolio."
+      ]
     },
     {
       "title": "Product packaging",
+      "note": "Original design presentation from the supplied portfolio.",
       "media": [
         "presentation-10.jpg"
-      ],
-      "note": "Original design presentation from the supplied portfolio."
+      ]
     },
     {
       "title": "Labels and catalogue",
+      "note": "Original design presentation from the supplied portfolio.",
       "media": [
         "presentation-11.jpg"
-      ],
-      "note": "Original design presentation from the supplied portfolio."
+      ]
     }
-  ]
+  ],
+  "ownsSharedMedia": true
 }

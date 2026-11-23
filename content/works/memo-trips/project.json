@@ -10,6 +10,7 @@
   "featured": true,
   "cover": "/projects/memo-trips/cover-artwork.jpg",
   "images": [],
+  "order": 22,
   "client": "MEMO trips",
   "sector": "Travel & tourism",
   "services": [
@@ -28,59 +29,59 @@
   "chapters": [
     {
       "title": "Brand introduction",
+      "note": "Original design presentation from the supplied portfolio.",
       "media": [
         "presentation-01.jpg"
-      ],
-      "note": "Original design presentation from the supplied portfolio."
+      ]
     },
     {
       "title": "Logo structure",
+      "note": "Original design presentation from the supplied portfolio.",
       "media": [
         "presentation-02.jpg"
-      ],
-      "note": "Original design presentation from the supplied portfolio."
+      ]
     },
     {
       "title": "Logo concept",
+      "note": "Original design presentation from the supplied portfolio.",
       "media": [
         "presentation-03.jpg"
-      ],
-      "note": "Original design presentation from the supplied portfolio."
+      ]
     },
     {
       "title": "Logo variations",
+      "note": "Original design presentation from the supplied portfolio.",
       "media": [
         "presentation-04.jpg"
-      ],
-      "note": "Original design presentation from the supplied portfolio."
+      ]
     },
     {
       "title": "Clear space",
+      "note": "Original design presentation from the supplied portfolio.",
       "media": [
         "presentation-05.jpg"
-      ],
-      "note": "Original design presentation from the supplied portfolio."
+      ]
     },
     {
       "title": "Colour system",
+      "note": "Original design presentation from the supplied portfolio.",
       "media": [
         "presentation-06.jpg"
-      ],
-      "note": "Original design presentation from the supplied portfolio."
+      ]
     },
     {
       "title": "Usage rules",
+      "note": "Original design presentation from the supplied portfolio.",
       "media": [
         "presentation-07.jpg"
-      ],
-      "note": "Original design presentation from the supplied portfolio."
+      ]
     },
     {
       "title": "Desktop and mobile interfaces",
+      "note": "Original design presentation from the supplied portfolio.",
       "media": [
         "presentation-08.jpg"
-      ],
-      "note": "Original design presentation from the supplied portfolio."
+      ]
     }
   ],
   "ownsSharedMedia": true

@@ -8,7 +8,9 @@
   "solution": "",
   "results": "Logo, business card and car labels for a car renting and trading company.",
   "featured": false,
+  "cover": "/projects/agence/cover-artwork.jpg",
   "images": [],
+  "order": 2,
   "client": "Agence",
   "sector": "Renting & Cars Trading",
   "services": [
@@ -20,15 +22,14 @@
     "Business cards",
     "Car labels"
   ],
-  "ownsSharedMedia": true,
   "chapters": [
     {
       "title": "Selected applications",
+      "note": "Original artwork and mockups from the supplied portfolio presentation.",
       "media": [
         "source-applications.jpg"
-      ],
-      "note": "Original artwork and mockups from the supplied portfolio presentation."
+      ]
     }
   ],
-  "cover": "/projects/agence/cover-artwork.jpg"
+  "ownsSharedMedia": true
 }
