@@ -3622,7 +3622,7 @@ section[id] { scroll-margin-top: 110px; }
 @media (max-width: 800px) { .about-page-hero, .about-experience { grid-template-columns: 1fr; gap: 40px; padding-block: 50px; } }
 
 /* Final gallery presentation: supplied artwork remains data-driven. */
-.studio-project-image { object-fit: contain; object-position: center; transform: scale(1); }
+.studio-project-image { object-fit: cover; object-position: center; transform: scale(1); }
 .studio-project-card:hover .studio-project-image { transform: scale(1.035); }
 .project-art-index { background: #faf9f6; color: #244638; padding: 5px 7px; border-radius: 3px; }
 /* Focus styles for keyboard navigation */

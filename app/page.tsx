@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { getFeaturedProjects } from "@/lib/projects";
+import { getProjects } from "@/lib/projects";
 import { gmailComposeUrl } from "@/lib/site";
 import WorkGrid from "@/components/WorkGrid";
 import WhatYouGet from "@/components/WhatYouGet";
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
 };
 
 export default function Home() {
-  const projects = getFeaturedProjects();
+  const projects = getProjects();
   const order = ["alitalia", "crowd", "onvaca", "al-mashreq", "memo-trips"];
   const selected = [...projects].sort((a, b) => {
     const rank = (slug: string) => order.includes(slug) ? order.indexOf(slug) : order.length;
