@@ -97,4 +97,38 @@ describe("publish plan", () => {
     expect(plan.items).toHaveLength(1);
     expect(plan.items[0].kind).toBe("edited");
   });
+
+  it("counts a video separately from images when added to a project", () => {
+    const overlay = emptyOverlay();
+    overlay.projects.a = {
+      slug: "a",
+      content: { ...server[0].content },
+      newImages: [
+        { name: "clip.mp4", width: 1280, height: 720, blob: new Blob(["x"], { type: "video/mp4" }), kind: "video" },
+        { name: "still.jpg", width: 800, height: 600, blob: new Blob(["x"], { type: "image/jpeg" }), kind: "image" },
+      ],
+      removedImages: [],
+    };
+    const plan = buildPlan(server, overlay);
+    expect(plan.items).toHaveLength(1);
+    expect(plan.items[0].details).toContain("1 image(s) added");
+    expect(plan.items[0].details).toContain("1 video(s) added");
+    expect(plan.projects[0].newImages).toHaveLength(2);
+  });
+
+  it("counts a video in a brand-new project", () => {
+    const overlay = emptyOverlay();
+    overlay.projects.fresh = {
+      slug: "fresh",
+      content: { title: "Fresh", slug: "fresh" },
+      newImages: [
+        { name: "clip.webm", width: 1280, height: 720, blob: new Blob(["x"], { type: "video/webm" }), kind: "video" },
+      ],
+      removedImages: [],
+      isNew: true,
+    };
+    const plan = buildPlan(server, overlay);
+    expect(plan.items[0].details).toContain("1 video");
+    expect(plan.projects[0].newImages).toHaveLength(1);
+  });
 });

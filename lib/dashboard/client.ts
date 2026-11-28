@@ -22,7 +22,7 @@ export async function fetchProjects(): Promise<ApiProject[]> {
   return data.projects;
 }
 
-/** A display image in the merged (published + draft) view. */
+/** A display image or video in the merged (published + draft) view. */
 export type MergedImage = {
   name: string;
   src: string; // repo path or object URL
@@ -30,7 +30,16 @@ export type MergedImage = {
   height: number;
   draft: boolean;
   blob?: Blob;
+  kind: "image" | "video";
 };
+
+export function isVideoFileName(name: string): boolean {
+  return /\.(mp4|webm|mov|m4v)$/i.test(name);
+}
+
+function mediaKind(name: string): "image" | "video" {
+  return isVideoFileName(name) ? "video" : "image";
+}
 
 export type MergedProject = {
   slug: string;
@@ -86,6 +95,7 @@ export function mergeProjects(
             width: known?.width || 0,
             height: known?.height || 0,
             draft: false,
+            kind: mediaKind(name),
           };
         }),
       });
@@ -102,6 +112,7 @@ export function mergeProjects(
           width: known?.width || 0,
           height: known?.height || 0,
           draft: false,
+          kind: mediaKind(name),
         };
       });
     const added = draft.newImages.map((img) => ({
@@ -111,6 +122,7 @@ export function mergeProjects(
       height: img.height,
       draft: true,
       blob: img.blob,
+      kind: img.kind ?? mediaKind(img.name),
     }));
     merged.push({
       slug: api.slug,
@@ -145,6 +157,7 @@ export function mergeProjects(
         height: img.height,
         draft: true,
         blob: img.blob,
+        kind: img.kind ?? mediaKind(img.name),
       })),
     });
   }
@@ -225,15 +238,22 @@ async function recompress(
 /**
  * Returns the blob to publish plus a truthful file name. Small, web-ready
  * images keep their original bytes; oversized ones are recompressed.
+ * A GIF is never recompressed to JPEG: that would kill its animation, so
+ * an oversized GIF is rejected instead.
  */
 export async function prepareImage(
   file: File
-): Promise<{ blob: Blob; name: string; width: number; height: number; optimized: boolean }> {
+): Promise<{ blob: Blob; name: string; width: number; height: number; optimized: boolean; kind: "image" }> {
   const base = file.name.replace(/\.[^.]+$/, "").replace(/[^A-Za-z0-9._-]+/g, "-") || "image";
+  if (file.type === "image/gif" && file.size > DIRECT_LIMIT) {
+    throw new Error(
+      "This GIF is too large (max 3.5 MB). Keep the GIF under 3.5 MB so its animation is preserved."
+    );
+  }
   if (file.size <= DIRECT_LIMIT && OK_TYPES.includes(file.type)) {
     const { width, height } = await measureImage(file);
     const ext = file.type === "image/png" ? "png" : file.type === "image/webp" ? "webp" : file.type === "image/gif" ? "gif" : "jpg";
-    return { blob: file, name: `${base}.${ext}`, width, height, optimized: false };
+    return { blob: file, name: `${base}.${ext}`, width, height, optimized: false, kind: "image" };
   }
   let blob = await recompress(file, 2600, 0.88);
   if (blob.size > TARGET_LIMIT) blob = await recompress(file, 2200, 0.82);
@@ -242,7 +262,68 @@ export async function prepareImage(
     throw new Error("This image stays too large even after optimization.");
   }
   const { width, height } = await measureImage(blob);
-  return { blob, name: `${base}.jpg`, width, height, optimized: true };
+  return { blob, name: `${base}.jpg`, width, height, optimized: true, kind: "image" };
+}
+
+/* ---------------------------------------------------------
+   Video preparation: videos are uploaded as-is (no browser
+   transcoding), so they must already fit the upload limit.
+--------------------------------------------------------- */
+
+export const MAX_VIDEO_BYTES = 4_300_000; // same cap as the upload route
+const VIDEO_TYPES = ["video/mp4", "video/webm", "video/quicktime", "video/x-m4v"];
+const VIDEO_EXTS = [".mp4", ".webm", ".mov", ".m4v"];
+
+export function isVideoFile(file: File): boolean {
+  const ext = file.name.slice(file.name.lastIndexOf(".")).toLowerCase();
+  return VIDEO_TYPES.includes(file.type) || VIDEO_EXTS.includes(ext);
+}
+
+export async function measureVideo(
+  blob: Blob
+): Promise<{ width: number; height: number }> {
+  const url = URL.createObjectURL(blob);
+  try {
+    const video = document.createElement("video");
+    video.preload = "metadata";
+    await new Promise<void>((resolve, reject) => {
+      video.onloadedmetadata = () => resolve();
+      video.onerror = () => reject(new Error("Not a readable video"));
+      video.src = url;
+    });
+    return { width: video.videoWidth || 0, height: video.videoHeight || 0 };
+  } finally {
+    URL.revokeObjectURL(url);
+  }
+}
+
+/**
+ * Returns the video file to publish plus a truthful file name. Videos are
+ * never recompressed in the browser: upload a short, pre-compressed clip
+ * (mp4/webm/mov/m4v) that already fits under 4.3 MB.
+ */
+export async function prepareVideo(
+  file: File
+): Promise<{ blob: Blob; name: string; width: number; height: number; optimized: boolean; kind: "video" }> {
+  const base = file.name.replace(/\.[^.]+$/, "").replace(/[^A-Za-z0-9._-]+/g, "-") || "video";
+  const ext = file.name.slice(file.name.lastIndexOf(".")).toLowerCase();
+  if (!VIDEO_EXTS.includes(ext)) {
+    throw new Error("Only mp4, webm, mov and m4v videos are supported.");
+  }
+  if (file.size > MAX_VIDEO_BYTES) {
+    throw new Error(
+      "This video is too large for the dashboard (max 4.3 MB). Compress it to a short clip under 4.3 MB before uploading."
+    );
+  }
+  const { width, height } = await measureVideo(file);
+  return { blob: file, name: `${base}${ext}`, width, height, optimized: false, kind: "video" };
+}
+
+/** Dispatches an uploaded file to image or video preparation. */
+export async function prepareMedia(
+  file: File
+): Promise<{ blob: Blob; name: string; width: number; height: number; optimized: boolean; kind: "image" | "video" }> {
+  return isVideoFile(file) ? prepareVideo(file) : prepareImage(file);
 }
 
 /* ---------------------------------------------------------

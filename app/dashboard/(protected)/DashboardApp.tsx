@@ -22,9 +22,11 @@ import { emptyOverlay } from "@/lib/dashboard/types";
 function thumbFor(project: { content: Record<string, unknown>; images: { name: string; src: string }[] }): string {
   const cover = typeof project.content.cover === "string" ? project.content.cover : "";
   const name = cover.split("/").pop();
-  const match = name ? project.images.find((img) => img.name === name) : undefined;
-  const byName = project.images.find((img) => /^cover\./i.test(img.name));
-  return (match || byName || project.images[0])?.src || "";
+  // The thumbnail must be an image: videos have no still to show.
+  const imageOnly = project.images.filter((img) => !/\.(mp4|webm|mov|m4v)$/i.test(img.name));
+  const match = name ? imageOnly.find((img) => img.name === name) : undefined;
+  const byName = imageOnly.find((img) => /^cover\./i.test(img.name));
+  return (match || byName || imageOnly[0])?.src || "";
 }
 
 export default function DashboardApp() {

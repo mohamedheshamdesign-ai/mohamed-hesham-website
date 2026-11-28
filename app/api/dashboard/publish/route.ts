@@ -11,7 +11,7 @@ export const dynamic = "force-dynamic";
 
 const SLUG_RE = /^[a-z0-9][a-z0-9-]{0,60}$/;
 const NAME_RE = /^[A-Za-z0-9][A-Za-z0-9._-]{0,80}$/;
-const IMG_EXT_RE = /\.(jpe?g|png|gif|webp|avif)$/i;
+const MEDIA_EXT_RE = /\.(jpe?g|png|gif|webp|avif|mp4|webm|mov|m4v)$/i;
 const BLOB_SHA_RE = /^[a-f0-9]{40}$/;
 
 function bad(message: string) {
@@ -74,8 +74,8 @@ export async function POST(req: Request) {
       });
 
       for (const img of project.newImages || []) {
-        if (!NAME_RE.test(img.name) || !IMG_EXT_RE.test(img.name)) {
-          return bad("Bad image name.");
+        if (!NAME_RE.test(img.name) || !MEDIA_EXT_RE.test(img.name)) {
+          return bad("Bad media name.");
         }
         if (!BLOB_SHA_RE.test(img.blobSha)) {
           return bad("Bad image reference.");

@@ -6,8 +6,9 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { thumbSrc } from "@/lib/dashboard/types";
 import {
   fetchProjects,
+  isVideoFileName,
   mergeProjects,
-  prepareImage,
+  prepareMedia,
   type MergedImage,
   type MergedProject,
 } from "@/lib/dashboard/client";
@@ -209,6 +210,7 @@ export default function ProjectEditor({ slug }: { slug: string }) {
         height: img.height,
         draft: true,
         blob: img.blob,
+        kind: img.kind ?? (isVideoFileName(img.name) ? "video" : "image"),
       }));
     }
     const kept = project.images.filter(
@@ -226,6 +228,7 @@ export default function ProjectEditor({ slug }: { slug: string }) {
         height: img.height,
         draft: true,
         blob: img.blob,
+        kind: img.kind ?? (isVideoFileName(img.name) ? "video" : "image"),
       }));
     return [...kept, ...extra];
   }, [project, newImages, removedImages, isNew]);
@@ -277,7 +280,7 @@ export default function ProjectEditor({ slug }: { slug: string }) {
     let optimizedCount = 0;
     for (const file of Array.from(files)) {
       try {
-        const prepared = await prepareImage(file);
+        const prepared = await prepareMedia(file);
         const name = uniqueName(prepared.name, taken);
         taken.add(name);
         if (prepared.optimized) optimizedCount += 1;
@@ -286,6 +289,7 @@ export default function ProjectEditor({ slug }: { slug: string }) {
           width: prepared.width,
           height: prepared.height,
           blob: prepared.blob,
+          kind: prepared.kind,
         });
       } catch (err) {
         setError(`${file.name}: ${(err as Error).message}`);
@@ -293,10 +297,13 @@ export default function ProjectEditor({ slug }: { slug: string }) {
     }
     if (added.length) {
       setNewImages((prev) => [...prev, ...added]);
+      const videos = added.filter((item) => item.kind === "video").length;
+      const parts = [`${added.length - videos} image(s)`, `${videos} video(s)`]
+        .filter((_, i) => (i === 0 ? added.length - videos > 0 : videos > 0));
       setNotice(
         optimizedCount
-          ? `${added.length} image(s) added. ${optimizedCount} large image(s) were optimized for the web - originals stay untouched on your device.`
-          : `${added.length} image(s) added.`
+          ? `${parts.join(" and ")} added. ${optimizedCount} large image(s) were optimized for the web - originals stay untouched on your device.`
+          : `${parts.join(" and ")} added.`
       );
     }
   }
@@ -340,7 +347,7 @@ export default function ProjectEditor({ slug }: { slug: string }) {
       return;
     }
     if (images.length === 0) {
-      setError("Add at least one image before saving.");
+      setError("Add at least one image or video before saving.");
       return;
     }
     const finalContent: Record<string, unknown> = {
@@ -370,7 +377,9 @@ export default function ProjectEditor({ slug }: { slug: string }) {
         }))
         .filter((chapter) => chapter.title && chapter.media.length),
     };
-    if (coverName) {
+    // The cover must be an image: a video can never be a cover.
+    const coverIsVideo = coverName ? isVideoFileName(coverName) : false;
+    if (coverName && !coverIsVideo) {
       finalContent.cover = `/projects/${finalSlug}/${coverName}`;
     } else {
       delete finalContent.cover;
@@ -554,22 +563,24 @@ export default function ProjectEditor({ slug }: { slug: string }) {
       </section>
 
       <section className="dash-card">
-        <h2>Images</h2>
+        <h2>Images &amp; videos</h2>
         <p className="dash-muted small">
           Upload your designs, then pick the cover and arrange the case-study
-          chapters below.
+          chapters below. Images and videos are both capped at 4.3 MB per
+          file, so keep videos short and pre-compressed (mp4, webm, mov or
+          m4v). The cover must be an image.
         </p>
         <button
           type="button"
           className="dash-button ghost"
           onClick={() => fileInput.current?.click()}
         >
-          + Upload images
+          + Upload images &amp; videos
         </button>
         <input
           ref={fileInput}
           type="file"
-          accept="image/*"
+          accept="image/*,video/*"
           multiple
           hidden
           onChange={(e) => {
@@ -585,15 +596,22 @@ export default function ProjectEditor({ slug }: { slug: string }) {
           <div className="dash-card-preview-box">
             <div className="studio-project-card">
               <div className="studio-project-art project-art-real">
-                {(images.find((img) => img.name === coverName) || images.find((img) => /^cover\./i.test(img.name)) || images[0]) && (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img
-                    src={thumbSrc((images.find((img) => img.name === coverName) || images.find((img) => /^cover\./i.test(img.name)) || images[0]).src, 640)}
-                    alt=""
-                    className="studio-project-image"
-                    style={{ position: "absolute", inset: 0, width: "100%", height: "100%" }}
-                  />
-                )}
+                {(() => {
+                  const imageOnly = images.filter((img) => img.kind !== "video");
+                  const cardImg =
+                    imageOnly.find((img) => img.name === coverName) ||
+                    imageOnly.find((img) => /^cover\./i.test(img.name)) ||
+                    imageOnly[0];
+                  return cardImg ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img
+                      src={thumbSrc(cardImg.src, 640)}
+                      alt=""
+                      className="studio-project-image"
+                      style={{ position: "absolute", inset: 0, width: "100%", height: "100%" }}
+                    />
+                  ) : null;
+                })()}
                 <span className="project-art-arrow" aria-hidden="true">↗</span>
               </div>
               <div className="studio-project-meta">
@@ -615,18 +633,24 @@ export default function ProjectEditor({ slug }: { slug: string }) {
         <div className="dash-images">
           {images.map((img) => (
             <figure key={img.name} className={coverName === img.name ? "cover" : ""}>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={thumbSrc(img.src)} alt={img.name} loading="lazy" decoding="async" />
+              {img.kind === "video" ? (
+                <video src={img.src} controls muted preload="metadata" />
+              ) : (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img src={thumbSrc(img.src)} alt={img.name} loading="lazy" decoding="async" />
+              )}
               <figcaption>{img.name}</figcaption>
               <div className="dash-img-actions">
-                <button
-                  type="button"
-                  onClick={() =>
-                    set("cover", `/projects/${isNew ? slugify(String(content.slug || content.title || "project")) : slug}/${img.name}`)
-                  }
-                >
-                  {coverName === img.name ? "Cover ✓" : "Set cover"}
-                </button>
+                {img.kind !== "video" && (
+                  <button
+                    type="button"
+                    onClick={() =>
+                      set("cover", `/projects/${isNew ? slugify(String(content.slug || content.title || "project")) : slug}/${img.name}`)
+                    }
+                  >
+                    {coverName === img.name ? "Cover ✓" : "Set cover"}
+                  </button>
+                )}
                 <button
                   type="button"
                   className="danger"
@@ -686,8 +710,12 @@ export default function ProjectEditor({ slug }: { slug: string }) {
                 if (!img) return null;
                 return (
                   <figure key={name}>
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={thumbSrc(img.src)} alt={name} loading="lazy" decoding="async" />
+                    {img.kind === "video" ? (
+                            <video src={img.src} controls muted preload="metadata" />
+                    ) : (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img src={thumbSrc(img.src)} alt={name} loading="lazy" decoding="async" />
+                    )}
                     <div className="dash-img-actions">
                       <button type="button" onClick={() => chapterMove(ci, name, -1)}>
                         ←
@@ -707,7 +735,7 @@ export default function ProjectEditor({ slug }: { slug: string }) {
                   value=""
                   onChange={(e) => chapterAdd(ci, e.target.value)}
                 >
-                  <option value="">+ Add image…</option>
+                  <option value="">+ Add media…</option>
                   {unassigned.map((img) => (
                     <option key={img.name} value={img.name}>
                       {img.name}

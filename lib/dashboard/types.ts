@@ -27,12 +27,14 @@ export type ApiProject = {
   files: string[];
 };
 
-/** A new image staged in the browser (IndexedDB) until publish. */
+/** A new image or video staged in the browser (IndexedDB) until publish. */
 export type DraftImage = {
   name: string;
   width: number;
   height: number;
   blob: Blob;
+  /** "video" for mp4/webm/mov/m4v uploads; "image" (or omitted, for older drafts) otherwise. */
+  kind?: "image" | "video";
 };
 
 export type DraftProject = {
@@ -72,5 +74,7 @@ export type PublishProjectPayload = {
  */
 export function thumbSrc(src: string, width = 384): string {
   if (!src || !src.startsWith("/projects/")) return src;
+  // Videos must never go through next/image: return the file as-is.
+  if (/\.(mp4|webm|mov|m4v)$/i.test(src)) return src;
   return `/_next/image?url=${encodeURIComponent(src)}&w=${width}&q=75`;
 }
