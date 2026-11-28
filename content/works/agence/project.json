@@ -22,6 +22,16 @@
     "Business cards",
     "Car labels"
   ],
+  "palette": [
+    {
+      "name": "sssss",
+      "value": "#17372C"
+    },
+    {
+      "name": "qqq",
+      "value": "#d32727"
+    }
+  ],
   "chapters": [
     {
       "title": "Selected applications",
