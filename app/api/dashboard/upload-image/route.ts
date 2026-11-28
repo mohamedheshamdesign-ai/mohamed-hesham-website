@@ -15,6 +15,7 @@ const MAGIC: Array<{ ext: string; bytes: number[] }> = [
   { ext: "png", bytes: [0x89, 0x50, 0x4e, 0x47] },
   { ext: "gif", bytes: [0x47, 0x49, 0x46, 0x38] },
   { ext: "webp", bytes: [0x52, 0x49, 0x46, 0x46] }, // RIFF....WEBP checked below
+  { ext: "webm", bytes: [0x1a, 0x45, 0xdf, 0xa3] }, // EBML
   { ext: "avif", bytes: [] }, // checked via ftyp below
 ];
 
@@ -30,13 +31,25 @@ function sniffExt(buf: Buffer): string | null {
   const ftyp = buf.toString("ascii", 4, 12);
   if (ftyp.startsWith("ftypavif") || ftyp.startsWith("ftypavis")) return "avif";
   if (ftyp.startsWith("ftypheic") || ftyp.startsWith("ftypheix")) return "heic";
+  // Video containers: the brand after "ftyp" names the format.
+  if (
+    ftyp.startsWith("ftypisom") ||
+    ftyp.startsWith("ftypiso2") ||
+    ftyp.startsWith("ftypmp41") ||
+    ftyp.startsWith("ftypmp42") ||
+    ftyp.startsWith("ftypavc1") ||
+    ftyp.startsWith("ftypM4V")
+  ) {
+    return "mp4";
+  }
+  if (ftyp.startsWith("ftypqt")) return "mov";
   return null;
 }
 
 /**
- * Receives one validated image and stores it as a GitHub git blob (no commit).
- * The publish step references the returned blob sha in a single commit, so
- * half-published states are impossible.
+ * Receives one validated image or video and stores it as a GitHub git blob
+ * (no commit). The publish step references the returned blob sha in a
+ * single commit, so half-published states are impossible.
  */
 export async function POST(req: Request) {
   try {
@@ -54,7 +67,7 @@ export async function POST(req: Request) {
     }
     if (file.size > MAX_BYTES) {
       return Response.json(
-        { error: "Image is too large even after optimization." },
+        { error: "File is too large (max 4.3 MB)." },
         { status: 413 }
       );
     }
@@ -62,14 +75,19 @@ export async function POST(req: Request) {
     const ext = sniffExt(buf);
     if (!ext) {
       return Response.json(
-        { error: "Only image files (jpg, png, gif, webp, avif) are allowed." },
+        {
+          error:
+            "Only image files (jpg, png, gif, webp, avif) and video files (mp4, webm, mov, m4v) are allowed.",
+        },
         { status: 415 }
       );
     }
     if (!rawName.toLowerCase().endsWith(`.${ext === "jpg" ? "jpg" : ext}`) && ext !== "jpg") {
-      // Keep the on-disk extension truthful; jpeg files may end in .jpeg too.
+      // Keep the on-disk extension truthful; jpeg files may end in .jpeg too,
+      // and mp4 files may end in .m4v too.
       const okJpeg = ext === "jpg" && /\.jpe?g$/i.test(rawName);
-      if (!okJpeg) {
+      const okMp4 = ext === "mp4" && /\.m4v$/i.test(rawName);
+      if (!okJpeg && !okMp4) {
         return Response.json(
           { error: `File content is ${ext} but the name says otherwise.` },
           { status: 400 }

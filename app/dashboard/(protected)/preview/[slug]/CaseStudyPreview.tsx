@@ -54,7 +54,7 @@ export default function CaseStudyPreview({ slug }: { slug: string }) {
     typeof content.cover === "string" ? content.cover.split("/").pop() : "";
   const cover = coverName
     ? project.images.find((img) => img.name === coverName)?.src
-    : project.images[0]?.src;
+    : project.images.find((img) => img.kind !== "video")?.src;
   const services = Array.isArray(content.services)
     ? (content.services as string[])
     : [];
@@ -128,7 +128,11 @@ export default function CaseStudyPreview({ slug }: { slug: string }) {
               .filter((img): img is NonNullable<typeof img> => Boolean(img))
               .map((img) => ({
                 src: img.src,
-                type: "image" as const,
+                type: (img.kind === "video"
+                  ? "video"
+                  : /\.gif$/i.test(img.name)
+                    ? "gif"
+                    : "image") as "image" | "gif" | "video",
                 name: img.name,
                 width: img.width,
                 height: img.height,
@@ -143,12 +147,23 @@ export default function CaseStudyPreview({ slug }: { slug: string }) {
                   <div key={gi} className={`cs-group cs-group-${group.layout}`}>
                     {group.media.map((item) => (
                       <figure key={item.src} className="cs-media">
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img
-                          className="cs-media-image"
-                          src={item.src}
-                          alt={`${project.title} - ${chapter.title}`}
-                        />
+                        {item.type === "video" ? (
+                                    <video
+                            className="cs-media-video"
+                            src={item.src}
+                            controls
+                            playsInline
+                            preload="metadata"
+                            aria-label={`${project.title} - ${chapter.title}`}
+                          />
+                        ) : (
+                          // eslint-disable-next-line @next/next/no-img-element
+                          <img
+                            className="cs-media-image"
+                            src={item.src}
+                            alt={`${project.title} - ${chapter.title}`}
+                          />
+                        )}
                       </figure>
                     ))}
                   </div>

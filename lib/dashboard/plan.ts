@@ -117,14 +117,16 @@ export function buildPlan(api: ApiProject[], overlay: Overlay): PublishPlan {
         newImages: draft.newImages,
         removedImages: [],
       });
+      const newVideos = draft.newImages.filter((img) => img.kind === "video").length;
+      const newImages = draft.newImages.length - newVideos;
+      const mediaDetails: string[] = [];
+      if (newImages) mediaDetails.push(`${newImages} image${newImages === 1 ? "" : "s"}`);
+      if (newVideos) mediaDetails.push(`${newVideos} video${newVideos === 1 ? "" : "s"}`);
       items.push({
         slug,
         title: String(draft.content.title || slug),
         kind: "new",
-        details: [
-          "New project",
-          `${draft.newImages.length} image${draft.newImages.length === 1 ? "" : "s"}`,
-        ],
+        details: ["New project", ...mediaDetails],
       });
       handled.add(slug);
       continue;
@@ -137,10 +139,16 @@ export function buildPlan(api: ApiProject[], overlay: Overlay): PublishPlan {
     if (!contentChanged && !draft.newImages.length && !removedImages.length) {
       continue; // draft equals the live project
     }
+    const addedVideos = draft.newImages.filter((img) => img.kind === "video").length;
+    const addedImages = draft.newImages.length - addedVideos;
+    const removedVideos = removedImages.filter((name) => /\.(mp4|webm|mov|m4v)$/i.test(name)).length;
+    const removedImageCount = removedImages.length - removedVideos;
     const details: string[] = [];
     if (contentChanged) details.push("Text or settings changed");
-    if (draft.newImages.length) details.push(`${draft.newImages.length} image(s) added`);
-    if (removedImages.length) details.push(`${removedImages.length} image(s) removed`);
+    if (addedImages) details.push(`${addedImages} image(s) added`);
+    if (addedVideos) details.push(`${addedVideos} video(s) added`);
+    if (removedImageCount) details.push(`${removedImageCount} image(s) removed`);
+    if (removedVideos) details.push(`${removedVideos} video(s) removed`);
     const content: Record<string, unknown> = {
       ...draft.content,
       slug,
